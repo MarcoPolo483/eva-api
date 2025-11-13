@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.69% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">7.69% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/13</span>
+                <span class='fraction'>13/13</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -82,43 +82,43 @@
 <a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export type Pagination = { limit: number; offset: number };
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span></td><td class="text"><pre class="prettyprint lang-js">export type Pagination = { limit: number; offset: number };
 &nbsp;
-export <span class="fstat-no" title="function not covered" >function parsePagination(params: URLSearchParams, defaults: Pagination = { limit: 50, offset: 0 }, max = 200): Pagination {</span>
-<span class="cstat-no" title="statement not covered" >  const limit = clamp(intOrDefault(params.get("limit"), defaults.limit), 1, max);</span>
-<span class="cstat-no" title="statement not covered" >  const offset = Math.max(0, intOrDefault(params.get("offset"), defaults.offset));</span>
-<span class="cstat-no" title="statement not covered" >  return { limit, offset };</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+export function parsePagination(params: URLSearchParams, defaults: Pagination = { limit: 50, offset: 0 }, max = 200): Pagination {
+  const limit = clamp(intOrDefault(params.get("limit"), defaults.limit), 1, max);
+  const offset = Math.max(0, intOrDefault(params.get("offset"), defaults.offset));
+  return { limit, offset };
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function intOrDefault(v: string | null, d: number): number {</span></span>
-<span class="cstat-no" title="statement not covered" >  if (!v) return d;</span>
-<span class="cstat-no" title="statement not covered" >  const n = Number(v);</span>
-<span class="cstat-no" title="statement not covered" >  return Number.isFinite(n) ? Math.floor(n) : d;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+function intOrDefault(v: string | null, d: number): number {
+  if (!v) return d;
+  const n = Number(v);
+  return Number.isFinite(n) ? Math.floor(n) : d;
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >function clamp(n: number, min: number, max: number) {</span></span>
-<span class="cstat-no" title="statement not covered" >  return Math.max(min, Math.min(max, n));</span>
-<span class="cstat-no" title="statement not covered" >}</span></pre></td></tr></table></pre>
+function clamp(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n));
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-13T22:22:25.429Z
+                at 2025-11-13T22:27:44.149Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for eva-api/src/__tests__/server.test.ts</title>
+    <title>Code coverage report for eva-api/src/__tests__/pagination.test.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">eva-api/src/__tests__</a> server.test.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">eva-api/src/__tests__</a> pagination.test.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>57/57</span>
+                <span class='fraction'>43/43</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>57/57</span>
+                <span class='fraction'>43/43</span>
             </div>
         
             
@@ -113,26 +113,7 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -141,7 +122,11 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -164,10 +149,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -182,93 +163,64 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import { describe, it, expect, beforeAll, afterAll } from "vitest";
-import { startServer } from "../server.js";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { describe, it, expect } from "vitest";
+import { parsePagination } from "../util/pagination.js";
 &nbsp;
-let server: any;
-let base: string;
-&nbsp;
-beforeAll(async () =&gt; {
-  server = startServer({ port: 0, bodyLimitBytes: 1024, rateLimitRps: 100, corsOrigin: "*", requestTimeoutMs: 5000, supportedVersions: ["1"] });
-  await new Promise&lt;void&gt;((resolve) =&gt; server.on("listening", resolve));
-  const addr = server.address();
-  base = `http://127.0.0.1:${addr.port}`;
-});
-&nbsp;
-afterAll(async () =&gt; {
-  await new Promise&lt;void&gt;((resolve) =&gt; server.close(() =&gt; resolve()));
-});
-&nbsp;
-it("health endpoints", async () =&gt; {
-  const r = await fetch(`${base}/healthz`);
-  expect(r.status).toBe(200);
-  const j = await r.json();
-  expect(j.ok).toBe(true);
-});
-&nbsp;
-it("echo endpoints", async () =&gt; {
-  const r1 = await fetch(`${base}/api/v1/echo?x=42`);
-  expect(r1.status).toBe(200);
-  const j1 = await r1.json();
-  expect(j1.x).toBe("42");
-&nbsp;
-  const r2 = await fetch(`${base}/api/v1/echo`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ a: 1 })
+describe("pagination", () =&gt; {
+  it("parses limit and offset from query params", () =&gt; {
+    const query = new URLSearchParams("limit=50&amp;offset=100");
+    const result = parsePagination(query);
+    expect(result.limit).toBe(50);
+    expect(result.offset).toBe(100);
   });
-  expect(r2.status).toBe(200);
-  const j2 = await r2.json();
-  expect(j2.body).toEqual({ a: 1 });
-});
 &nbsp;
-it("cors preflight", async () =&gt; {
-  const r = await fetch(`${base}/api/v1/echo`, { method: "OPTIONS" });
-  expect(r.status).toBe(204);
-  expect(r.headers.get("access-control-allow-origin")).toBe("*");
-});
-&nbsp;
-it("body limit", async () =&gt; {
-  const big = "x".repeat(5000);
-  const r = await fetch(`${base}/api/v1/echo`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ big })
+  it("uses default limit when not provided", () =&gt; {
+    const query = new URLSearchParams("offset=10");
+    const result = parsePagination(query);
+    expect(result.limit).toBe(50); // default limit
+    expect(result.offset).toBe(10);
   });
-  expect(r.status).toBe(400); // parser throws BAD_REQUEST "Payload too large"
-});
 &nbsp;
-it("secure endpoint requires role", async () =&gt; {
-  const r1 = await fetch(`${base}/api/v1/secure`);
-  expect(r1.status).toBe(401);
-&nbsp;
-  const r2 = await fetch(`${base}/api/v1/secure`, {
-    headers: { "x-user-id": "u1", "x-roles": "admin" }
+  it("uses default offset when not provided", () =&gt; {
+    const query = new URLSearchParams("limit=30");
+    const result = parsePagination(query);
+    expect(result.limit).toBe(30);
+    expect(result.offset).toBe(0);
   });
-  expect(r2.status).toBe(200);
-  const j = await r2.json();
-  expect(j.user.id).toBe("u1");
-});</pre></td></tr></table></pre>
+&nbsp;
+  it("caps limit at 200", () =&gt; {
+    const query = new URLSearchParams("limit=300");
+    const result = parsePagination(query);
+    expect(result.limit).toBe(200); // max limit
+  });
+&nbsp;
+  it("enforces minimum limit of 1", () =&gt; {
+    const query = new URLSearchParams("limit=0");
+    const result = parsePagination(query);
+    expect(result.limit).toBe(1);
+  });
+&nbsp;
+  it("enforces minimum offset of 0", () =&gt; {
+    const query = new URLSearchParams("offset=-5");
+    const result = parsePagination(query);
+    expect(result.offset).toBe(0);
+  });
+&nbsp;
+  it("handles invalid numbers gracefully", () =&gt; {
+    const query = new URLSearchParams("limit=abc&amp;offset=xyz");
+    const result = parsePagination(query);
+    expect(result.limit).toBe(50); // falls back to default
+    expect(result.offset).toBe(0);
+  });
+});
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-11-13T22:27:44.149Z
+                at 2025-11-13T22:27:44.068Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
