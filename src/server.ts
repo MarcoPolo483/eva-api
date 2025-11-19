@@ -1,4 +1,5 @@
 import http from "http";
+
 import { App } from "./router.js";
 import { loadConfig } from "./util/config.js";
 import { cors } from "./middleware/cors.js";
@@ -62,7 +63,7 @@ export function startServer(cfg = loadConfig()) {
     });
   });
   server.listen(cfg.port, () => {
-    // eslint-disable-next-line no-console
+
     console.log(`eva-api listening on :${cfg.port}`);
   });
   return server;

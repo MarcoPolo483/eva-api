@@ -1,5 +1,7 @@
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import http from "http";
+
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+
 import { App } from "../router.js";
 import { jsonBodyParser } from "../middleware/json.js";
 import { validateBody } from "../middleware/validate.js";

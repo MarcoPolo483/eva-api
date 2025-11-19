@@ -1,5 +1,7 @@
-import { describe, it, expect, beforeAll, afterAll } from "vitest";
 import http from "http";
+
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
+
 import { App } from "../router.js";
 import { withTimeout } from "../middleware/timeout.js";
 import { requestId } from "../middleware/requestId.js";
