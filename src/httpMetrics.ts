@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from "http";
 // Import MeterRegistry from eva-ops
-import { MeterRegistry } from "../../src/core/registry.js";
+import { MeterRegistry } from "./stubs/platform.js";
 
 type Handler = (req: IncomingMessage, res: ServerResponse) => Promise<void> | void;
 

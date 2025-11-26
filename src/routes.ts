@@ -1,25 +1,29 @@
 import type { IncomingMessage, ServerResponse } from "http";
-import { createRagEventsServer } from "../../src/rag/api/events.js";
-import { RagApiRouter } from "../../src/rag/api/router.js";
-import { IngestionContextRegistry } from "../../src/rag/ingestion/contextRegistry.js";
-import { RagIngestionOrchestratorExtended } from "../../src/rag/ingestion/orchestrator-extended.js";
-import { DefaultSourceResolver } from "../../src/rag/ingestion/loadSources.js";
-import { SimpleLineChunker } from "../../src/rag/ingestion/chunkPhase.js";
-import { MockEmbedder } from "../../src/rag/ingestion/embedPhase.js";
-import { InMemoryVectorIndex } from "../../src/rag/ingestion/indexPhase.js";
-import { InMemoryManifestStore } from "../../src/rag/ingestion/manifestStore.js";
-import { InMemoryIndexSnapshotStore } from "../../src/rag/ingestion/indexSnapshotStore.js";
-import { NoopSafetyGate } from "../../src/rag/ingestion/safetyGate.js";
-import { withEvents } from "../../src/rag/ingestion/orchestrator-hooks.js";
-import { EventHub } from "../../src/rag/events/eventHub.js";
-import { listJobs, jobAction } from "../../src/ops/batchApi.js";
-import { BatchScheduler } from "../../src/scheduler/batchScheduler.js";
-import { createLogger } from "../../src/logging/logger.js";
-import { RingBufferSink } from "../../src/logging/sinks.js";
-import { MeterRegistry } from "../../src/core/registry.js";
-import { prometheusText } from "../../src/exporters/prometheus.js";
+import {
+  BatchScheduler,
+  createLogger,
+  createRagEventsServer,
+  DefaultSourceResolver,
+  EventHub,
+  IngestionContextRegistry,
+  InMemoryIndexSnapshotStore,
+  InMemoryManifestStore,
+  InMemoryVectorIndex,
+  jobAction,
+  listJobs,
+  MeterRegistry,
+  MockEmbedder,
+  NoopSafetyGate,
+  prometheusText,
+  RagApiRouter,
+  RagIngestionOrchestratorExtended,
+  RingBufferSink,
+  SimpleLineChunker,
+  withEvents
+} from "./stubs/platform.js";
 import { httpMetrics } from "./httpMetrics.js";
 import { authorize, isPublicRoute, type AuthConfig } from "./auth.js";
+import { answerDemoRag, getLayout, listAssets, listProjects, listTemplates } from "./catalog/demoAppData.js";
 
 export type ApiDeps = {
   meter: MeterRegistry;
@@ -80,6 +84,8 @@ export function createRequestHandler(deps: ApiDeps) {
   return async function handler(req: IncomingMessage, res: ServerResponse) {
     const url = req.url || "/";
     const method = (req.method || "GET").toUpperCase();
+    const requestUrl = new URL(url, "http://localhost");
+    const pathname = requestUrl.pathname;
 
     // Authorization
     if (!isPublicRoute(url, method, deps.auth)) {
@@ -132,8 +138,57 @@ export function createRequestHandler(deps: ApiDeps) {
         }
       }
 
+      // Public EVA DA catalog endpoints
+      if (pathname === "/projects" && method === "GET") {
+        res.setHeader("content-type", "application/json");
+        res.end(JSON.stringify({ projects: listProjects() }));
+        return;
+      }
+
+      if (pathname.startsWith("/layouts/") && method === "GET") {
+        const pageId = decodeURIComponent(pathname.replace("/layouts/", ""));
+        const layout = getLayout(pageId);
+        if (!layout) {
+          res.statusCode = 404;
+          res.end(JSON.stringify({ error: "layout-not-found" }));
+          return;
+        }
+        res.setHeader("content-type", "application/json");
+        res.end(JSON.stringify(layout));
+        return;
+      }
+
+      if (pathname === "/assets" && method === "GET") {
+        res.setHeader("content-type", "application/json");
+        res.end(JSON.stringify({ assets: listAssets() }));
+        return;
+      }
+
+      if (pathname === "/templates" && method === "GET") {
+        res.setHeader("content-type", "application/json");
+        res.end(JSON.stringify({ templates: listTemplates() }));
+        return;
+      }
+
+      if (pathname === "/rag/answer" && method === "POST") {
+        let body = "";
+        req.on("data", (c) => (body += c));
+        req.on("end", () => {
+          try {
+            const payload = body ? JSON.parse(body) : {};
+            const response = answerDemoRag(payload);
+            res.setHeader("content-type", "application/json");
+            res.end(JSON.stringify(response));
+          } catch (e: any) {
+            res.statusCode = 400;
+            res.end(JSON.stringify({ error: e?.message ?? "invalid-payload" }));
+          }
+        });
+        return;
+      }
+
       // RAG events (SSE)
-      if (url === "/rag/events" && method === "GET") {
+      if (pathname === "/rag/events" && method === "GET") {
         deps.sseHandler(req, res);
         return;
       }
@@ -151,6 +206,11 @@ export function createRequestHandler(deps: ApiDeps) {
 }
 
 function routeTag(url: string, method: string): string {
+  if (url.startsWith("/projects")) return `${method} /projects`;
+  if (url.startsWith("/layouts/")) return `${method} /layouts/:pageId`;
+  if (url.startsWith("/assets")) return `${method} /assets`;
+  if (url.startsWith("/templates")) return `${method} /templates`;
+  if (url.startsWith("/rag/answer")) return `${method} /rag/answer`;
   if (url.startsWith("/ops/metrics")) return `${method} /ops/metrics`;
   if (url.startsWith("/ops/batch")) return `${method} /ops/batch`;
   if (url.startsWith("/rag/events")) return `${method} /rag/events`;
