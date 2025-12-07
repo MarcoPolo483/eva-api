@@ -2,27 +2,37 @@
   "$schema": "https://marcopolo483.github.io/eva-suite/schemas/eva-memory-v1.json",
   "version": "1.0.0",
   "repo": {
-    "name": "REPO_NAME_PLACEHOLDER",
-    "pod": "POD_PLACEHOLDER",
-    "purpose": "DESCRIPTION_PLACEHOLDER",
+    "name": "eva-api",
+    "pod": "POD-F",
+    "purpose": "API gateway and routing layer for EVA Suite. REST + GraphQL + Webhooks. FastAPI with Azure AD authentication. Reference: OpenWebUI + PubSec Info Assistant patterns.",
     "status": "active",
-    "owner": "OWNER_PLACEHOLDER",
-    "dependencies": [],
+    "owner": "P04-LIB + P15-DVM",
+    "dependencies": [
+      "eva-orchestrator (specification)",
+      "eva-core (business logic)",
+      "eva-auth (authentication)"
+    ],
     "lastUpdated": "2025-11-29T00:00:00Z"
   },
   "context": {
-    "summary": "SUMMARY_PLACEHOLDER",
-    "keyFiles": [],
-    "currentPhase": "Sprint 4 - Stabilization & Demo Prep",
+    "summary": "CRITICAL: BEFORE ANY WORK, read complete specification: docs/SPECIFICATION.md (722 lines). Contains ALL requirements: REST API, GraphQL, webhooks, SDKs, developer portal, 12 quality gates, autonomous implementation model. DO NOT start coding without reading this file.",
+    "keyFiles": [
+      "docs/SPECIFICATION.md",
+      ".eva-housekeeping.json",
+      ".eva-memory.json"
+    ],
+    "currentPhase": "BLOCKED: Must read docs/SPECIFICATION.md (722 lines) FIRST before any implementation work.",
     "openIssues": 0,
-    "blockers": []
+    "blockers": [
+      "CRITICAL: Cannot start implementation without reading complete specification from docs/SPECIFICATION.md (722 lines). Contains: REST API endpoints, GraphQL schema, webhooks, authentication (Azure AD), rate limiting, SDKs (Python/Node/.NET), developer portal, 12 quality gates (100% coverage, performance, security), autonomous implementation model (Marco NOT available for approvals). DO NOT make assumptions. Reference implementations: OpenWebUI + PubSec Info Assistant patterns."
+    ]
   },
   "quality": {
     "testCoverage": 0,
     "lintWarnings": 0,
     "typeScriptStrict": false,
-    "wcagCompliance": "N/A",
-    "bilingualStatus": "N/A"
+    "wcagCompliance": "WCAG 2.2 AA (developer portal)",
+    "bilingualStatus": "EN-CA/FR-CA (API errors + docs)"
   },
   "memory": {
     "lessons": [],
@@ -45,7 +55,7 @@
     "createdBy": "TASK-002 Bootstrap Memory Template",
     "createdAt": "2025-11-29T00:00:00Z",
     "templateVersion": "1.0.0",
-    "lastModifiedBy": null,
-    "lastModifiedAt": null
+    "lastModifiedBy": "EVA-API Specification + Memory Fix",
+    "lastModifiedAt": "2025-12-07T19:00:00Z"
   }
 }
