@@ -1,0 +1,78 @@
+# Docker Compose for EVA API Platform - Local Development
+
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: eva-api
+    ports:
+      - "8000:8000"
+    environment:
+      - ENVIRONMENT=development
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      # Azure credentials (set in .env file)
+      - AZURE_AD_B2C_TENANT_ID=${AZURE_AD_B2C_TENANT_ID}
+      - AZURE_AD_B2C_CLIENT_ID=${AZURE_AD_B2C_CLIENT_ID}
+      - AZURE_AD_B2C_CLIENT_SECRET=${AZURE_AD_B2C_CLIENT_SECRET}
+      - AZURE_ENTRA_TENANT_ID=${AZURE_ENTRA_TENANT_ID}
+      - AZURE_ENTRA_CLIENT_ID=${AZURE_ENTRA_CLIENT_ID}
+      - AZURE_ENTRA_CLIENT_SECRET=${AZURE_ENTRA_CLIENT_SECRET}
+      - COSMOS_DB_ENDPOINT=${COSMOS_DB_ENDPOINT}
+      - COSMOS_DB_KEY=${COSMOS_DB_KEY}
+    volumes:
+      - ../src/eva_api:/app/eva_api:ro
+    depends_on:
+      - redis
+    networks:
+      - eva-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  redis:
+    image: redis:7-alpine
+    container_name: eva-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - eva-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Optional: Redis Commander for debugging
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: eva-redis-commander
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    networks:
+      - eva-network
+    restart: unless-stopped
+
+networks:
+  eva-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+    driver: local
