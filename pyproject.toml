@@ -102,6 +102,7 @@ ignore = [
     "E501",  # line too long (handled by formatter)
     "B008",  # function call in argument defaults
     "B904",  # raise from within except (explicit chaining not always needed)
+    "UP007", # use X | Y for type annotations (Optional[X] is clearer)
     "ARG001", # unused function argument
 ]
 
