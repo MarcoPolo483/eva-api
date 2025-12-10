@@ -101,6 +101,7 @@ select = [
 ignore = [
     "E501",  # line too long (handled by formatter)
     "B008",  # function call in argument defaults
+    "B904",  # raise from within except (explicit chaining not always needed)
     "ARG001", # unused function argument
 ]
 
