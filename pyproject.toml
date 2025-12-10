@@ -106,6 +106,7 @@ ignore = [
     "UP007", # use X | Y for type annotations (Optional[X] is clearer)
     "F841",  # local variable assigned but never used (work in progress code)
     "F821",  # undefined name (forward references in progress)
+    "SIM105", # use contextlib.suppress (try-except-pass is clearer in async)
     "ARG001", # unused function argument
     "ARG002", # unused method argument
 ]
