@@ -30,25 +30,25 @@ async def create_api_key(
     settings: Settings = Depends(get_settings),
 ) -> APIKeyResponse:
     """Create a new API key.
-    
+
     Requires JWT authentication. The API key is only shown once.
-    
+
     Args:
         request: API key creation request
         token: Verified JWT token (from dependency)
         settings: Application settings
-        
+
     Returns:
         APIKeyResponse: Created API key
     """
     tenant_id = token.get("tenant_id", "")
-    
+
     if not tenant_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Tenant ID not found in token",
         )
-    
+
     api_key_service = APIKeyService(settings)
     return await api_key_service.create_api_key(tenant_id, request)
 
@@ -65,22 +65,22 @@ async def list_api_keys(
     settings: Settings = Depends(get_settings),
 ) -> list[APIKeyInfo]:
     """List all API keys for the authenticated tenant.
-    
+
     Args:
         token: Verified JWT token (from dependency)
         settings: Application settings
-        
+
     Returns:
         list[APIKeyInfo]: List of API keys
     """
     tenant_id = token.get("tenant_id", "")
-    
+
     if not tenant_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Tenant ID not found in token",
         )
-    
+
     api_key_service = APIKeyService(settings)
     return await api_key_service.list_api_keys(tenant_id)
 
@@ -98,35 +98,35 @@ async def get_api_key(
     settings: Settings = Depends(get_settings),
 ) -> APIKeyInfo:
     """Get API key information.
-    
+
     Args:
         key_id: API key ID
         token: Verified JWT token (from dependency)
         settings: Application settings
-        
+
     Returns:
         APIKeyInfo: API key information
-        
+
     Raises:
         HTTPException: If key not found
     """
     tenant_id = token.get("tenant_id", "")
-    
+
     if not tenant_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Tenant ID not found in token",
         )
-    
+
     api_key_service = APIKeyService(settings)
     key_info = await api_key_service.get_api_key(key_id, tenant_id)
-    
+
     if not key_info:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"API key {key_id} not found",
         )
-    
+
     return key_info
 
 
@@ -142,26 +142,26 @@ async def revoke_api_key(
     settings: Settings = Depends(get_settings),
 ) -> None:
     """Revoke an API key.
-    
+
     Args:
         key_id: API key ID
         token: Verified JWT token (from dependency)
         settings: Application settings
-        
+
     Raises:
         HTTPException: If key not found
     """
     tenant_id = token.get("tenant_id", "")
-    
+
     if not tenant_id:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Tenant ID not found in token",
         )
-    
+
     api_key_service = APIKeyService(settings)
     success = await api_key_service.revoke_api_key(key_id, tenant_id)
-    
+
     if not success:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,

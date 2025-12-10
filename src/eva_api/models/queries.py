@@ -4,7 +4,7 @@ Pydantic models for Query resources.
 
 from datetime import datetime
 from enum import Enum
-from typing import Any, Optional
+from typing import Optional
 from uuid import UUID
 
 from pydantic import BaseModel, Field

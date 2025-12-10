@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field
 
 class TokenRequest(BaseModel):
     """OAuth 2.0 token request."""
-    
+
     grant_type: Literal["client_credentials", "authorization_code"] = Field(
         ..., description="OAuth 2.0 grant type"
     )
@@ -24,7 +24,7 @@ class TokenRequest(BaseModel):
 
 class TokenResponse(BaseModel):
     """OAuth 2.0 token response."""
-    
+
     access_token: str = Field(..., description="Access token")
     token_type: str = Field(default="Bearer", description="Token type")
     expires_in: int = Field(..., description="Token expiration time in seconds")
@@ -34,7 +34,7 @@ class TokenResponse(BaseModel):
 
 class APIKeyCreate(BaseModel):
     """Request to create a new API key."""
-    
+
     name: str = Field(..., description="Friendly name for the API key", min_length=1, max_length=100)
     scopes: list[str] = Field(
         default_factory=list,
@@ -45,7 +45,7 @@ class APIKeyCreate(BaseModel):
 
 class APIKeyResponse(BaseModel):
     """API key response (only shown once on creation)."""
-    
+
     id: str = Field(..., description="API key ID")
     key: str = Field(..., description="API key value (only shown once)")
     name: str = Field(..., description="Friendly name")
@@ -56,7 +56,7 @@ class APIKeyResponse(BaseModel):
 
 class APIKeyInfo(BaseModel):
     """API key information (without the actual key value)."""
-    
+
     id: str = Field(..., description="API key ID")
     name: str = Field(..., description="Friendly name")
     scopes: list[str] = Field(..., description="Granted permissions")
@@ -68,7 +68,7 @@ class APIKeyInfo(BaseModel):
 
 class JWTClaims(BaseModel):
     """JWT token claims."""
-    
+
     sub: str = Field(..., description="Subject (user ID)")
     tenant_id: str = Field(..., description="Tenant ID")
     scopes: list[str] = Field(default_factory=list, description="Granted scopes")

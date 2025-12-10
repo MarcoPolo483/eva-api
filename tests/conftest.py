@@ -10,7 +10,7 @@ from eva_api.main import create_application
 @pytest.fixture
 def test_settings() -> Settings:
     """Create test settings with safe defaults.
-    
+
     Returns:
         Settings: Test configuration
     """
@@ -36,35 +36,35 @@ def test_settings() -> Settings:
 @pytest.fixture
 def app(test_settings: Settings):
     """Create FastAPI application for testing.
-    
+
     Args:
         test_settings: Test settings
-        
+
     Returns:
         FastAPI: Application instance
     """
     from eva_api.dependencies import verify_jwt_token
-    
+
     # Override settings dependency
     application = create_application()
     application.dependency_overrides[get_settings] = lambda: test_settings
-    
+
     # Override JWT verification for tests
     def mock_verify_jwt_token():
         return {"sub": "test-user", "tenant_id": "test-tenant"}
-    
+
     application.dependency_overrides[verify_jwt_token] = mock_verify_jwt_token
-    
+
     return application
 
 
 @pytest.fixture
 def client(app) -> TestClient:
     """Create test client.
-    
+
     Args:
         app: FastAPI application
-        
+
     Returns:
         TestClient: Test client instance
     """
@@ -76,7 +76,7 @@ def client(app) -> TestClient:
 @pytest.fixture
 def mock_jwt_token() -> str:
     """Create mock JWT token for testing.
-    
+
     Returns:
         str: Mock JWT token
     """
@@ -88,7 +88,7 @@ def mock_jwt_token() -> str:
 @pytest.fixture
 def mock_api_key() -> str:
     """Create mock API key for testing.
-    
+
     Returns:
         str: Mock API key
     """

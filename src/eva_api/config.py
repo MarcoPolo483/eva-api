@@ -31,13 +31,27 @@ class Settings(BaseSettings):
     # API Configuration
     api_prefix: str = "/api/v1"
     allowed_origins: list[str] = Field(
-        default=["http://localhost:3000", "http://localhost:8000"]
+        default=[
+            "http://localhost:3000",
+            "http://localhost:8000",
+            "http://127.0.0.1:8000",
+            "http://localhost:8080",  # Chat UI HTTP server
+            "http://127.0.0.1:8080",  # Chat UI HTTP server
+            "http://localhost:5500",  # Live Server default
+            "http://127.0.0.1:5500",  # Live Server default
+            "https://evasuitestoragedev.z9.web.core.windows.net",  # Azure static website
+        ]
     )
-    
+
     # Server
     host: str = "0.0.0.0"
     port: int = 8000
     reload: bool = False
+
+    # Performance & Testing
+    mock_mode: bool = Field(default=False, validation_alias="EVA_MOCK_MODE", description="Enable mock mode for load testing")
+    azure_timeout: int = Field(default=5, ge=1, le=30, validation_alias="EVA_AZURE_TIMEOUT", description="Azure service timeout in seconds")
+    enable_circuit_breaker: bool = Field(default=True, validation_alias="EVA_ENABLE_CIRCUIT_BREAKER", description="Enable circuit breaker for Azure calls")
 
     # Azure AD B2C (Citizen Authentication)
     azure_ad_b2c_tenant_id: str = ""
@@ -68,6 +82,22 @@ class Settings(BaseSettings):
     azure_storage_account_key: str = ""
     azure_storage_container_documents: str = "documents"
 
+    @property
+    def blob_storage_connection_string(self) -> str | None:
+        """Build Blob Storage connection string from account name and key.
+
+        Returns:
+            str | None: Connection string if credentials configured, None otherwise
+        """
+        if self.azure_storage_account_name and self.azure_storage_account_key:
+            return (
+                f"DefaultEndpointsProtocol=https;"
+                f"AccountName={self.azure_storage_account_name};"
+                f"AccountKey={self.azure_storage_account_key};"
+                f"EndpointSuffix=core.windows.net"
+            )
+        return None
+
     # Azure OpenAI (Query Processing)
     azure_openai_endpoint: str = ""
     azure_openai_key: str = ""
@@ -80,10 +110,15 @@ class Settings(BaseSettings):
     redis_password: str = ""
     redis_db: int = 0
     redis_ssl: bool = False
+    redis_max_connections: int = 50
+    redis_socket_timeout: int = 5
+    redis_socket_connect_timeout: int = 5
 
     # Rate Limiting
     rate_limit_enabled: bool = True
     rate_limit_default: int = 60  # requests per minute
+    rate_limit_requests_per_minute: int = 60
+    rate_limit_burst_size: int = 10
 
     # Security
     api_key_prefix: str = "sk_"
@@ -117,7 +152,7 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     """Get cached settings instance.
-    
+
     Returns:
         Settings: Application settings singleton
     """
