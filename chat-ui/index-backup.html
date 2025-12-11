@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVA - Joyeuses Fêtes! 🎄 Happy Holidays!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Winter Holiday Theme */
+            --primary: #2E7D32;        /* Forest Green */
+            --primary-dark: #1B5E20;
+            --accent: #C62828;         /* Holiday Red */
+            --accent-light: #EF5350;
+            --gold: #FFD700;           /* Gold accents */
+            --snow: #FFFFFF;
+            --ice-blue: #E3F2FD;
+            --winter-blue: #1976D2;
+            --text-primary: #1A237E;   /* Deep blue */
+            --text-secondary: #455A64;
+            --bg-chat: rgba(255, 255, 255, 0.95);
+            --bg-message-user: #E8F5E9;
+            --bg-message-eva: #FFF3E0;
+            --border: #B0BEC5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: 
+                linear-gradient(180deg, 
+                    rgba(25, 50, 75, 0.85) 0%,
+                    rgba(15, 30, 50, 0.90) 50%,
+                    rgba(10, 20, 40, 0.95) 100%
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(30, 60, 40, 0.3) 0px,
+                    rgba(25, 50, 35, 0.3) 100px,
+                    rgba(20, 45, 30, 0.3) 200px,
+                    rgba(25, 50, 35, 0.3) 300px
+                ),
+                radial-gradient(ellipse at 20% 50%, rgba(46, 125, 50, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(198, 40, 40, 0.12) 0%, transparent 40%),
+                linear-gradient(180deg, #1a2332 0%, #0d1620 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Winter forest trees silhouette */
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30vh;
+            background: 
+                linear-gradient(to top, rgba(10, 20, 30, 0.9) 0%, transparent 100%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200"><path fill="%231B5E20" opacity="0.6" d="M0,200 L0,80 L50,120 L100,60 L150,100 L200,40 L250,90 L300,50 L350,85 L400,45 L450,80 L500,55 L550,90 L600,50 L650,85 L700,60 L750,95 L800,55 L850,90 L900,50 L950,85 L1000,60 L1050,90 L1100,70 L1150,95 L1200,75 L1200,200 Z"/><path fill="%232E7D32" opacity="0.5" d="M0,200 L0,100 L40,130 L80,90 L120,115 L160,80 L200,105 L240,75 L280,100 L320,70 L360,95 L400,80 L440,105 L480,75 L520,100 L560,85 L600,110 L640,80 L680,105 L720,90 L760,110 L800,85 L840,105 L880,90 L920,110 L960,95 L1000,115 L1040,90 L1080,110 L1120,95 L1160,115 L1200,100 L1200,200 Z"/></svg>');
+            background-size: cover;
+            background-position: bottom;
+            background-repeat: repeat-x;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Animated snowflakes */
+        .snowflake {
+            position: fixed;
+            top: -20px;
+            color: #FFFFFF;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            text-shadow: 
+                0 0 10px rgba(255, 255, 255, 0.9),
+                0 0 20px rgba(200, 230, 255, 0.7),
+                0 0 30px rgba(173, 216, 230, 0.5);
+            z-index: 9999;
+            user-select: none;
+            cursor: default;
+            pointer-events: none;
+            animation-name: snowfall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.8));
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0.95;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) translateX(50px) rotate(360deg);
+                opacity: 0.6;
+            }
+        }
+
+        .snowflake:nth-child(2n) {
+            animation-direction: reverse;
+        }
+
+        .snowflake:nth-child(3n) {
+            font-size: 18px;
+        }
+
+        .snowflake:nth-child(4n) {
+            font-size: 26px;
+        }
+        
+        .snowflake:nth-child(5n) {
+            font-size: 22px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            background: var(--bg-chat);
+            padding: 20px 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            border: 3px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "❄️";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            animation: spin 10s linear infinite;
+        }
+
+        header::after {
+            content: "🎄";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .eva-logo {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+            border: 3px solid var(--gold);
+        }
+
+        .header-text h1 {
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-text p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .lang-toggle {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: var(--ice-blue);
+        }
+
+        .gift-box-btn {
+            padding: 8px 12px;
+            border: 2px solid var(--gold);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(198, 40, 40, 0.4);
+            animation: giftPulse 2s infinite;
+        }
+
+        @keyframes giftPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 12px rgba(198, 40, 40, 0.4);
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+            }
+        }
+
+        .gift-box-btn:hover {
+            transform: scale(1.2) rotate(15deg);
+            box-shadow: 0 8px 24px rgba(255, 215, 0, 0.8);
+        }
+
+        /* Gift Popup Modal */
+        .gift-modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 20, 40, 0.95);
+            animation: fadeIn 0.3s;
+        }
+
+        .gift-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .gift-content {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 250, 240, 0.98) 100%);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 3px solid var(--gold);
+            position: relative;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .gift-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+            background: none;
+            border: none;
+            line-height: 1;
+        }
+
+        .gift-close:hover {
+            color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .gift-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--gold);
+        }
+
+        .gift-header h2 {
+            font-size: 32px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .gift-header .subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .gift-body {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .gift-body h3 {
+            color: var(--primary);
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .gift-body p {
+            margin-bottom: 15px;
+        }
+
+        .gift-body strong {
+            color: var(--accent);
+        }
+
+        .timeline {
+            background: linear-gradient(135deg, #E8F5E9 0%, #FFF8E1 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid var(--primary);
+        }
+
+        .timeline-item {
+            padding: 10px 0;
+            font-size: 15px;
+        }
+
+        .vision-box {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFECB3 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid var(--accent);
+            font-style: italic;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid var(--gold);
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .gift-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .gift-content::-webkit-scrollbar-track {
+            background: var(--ice-blue);
+            border-radius: 10px;
+        }
+
+        .gift-content::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .chat-container {
+            flex: 1;
+            background: var(--bg-chat);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+        }
+
+        #messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 16px;
+            flex-shrink: 0;
+            border: 2px solid var(--gold);
+        }
+
+        .message.eva .message-avatar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: var(--ice-blue);
+            color: var(--winter-blue);
+        }
+
+        .message-content {
+            flex: 1;
+            max-width: 85%;
+        }
+
+        .message-bubble {
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .message.eva .message-bubble {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            border: 2px solid var(--gold);
+        }
+
+        .message.user .message-bubble {
+            background: var(--bg-message-user);
+            border: 2px solid var(--primary);
+        }
+
+        /* Markdown content styling */
+        .markdown-content {
+            line-height: 1.7;
+        }
+
+        .markdown-content h1 {
+            font-size: 1.6em;
+            font-weight: 700;
+            margin: 16px 0 12px 0;
+            color: var(--primary-dark);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 8px;
+        }
+
+        .markdown-content h2 {
+            font-size: 1.35em;
+            font-weight: 600;
+            margin: 14px 0 10px 0;
+            color: var(--primary);
+        }
+
+        .markdown-content h3 {
+            font-size: 1.15em;
+            font-weight: 600;
+            margin: 12px 0 8px 0;
+            color: var(--text-primary);
+        }
+
+        .markdown-content p {
+            margin: 8px 0;
+        }
+
+        .markdown-content ul, .markdown-content ol {
+            margin: 8px 0 8px 20px;
+        }
+
+        .markdown-content li {
+            margin: 4px 0;
+        }
+
+        .markdown-content strong {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .markdown-content em {
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .markdown-content code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .markdown-content hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 16px 0;
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            padding-left: 18px;
+        }
+
+        .holiday-banner {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);
+        }
+
+        .data-sources {
+            margin-top: 16px;
+            padding: 18px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+        }
+
+        .data-sources h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+        }
+
+        .source-item {
+            padding: 10px 14px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .source-name {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .source-docs {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .suggested-questions {
+            margin-top: 16px;
+            padding: 18px;
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 16px;
+            background: white;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-primary);
+            transition: all 0.3s;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .question-btn:hover {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            border-color: var(--accent);
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(198, 40, 40, 0.2);
+        }
+
+        .question-btn::before {
+            content: "🎁 ";
+            margin-right: 8px;
+        }
+
+        .input-container {
+            padding: 20px 24px;
+            border-top: 2px solid var(--gold);
+            background: var(--bg-chat);
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid var(--gold);
+            border-radius: 28px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+            font-family: inherit;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        #messageInput:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(198, 40, 40, 0.1);
+        }
+
+        #sendBtn {
+            width: 52px;
+            height: 52px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+            border: 2px solid var(--gold);
+        }
+
+        #sendBtn:hover:not(:disabled) {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 16px rgba(198, 40, 40, 0.5);
+        }
+
+        #sendBtn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            width: fit-content;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .typing-dots span {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .error-message {
+            padding: 14px 18px;
+            background: #FFEBEE;
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            color: var(--accent);
+            font-size: 14px;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--ice-blue);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        #messages::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #messages::-webkit-scrollbar-track {
+            background: var(--ice-blue);
+            border-radius: 10px;
+        }
+
+        #messages::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        #messages::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* Holiday decorations */
+        .decoration {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            font-size: 30px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated snowflakes -->
+    <div class="snowflake" style="left: 5%; animation-duration: 15s; animation-delay: 0s;">❄</div>
+    <div class="snowflake" style="left: 10%; animation-duration: 12s; animation-delay: 2s;">❄</div>
+    <div class="snowflake" style="left: 18%; animation-duration: 18s; animation-delay: 1s;">❄</div>
+    <div class="snowflake" style="left: 25%; animation-duration: 9s; animation-delay: 4s;">❄</div>
+    <div class="snowflake" style="left: 32%; animation-duration: 14s; animation-delay: 3s;">❄</div>
+    <div class="snowflake" style="left: 40%; animation-duration: 11s; animation-delay: 6s;">❄</div>
+    <div class="snowflake" style="left: 48%; animation-duration: 16s; animation-delay: 2s;">❄</div>
+    <div class="snowflake" style="left: 55%; animation-duration: 10s; animation-delay: 5s;">❄</div>
+    <div class="snowflake" style="left: 63%; animation-duration: 13s; animation-delay: 1s;">❄</div>
+    <div class="snowflake" style="left: 70%; animation-duration: 17s; animation-delay: 3s;">❄</div>
+    <div class="snowflake" style="left: 78%; animation-duration: 12s; animation-delay: 4s;">❄</div>
+    <div class="snowflake" style="left: 85%; animation-duration: 8s; animation-delay: 0s;">❄</div>
+    <div class="snowflake" style="left: 92%; animation-duration: 15s; animation-delay: 2s;">❄</div>
+    <div class="snowflake" style="left: 15%; animation-duration: 11s; animation-delay: 7s;">❄</div>
+    <div class="snowflake" style="left: 35%; animation-duration: 13s; animation-delay: 5s;">❄</div>
+    <div class="snowflake" style="left: 60%; animation-duration: 14s; animation-delay: 6s;">❄</div>
+    <div class="snowflake" style="left: 75%; animation-duration: 16s; animation-delay: 8s;">❄</div>
+    <div class="snowflake" style="left: 88%; animation-duration: 10s; animation-delay: 7s;">❄</div>
+
+    <!-- Gift Popup Modal -->
+    <div id="giftModal" class="gift-modal">
+        <div class="gift-content">
+            <button class="gift-close" onclick="closeGiftPopup()">&times;</button>
+            
+            <div class="gift-header">
+                <h2>🎁 Marco's Gift to Canada & Canadians 🇨🇦</h2>
+                <p class="subtitle">From vision to reality • 3 years in the making • Built in 36 days</p>
+            </div>
+
+            <div class="gift-body">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <strong>📅 December 13, 2023</strong> - The vision was born
+                    </div>
+                    <div class="timeline-item">
+                        <strong>💭 3 years</strong> - Refined, planned, dreamed
+                    </div>
+                    <div class="timeline-item">
+                        <strong>🚀 36 days</strong> - From code to reality (November 2 - December 8, 2025)
+                    </div>
+                </div>
+
+                <h3>The Original Vision</h3>
+                <div class="vision-box">
+                    <p><strong>From:</strong> Presta, Marco M [NC]<br>
+                    <strong>Sent:</strong> December 13, 2023 9:34 PM<br>
+                    <strong>Subject:</strong> EVA - from an idea to the Agile board</p>
+                    
+                    <p>"That's how I envisioned EVA, ESDC Virtual Assistant, based on Todd's initial idea back in the Enterprise Chatbot project last year."</p>
+                    
+                    <p>"A citizen, a business enterprise or an employee calls the 1 800 O-Canada service phone number. EVA ESDC Virtual Assistant answers the phone, identifies itself, offers to speak in the client's language of choice, asks the client to state their request, proceeds with the client authentication and continues its workflow to process the client request to its successful completion."</p>
+                </div>
+
+                <h3>The Dream Expanded</h3>
+                <p><strong>EVA everywhere in Protected B environments:</strong></p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li>🎙️ AI-based IVR for citizens, business and employees</li>
+                    <li>💬 Service Canada Chatbot & Insights</li>
+                    <li>🎯 Benefits Finder for Citizens</li>
+                    <li>💻 Chat portal that replicates ChatGPT capabilities</li>
+                    <li>♿ Desktop companion of adaptive accessibility tools</li>
+                    <li>🌐 Second Language Tutor & Official Languages Translator</li>
+                    <li>🏥 CPPD medical adjudicator research assistant</li>
+                    <li>📊 Grants & Contribution Summary generator</li>
+                    <li>🔐 SharePoint Information Categorization Tool</li>
+                    <li>📚 Chat with your SharePoint data assistant</li>
+                    <li>👥 HR consultant for employees</li>
+                    <li>⚙️ Developer's Pal</li>
+                </ul>
+
+                <h3>What You're Experiencing Now</h3>
+                <p>This is <strong>EVA Domain Assistant</strong> - the foundation of that vision. Built with:</p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li>✅ <strong>Phase 1:</strong> Core API with Cosmos DB, Azure OpenAI, RAG pipeline</li>
+                    <li>✅ <strong>Phase 2:</strong> GraphQL, Redis rate limiting, full CRUD operations</li>
+                    <li>✅ <strong>Phase 3:</strong> WebSocket subscriptions, webhook broadcasting, DataLoader optimization</li>
+                    <li>✅ <strong>Chat UI:</strong> Bilingual (🇨🇦 FR/EN), winter-themed, ready for 25 demo users</li>
+                    <li>✅ <strong>Production Ready:</strong> Deployed to Azure, complete documentation</li>
+                </ul>
+
+                <h3>The Journey</h3>
+                <p><strong>36 days of intense development</strong> transformed years of vision into working reality:</p>
+                <ul style="margin-left: 20px; margin-bottom: 15px;">
+                    <li>🏗️ Enterprise-grade API architecture</li>
+                    <li>🔐 Security-first design (Azure Entra ID, API keys, JWT)</li>
+                    <li>⚡ Performance optimized (DataLoader, Redis caching, circuit breakers)</li>
+                    <li>🌍 Bilingual from day one</li>
+                    <li>📖 Comprehensive documentation (5,500+ lines)</li>
+                    <li>🧪 Fully tested (22/22 tests passing)</li>
+                </ul>
+
+                <div class="timeline">
+                    <p style="text-align: center; font-size: 18px; margin: 0;">
+                        <strong>"The future is bright.. I just hope we don't get blind by it."</strong>
+                    </p>
+                    <p style="text-align: center; margin: 10px 0 0 0; font-size: 14px;">
+                        - Marco Presta, December 13, 2023
+                    </p>
+                </div>
+
+                <p><strong>🇨🇦 Today, December 8, 2025:</strong> That future is here. EVA is real. This is your gift to Canada and Canadians - accessible, bilingual, intelligent assistance powered by cutting-edge AI technology.</p>
+
+                <div class="signature">
+                    <p>Built with 💚 by Marco Presta<br>
+                    Artificial Intelligence, Robotics, and Business Automation Solutions (IITB)<br>
+                    Employment and Social Development Canada<br>
+                    <em>marco.presta@hrsdc-rhdcc.gc.ca</em></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="eva-logo">EVA</div>
+                <div class="header-text">
+                    <h1 id="headerTitle">EVA - Joyeuses Fêtes! 🎄</h1>
+                    <p id="headerSubtitle">Votre assistant intelligent pour les Fêtes</p>
+                </div>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" onclick="switchLanguage('fr')" id="btnFr">🇨🇦 FR</button>
+                    <button class="lang-btn" onclick="switchLanguage('en')" id="btnEn">🇨🇦 EN</button>
+                    <button class="gift-box-btn" onclick="showGiftPopup()" title="A gift to Canada and Canadians">🎁</button>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span id="statusText">Connecté</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="chat-container">
+            <div id="messages">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+            
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="messageInput" 
+                        placeholder="Tapez votre question ou dites 'Bonjour EVA'..." 
+                        disabled
+                    />
+                    <button id="sendBtn" disabled>🎁</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration - Azure Production
+        const API_BASE = 'https://eva-api-container.azurewebsites.net';
+        const API_KEY = 'demo-api-key';
+
+        // Language state
+        let currentLang = 'fr';
+
+        // Translations
+        const translations = {
+            fr: {
+                headerTitle: "EVA - Joyeuses Fêtes! 🎄",
+                headerSubtitle: "Votre assistant intelligent pour les Fêtes",
+                statusConnected: "Connecté",
+                inputPlaceholder: "Tapez votre question ou dites 'Bonjour EVA'...",
+                greeting: `
+                    <strong>Bonjour! Je suis EVA 🎄</strong><br><br>
+                    Joyeuses Fêtes! Je suis votre assistant intelligent de documents.
+                    Je peux vous aider à trouver des informations, répondre à vos questions
+                    et analyser le contenu de vos espaces de connaissance.
+                `,
+                noSpaces: `
+                    <strong>Aucun Espace de Connaissance Trouvé</strong><br><br>
+                    Il semble que vous n'ayez pas encore créé d'espaces de connaissance.
+                    Les espaces de connaissance sont des collections de documents que je peux
+                    rechercher et analyser.<br><br>
+                    <em>Pour commencer, utilisez l'API pour créer un espace et télécharger des documents.</em>
+                `,
+                availableSpaces: "Espaces de Connaissance Disponibles:",
+                haveAccess: "J'ai actuellement accès à",
+                space: "espace",
+                spaces: "espaces",
+                dataSources: "📚 Vos Sources de Données",
+                documents: "documents",
+                document: "document",
+                created: "Créé le",
+                suggestedQuestions: "💡 Essayez de me demander:",
+                helloAgain: `
+                    <strong>Re-bonjour! 🎅</strong><br><br>
+                    Je suis là et prêt à vous aider. Vous pouvez me poser des questions sur
+                    vos espaces de connaissance ou essayer une des questions suggérées ci-dessus.
+                `,
+                answer: "Réponse:",
+                sources: "📎 Sources:",
+                page: "Page",
+                errorPrefix: "⚠️ Désolé, j'ai rencontré une erreur:",
+                tryAgain: "Veuillez réessayer ou reformuler votre question.",
+                questionTemplates: {
+                    whatInfo: "Quelles informations sont disponibles dans",
+                    summarize: "Pouvez-vous résumer le contenu de",
+                    keyTerms: "Quels sont les termes clés dans",
+                    compliance: "Y a-t-il des exigences de conformité mentionnées?",
+                    mainPolicies: "Quelles sont les principales politiques décrites?",
+                    responsible: "Qui est responsable de la mise en œuvre de ces politiques?",
+                    keyFindings: "Quelles sont les principales conclusions de ces rapports?",
+                    recommendations: "Quelles recommandations sont fournies?",
+                    getStarted: "Comment puis-je commencer avec",
+                    instructions: "Quelles sont les instructions étape par étape?",
+                    topics: "Quels sujets sont couverts dans",
+                    insights: "Pouvez-vous extraire les idées clés de ce contenu?"
+                }
+            },
+            en: {
+                headerTitle: "EVA - Happy Holidays! 🎄",
+                headerSubtitle: "Your Intelligent Holiday Assistant",
+                statusConnected: "Connected",
+                inputPlaceholder: "Type your question or say 'Hi EVA'...",
+                greeting: `
+                    <strong>Hi! I'm EVA 🎄</strong><br><br>
+                    Happy Holidays! I'm your Intelligent Document Assistant.
+                    I can help you find information, answer questions, and analyze
+                    content from your knowledge spaces.
+                `,
+                noSpaces: `
+                    <strong>No Knowledge Spaces Found</strong><br><br>
+                    It looks like you haven't created any knowledge spaces yet.
+                    Knowledge spaces are collections of documents I can search and analyze.<br><br>
+                    <em>To get started, use the API to create a space and upload documents.</em>
+                `,
+                availableSpaces: "Available Knowledge Spaces:",
+                haveAccess: "I currently have access to",
+                space: "space",
+                spaces: "spaces",
+                dataSources: "📚 Your Data Sources",
+                documents: "documents",
+                document: "document",
+                created: "Created",
+                suggestedQuestions: "💡 Try asking me:",
+                helloAgain: `
+                    <strong>Hello again! 🎅</strong><br><br>
+                    I'm here and ready to help. You can ask me questions about your
+                    knowledge spaces or try one of the suggested questions above.
+                `,
+                answer: "Answer:",
+                sources: "📎 Sources:",
+                page: "Page",
+                errorPrefix: "⚠️ Sorry, I encountered an error:",
+                tryAgain: "Please try again or rephrase your question.",
+                questionTemplates: {
+                    whatInfo: "What information is available in",
+                    summarize: "Can you summarize the content in",
+                    keyTerms: "What are the key terms in the",
+                    compliance: "Are there any compliance requirements mentioned?",
+                    mainPolicies: "What are the main policies described?",
+                    responsible: "Who is responsible for implementing these policies?",
+                    keyFindings: "What are the key findings in these reports?",
+                    recommendations: "What recommendations are provided?",
+                    getStarted: "How do I get started with",
+                    instructions: "What are the step-by-step instructions?",
+                    topics: "What topics are covered in",
+                    insights: "Can you extract key insights from this content?"
+                }
+            }
+        };
+
+        // State
+        let spaces = [];
+        let isInitialized = false;
+
+        // DOM Elements
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        // Language switching
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update buttons
+            document.getElementById('btnFr').classList.toggle('active', lang === 'fr');
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+            
+            // Update header
+            document.getElementById('headerTitle').textContent = translations[lang].headerTitle;
+            document.getElementById('headerSubtitle').textContent = translations[lang].headerSubtitle;
+            document.getElementById('statusText').textContent = translations[lang].statusConnected;
+            messageInput.placeholder = translations[lang].inputPlaceholder;
+            
+            // Update send button icon
+            sendBtn.textContent = lang === 'fr' ? '🎁' : '🎄';
+            
+            // Reinitialize chat with new language
+            if (isInitialized) {
+                initializeChat();
+            }
+        }
+
+        function t(key) {
+            const keys = key.split('.');
+            let value = translations[currentLang];
+            for (const k of keys) {
+                value = value[k];
+            }
+            return value;
+        }
+
+        function formatTime() {
+            const now = new Date();
+            return now.toLocaleTimeString(currentLang === 'fr' ? 'fr-CA' : 'en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+        }
+
+        function addMessage(type, content, includeTime = true) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const avatar = type === 'eva' ? '🎅' : '👤';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${avatar}</div>
+                <div class="message-content">
+                    <div class="message-bubble">${content}</div>
+                    ${includeTime ? `<div class="message-time">${formatTime()}</div>` : ''}
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.className = 'message eva';
+            typing.id = 'typing-indicator';
+            typing.innerHTML = `
+                <div class="message-avatar">🎅</div>
+                <div class="message-content">
+                    <div class="typing-indicator active">
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(typing);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typing-indicator');
+            if (typing) typing.remove();
+        }
+
+        // Demo data cache
+        let demoData = null;
+
+        async function loadDemoData() {
+            if (demoData) return demoData;
+            
+            try {
+                const response = await fetch('./demo-data.json');
+                demoData = await response.json();
+                console.log('✅ Demo data loaded:', demoData);
+                return demoData;
+            } catch (error) {
+                console.warn('⚠️  Demo data not found, using fallback');
+                return null;
+            }
+        }
+
+        async function fetchSpaces() {
+            try {
+                // Try to load demo data first
+                const demo = await loadDemoData();
+                if (demo && demo.spaces) {
+                    console.log('📦 Using demo data spaces');
+                    return demo.spaces;
+                }
+
+                // Fallback to API
+                const response = await fetch(`${API_BASE}/api/v1/spaces`, {
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                return data.data.items || [];
+            } catch (error) {
+                console.error('Failed to fetch spaces:', error);
+                return [];
+            }
+        }
+
+        function generateSuggestedQuestions(space) {
+            const baseName = space.name.toLowerCase();
+            const suggestions = [];
+            const qt = t('questionTemplates');
+
+            suggestions.push(`${qt.whatInfo} ${space.name}?`);
+            suggestions.push(`${qt.summarize} ${space.name}?`);
+            
+            if (baseName.includes('contract') || baseName.includes('legal') || 
+                baseName.includes('contrat') || baseName.includes('juridique')) {
+                suggestions.push(`${qt.keyTerms} ${space.name}?`);
+                suggestions.push(qt.compliance);
+            } else if (baseName.includes('policy') || baseName.includes('procedure') ||
+                       baseName.includes('politique') || baseName.includes('procédure')) {
+                suggestions.push(qt.mainPolicies);
+                suggestions.push(qt.responsible);
+            } else if (baseName.includes('report') || baseName.includes('analysis') ||
+                       baseName.includes('rapport') || baseName.includes('analyse')) {
+                suggestions.push(qt.keyFindings);
+                suggestions.push(qt.recommendations);
+            } else if (baseName.includes('manual') || baseName.includes('guide') ||
+                       baseName.includes('manuel')) {
+                suggestions.push(`${qt.getStarted} ${space.name}?`);
+                suggestions.push(qt.instructions);
+            } else {
+                suggestions.push(`${qt.topics} ${space.name}?`);
+                suggestions.push(qt.insights);
+            }
+
+            return suggestions.slice(0, 3);
+        }
+
+        async function initializeChat() {
+            messagesContainer.innerHTML = '';
+            
+            // Holiday banner
+            const banner = document.createElement('div');
+            banner.className = 'holiday-banner';
+            banner.textContent = currentLang === 'fr' 
+                ? '🎄 Joyeuses Fêtes! ❄️ Meilleurs vœux pour 2026! 🎁'
+                : '🎄 Happy Holidays! ❄️ Best wishes for 2026! 🎁';
+            messagesContainer.appendChild(banner);
+            
+            addMessage('eva', t('greeting'));
+
+            showTyping();
+            spaces = await fetchSpaces();
+            hideTyping();
+
+            if (spaces.length === 0) {
+                addMessage('eva', t('noSpaces'));
+            } else {
+                // Check for demo data to get content-specific questions
+                const demo = await loadDemoData();
+                let questionsHTML = '<div class="suggested-questions" style="max-width: 600px;">';
+                
+                if (demo && demo.documents) {
+                    // Display content names with 2 questions each
+                    if (demo.documents['space-service-canada-en']) {
+                        questionsHTML += '<div style="margin-bottom: 20px;"><strong>📋 Employment Insurance (EI)</strong></div>';
+                        questionsHTML += '<button class="question-btn" onclick="askQuestion(\'What is Employment Insurance?\')">What is Employment Insurance?</button>';
+                        questionsHTML += '<button class="question-btn" onclick="askQuestion(\'How do I apply for EI benefits?\')">How do I apply for EI benefits?</button>';
+                        
+                        questionsHTML += '<div style="margin: 20px 0 10px 0;"><strong>📋 Canada Pension Plan (CPP)</strong></div>';
+                        questionsHTML += '<button class="question-btn" onclick="askQuestion(\'When should I start receiving CPP?\')">When should I start receiving CPP?</button>';
+                        questionsHTML += '<button class="question-btn" onclick="askQuestion(\'How much will I receive from CPP?\')">How much will I receive from CPP?</button>';
+                    }
+                    
+                    if (demo.documents['space-eva-rag-docs']) {
+                        questionsHTML += '<div style="margin: 20px 0 10px 0;"><strong>📋 EVA RAG Architecture</strong></div>';
+                        questionsHTML += '<button class="question-btn" onclick="askQuestion(\'What is EVA\\\' RAG architecture?\')">What is EVA's RAG architecture?</button>';
+                        questionsHTML += '<button class="question-btn" onclick="askQuestion(\'How does EVA handle document chunking?\')">How does EVA handle document chunking?</button>';
+                    }
+                } else {
+                    // Fallback to generic questions
+                    spaces.forEach(space => {
+                        const questions = generateSuggestedQuestions(space);
+                        questions.slice(0, 2).forEach(q => {
+                            questionsHTML += `<button class="question-btn" onclick="askQuestion('${q.replace(/'/g, "\\'")}')">${q}</button>`;
+                        });
+                    });
+                }
+                
+                questionsHTML += '</div>';
+                addMessage('eva', questionsHTML);
+            }
+
+            messageInput.disabled = false;
+            sendBtn.disabled = false;
+            messageInput.focus();
+            isInitialized = true;
+        }
+
+        window.askQuestion = function(question) {
+            messageInput.value = question;
+            sendMessage();
+        };
+
+        async function submitQuery(spaceId, question) {
+            try {
+                // Check if we have demo data
+                const demo = await loadDemoData();
+                if (demo && demo.documents && demo.documents[spaceId]) {
+                    console.log('📝 Using demo mode for query');
+                    
+                    // Simulate query processing delay
+                    await new Promise(resolve => setTimeout(resolve, 800));
+                    
+                    // Find relevant document based on question keywords
+                    const docs = demo.documents[spaceId];
+                    const questionLower = question.toLowerCase();
+                    
+                    let selectedDoc = docs[0]; // Default to first doc
+                    
+                    // Smart document selection based on keywords
+                    // Check most specific keywords first (RAG/technical) before generic terms
+                    if (questionLower.includes('rag') || questionLower.includes('architecture') || 
+                        questionLower.includes('technical') || questionLower.includes('documentation') ||
+                        questionLower.includes('system') || questionLower.includes('eva')) {
+                        selectedDoc = docs.find(d => d.title.toLowerCase().includes('architecture') || 
+                                                     d.title.toLowerCase().includes('rag') || 
+                                                     d.title.toLowerCase().includes('technical')) || docs[0];
+                    } else if (questionLower.includes('cpp') || questionLower.includes('pension') || 
+                               questionLower.includes('rpc') || questionLower.includes('retraite')) {
+                        selectedDoc = docs.find(d => d.title.toLowerCase().includes('pension') || 
+                                                     d.title.toLowerCase().includes('cpp') || 
+                                                     d.title.toLowerCase().includes('rpc')) || docs[0];
+                    } else if (questionLower.includes('ei') || questionLower.includes('employment insurance') || 
+                               questionLower.includes('assurance-emploi') || questionLower.includes('chômage') ||
+                               questionLower.includes('unemployment')) {
+                        selectedDoc = docs.find(d => d.title.toLowerCase().includes('employment') || 
+                                                     d.title.toLowerCase().includes('assurance-emploi')) || docs[0];
+                    }
+                    
+                    // Generate answer based on content
+                    const content = selectedDoc.content;
+                    const lines = content.split('\n').filter(l => l.trim());
+                    
+                    // Extract key sections
+                    let answer = '';
+                    if (currentLang === 'fr') {
+                        answer = `<strong>Selon ${selectedDoc.title}:</strong><br><br>`;
+                        answer += lines.slice(3, 20).join('<br><br>');
+                        answer += `<br><br>📄 <em>Source: ${selectedDoc.title}</em>`;
+                    } else {
+                        answer = `<strong>Based on ${selectedDoc.title}:</strong><br><br>`;
+                        answer += lines.slice(3, 20).join('<br><br>');
+                        answer += `<br><br>📄 <em>Source: ${selectedDoc.title}</em>`;
+                    }
+                    
+                    return {
+                        query_id: 'demo-' + Date.now(),
+                        status: 'completed',
+                        answer: answer,
+                        sources: [{
+                            document_id: 'demo-doc-' + Date.now(),
+                            title: selectedDoc.title,
+                            relevance_score: 0.95,
+                            metadata: selectedDoc.metadata
+                        }]
+                    };
+                }
+
+                // Fallback to real API
+                const response = await fetch(`${API_BASE}/api/v1/queries`, {
+                    method: 'POST',
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        space_id: spaceId,
+                        question: question,
+                        parameters: {}
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data.data;
+            } catch (error) {
+                console.error('Failed to submit query:', error);
+                throw error;
+            }
+        }
+
+        async function getQueryResult(queryId) {
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/queries/${queryId}/result`, {
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        return null;
+                    }
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data.data;
+            } catch (error) {
+                console.error('Failed to get query result:', error);
+                throw error;
+            }
+        }
+
+        async function pollQueryResult(queryId, maxAttempts = 60, intervalMs = 2000) {
+            // Check if this is a demo query
+            if (queryId.startsWith('demo-')) {
+                return null; // Demo queries return immediately from submitQuery
+            }
+            
+            for (let i = 0; i < maxAttempts; i++) {
+                const result = await getQueryResult(queryId);
+                
+                if (result && result.status === 'completed') {
+                    return result;
+                }
+                
+                if (result && result.status === 'failed') {
+                    throw new Error(result.error || 'Query processing failed');
+                }
+
+                await new Promise(resolve => setTimeout(resolve, intervalMs));
+            }
+
+            throw new Error('Query timeout - result not available after 2 minutes');
+        }
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            addMessage('user', message);
+            messageInput.value = '';
+            messageInput.disabled = true;
+            sendBtn.disabled = true;
+
+            // Check for greetings in both languages
+            const greetings = ['hi', 'hello', 'hey', 'hi eva', 'hello eva', 
+                             'bonjour', 'salut', 'bonjour eva', 'salut eva'];
+            if (greetings.includes(message.toLowerCase())) {
+                showTyping();
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                hideTyping();
+                
+                addMessage('eva', t('helloAgain'));
+                
+                messageInput.disabled = false;
+                sendBtn.disabled = false;
+                messageInput.focus();
+                return;
+            }
+
+            showTyping();
+
+            try {
+                if (spaces.length === 0) {
+                    hideTyping();
+                    addMessage('eva', `
+                        <div class="error-message">
+                            ${t('errorPrefix')} ${t('noSpaces')}
+                        </div>
+                    `);
+                    messageInput.disabled = false;
+                    sendBtn.disabled = false;
+                    return;
+                }
+
+                const spaceId = spaces[0].space_id || spaces[0].id;
+                const queryResponse = await submitQuery(spaceId, message);
+                
+                // Check if demo mode returned immediate result
+                let result;
+                if (queryResponse.status === 'completed') {
+                    result = queryResponse; // Demo mode - already has result
+                } else {
+                    result = await pollQueryResult(queryResponse.query_id || queryResponse.id);
+                }
+                
+                hideTyping();
+
+                let answerHTML = `<strong>${t('answer')}</strong><br><br>${result.answer}`;
+                
+                if (result.sources && result.sources.length > 0) {
+                    answerHTML += `<br><br><strong>${t('sources')}</strong><br>`;
+                    result.sources.forEach((source, idx) => {
+                        answerHTML += `<div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+                            ${idx + 1}. ${source.title || source.document_name || 'Document'} 
+                            ${source.page ? `(${t('page')} ${source.page})` : ''}
+                            ${source.relevance_score ? ` (${(source.relevance_score * 100).toFixed(0)}% ${t('relevance') || 'relevance'})` : ''}
+                        </div>`;
+                    });
+                }
+
+                addMessage('eva', answerHTML);
+
+            } catch (error) {
+                hideTyping();
+                addMessage('eva', `
+                    <div class="error-message">
+                        ${t('errorPrefix')} ${error.message}<br><br>
+                        ${t('tryAgain')}
+                    </div>
+                `);
+            }
+
+            messageInput.disabled = false;
+            sendBtn.disabled = false;
+            messageInput.focus();
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        window.addEventListener('load', initializeChat);
+
+        // Gift popup functions
+        function showGiftPopup() {
+            document.getElementById('giftModal').classList.add('active');
+        }
+
+        function closeGiftPopup() {
+            document.getElementById('giftModal').classList.remove('active');
+        }
+
+        // Close on outside click
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('giftModal');
+            if (event.target === modal) {
+                closeGiftPopup();
+            }
+        });
+
+        // Close on Escape key
+        window.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeGiftPopup();
+            }
+        });
+    </script>
+</body>
+</html>

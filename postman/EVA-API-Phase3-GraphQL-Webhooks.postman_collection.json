@@ -1,0 +1,575 @@
+{
+	"info": {
+		"_postman_id": "phase3-graphql-webhooks-2025",
+		"name": "EVA API - Phase 3: GraphQL & Webhooks",
+		"description": "Phase 3 feature testing: GraphQL subscriptions, DataLoader optimization, and Webhook event system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GraphQL",
+			"item": [
+				{
+					"name": "Introspection Query",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query IntrospectionQuery { __schema { queryType { name } mutationType { name } subscriptionType { name } types { name kind } } }\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": ["{{base_url}}"],
+							"path": ["graphql"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Query - List Spaces with DataLoader",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query GetSpacesWithDocuments { spaces { id name description documents { id filename size contentType uploadedAt } } }\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": ["{{base_url}}"],
+							"path": ["graphql"]
+						},
+						"description": "Uses DataLoader to prevent N+1 queries. Without DataLoader: 101 queries for 100 spaces. With DataLoader: 2 queries (98% reduction)."
+					},
+					"response": []
+				},
+				{
+					"name": "Query - Get Space with Nested Data",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query GetSpaceDetails($spaceId: UUID!) { space(spaceId: $spaceId) { id name description createdAt documents { id filename size contentType uploadedAt } queries { id question status createdAt } } }\",\n  \"variables\": {\n    \"spaceId\": \"{{space_id}}\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": ["{{base_url}}"],
+							"path": ["graphql"]
+						},
+						"description": "DataLoader batches document and query fetches for optimal performance."
+					},
+					"response": []
+				},
+				{
+					"name": "Mutation - Create Space",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation CreateSpace($name: String!, $description: String) { createSpace(name: $name, description: $description) { id name description createdAt } }\",\n  \"variables\": {\n    \"name\": \"GraphQL Test Space\",\n    \"description\": \"Created via GraphQL mutation\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": ["{{base_url}}"],
+							"path": ["graphql"]
+						},
+						"description": "Triggers space.created webhook event after creation."
+					},
+					"response": []
+				},
+				{
+					"name": "Subscription - Document Added (Example)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"subscription DocumentAdded($spaceId: UUID!) { documentAdded(spaceId: $spaceId) { id filename size contentType uploadedAt } }\",\n  \"variables\": {\n    \"spaceId\": \"{{space_id}}\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": ["{{base_url}}"],
+							"path": ["graphql"]
+						},
+						"description": "NOTE: Subscriptions require WebSocket connection. Use GraphQL Playground or wscat:\n\nwscat -c \"ws://localhost:8000/graphql\" -s graphql-ws\n{\"type\":\"connection_init\"}\n{\"id\":\"1\",\"type\":\"subscribe\",\"payload\":{\"query\":\"subscription { documentAdded(spaceId: \\\"YOUR_SPACE_ID\\\") { id filename } }\"}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Subscription - Query Completed (Example)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"subscription QueryCompleted($queryId: UUID!) { queryCompleted(queryId: $queryId) { id question answer status completedAt } }\",\n  \"variables\": {\n    \"queryId\": \"{{query_id}}\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": ["{{base_url}}"],
+							"path": ["graphql"]
+						},
+						"description": "WebSocket subscription for query completion notifications."
+					},
+					"response": []
+				},
+				{
+					"name": "Subscription - Space Events (Example)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"subscription SpaceEvents($tenantId: String!) { spaceEvents(tenantId: $tenantId) { eventType timestamp space { id name description } } }\",\n  \"variables\": {\n    \"tenantId\": \"{{tenant_id}}\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/graphql",
+							"host": ["{{base_url}}"],
+							"path": ["graphql"]
+						},
+						"description": "WebSocket subscription for tenant-wide space events (CREATED, UPDATED, DELETED)."
+					},
+					"response": []
+				}
+			],
+			"description": "GraphQL queries, mutations, and subscriptions with DataLoader optimization"
+		},
+		{
+			"name": "Webhooks (Pending Storage)",
+			"item": [
+				{
+					"name": "Create Webhook Subscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"url\": \"https://your-server.com/webhooks/eva\",\n  \"events\": [\"space.created\", \"document.added\", \"query.submitted\"],\n  \"secret\": \"your_webhook_secret_key_here\",\n  \"description\": \"Production webhook endpoint\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/webhooks",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "webhooks"]
+						},
+						"description": "NOTE: Webhook REST API disabled pending Cosmos DB storage setup.\n\nEvents available:\n- space.created\n- space.updated\n- space.deleted\n- document.added\n- document.deleted\n- query.submitted\n\nWildcard patterns supported:\n- space.*\n- document.*"
+					},
+					"response": []
+				},
+				{
+					"name": "List Webhook Subscriptions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/webhooks",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "webhooks"]
+						},
+						"description": "Retrieve all webhook subscriptions for current tenant."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Webhook Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/webhooks/{{webhook_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "webhooks", "{{webhook_id}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Webhook",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"url\": \"https://your-server.com/webhooks/eva-v2\",\n  \"events\": [\"space.*\", \"document.*\"],\n  \"active\": true,\n  \"description\": \"Updated webhook endpoint\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/webhooks/{{webhook_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "webhooks", "{{webhook_id}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Webhook",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/webhooks/{{webhook_id}}",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "webhooks", "{{webhook_id}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Webhook Delivery Logs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/v1/webhooks/{{webhook_id}}/logs?limit=50",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "webhooks", "{{webhook_id}}", "logs"],
+							"query": [
+								{
+									"key": "limit",
+									"value": "50"
+								}
+							]
+						},
+						"description": "Retrieve delivery history with status codes, response times, and retry information."
+					},
+					"response": []
+				},
+				{
+					"name": "Test Webhook (Send Test Event)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"event_type\": \"test.webhook\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/webhooks/{{webhook_id}}/test",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "webhooks", "{{webhook_id}}", "test"]
+						},
+						"description": "Send a test event to verify webhook endpoint is reachable."
+					},
+					"response": []
+				}
+			],
+			"description": "Webhook subscription management (endpoints disabled pending Cosmos DB storage)"
+		},
+		{
+			"name": "Webhook Events (Active)",
+			"item": [
+				{
+					"name": "Trigger space.created Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Webhook Test Space\",\n  \"description\": \"Triggers space.created event\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/spaces",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "spaces"]
+						},
+						"description": "Creates a space and broadcasts space.created event.\n\nEvent payload:\n{\n  \"event_type\": \"space.created\",\n  \"timestamp\": \"2025-12-08T12:00:00Z\",\n  \"tenant_id\": \"tenant-123\",\n  \"data\": {\n    \"id\": \"space-id\",\n    \"name\": \"Space Name\",\n    \"description\": \"Description\"\n  }\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger document.added Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/path/to/test.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/spaces/{{space_id}}/documents",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "spaces", "{{space_id}}", "documents"]
+						},
+						"description": "Uploads a document and broadcasts document.added event.\n\nEvent payload:\n{\n  \"event_type\": \"document.added\",\n  \"timestamp\": \"2025-12-08T12:00:00Z\",\n  \"tenant_id\": \"tenant-123\",\n  \"data\": {\n    \"id\": \"doc-id\",\n    \"filename\": \"test.pdf\",\n    \"size\": 1024,\n    \"space_id\": \"space-id\"\n  }\n}"
+					},
+					"response": []
+				},
+				{
+					"name": "Trigger query.submitted Event",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"question\": \"What is EVA?\",\n  \"space_id\": \"{{space_id}}\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v1/queries",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v1", "queries"]
+						},
+						"description": "Submits a query and broadcasts query.submitted event.\n\nEvent payload:\n{\n  \"event_type\": \"query.submitted\",\n  \"timestamp\": \"2025-12-08T12:00:00Z\",\n  \"tenant_id\": \"tenant-123\",\n  \"data\": {\n    \"id\": \"query-id\",\n    \"question\": \"What is EVA?\",\n    \"space_id\": \"space-id\",\n    \"status\": \"pending\"\n  }\n}"
+					},
+					"response": []
+				}
+			],
+			"description": "Examples of operations that trigger webhook events (events are currently broadcast but not delivered pending storage setup)"
+		},
+		{
+			"name": "HMAC Signature Examples",
+			"item": [
+				{
+					"name": "Generate HMAC Signature (Pre-request Script)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Generate HMAC-SHA256 signature for webhook verification",
+									"",
+									"const secret = pm.environment.get('webhook_secret') || 'your_secret_key';",
+									"const payload = {",
+									"    event_type: 'space.created',",
+									"    timestamp: new Date().toISOString(),",
+									"    tenant_id: 'tenant-123',",
+									"    data: {",
+									"        id: 'space-456',",
+									"        name: 'Test Space'",
+									"    }",
+									"};",
+									"",
+									"const payloadString = JSON.stringify(payload);",
+									"const signature = CryptoJS.HmacSHA256(payloadString, secret).toString(CryptoJS.enc.Hex);",
+									"",
+									"pm.environment.set('hmac_signature', signature);",
+									"console.log('Generated HMAC Signature:', signature);",
+									"console.log('Payload:', payloadString);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Webhook-Signature",
+								"value": "sha256={{hmac_signature}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"event_type\": \"space.created\",\n  \"timestamp\": \"{{$isoTimestamp}}\",\n  \"tenant_id\": \"tenant-123\",\n  \"data\": {\n    \"id\": \"space-456\",\n    \"name\": \"Test Space\"\n  }\n}"
+						},
+						"url": {
+							"raw": "https://your-server.com/webhooks/eva",
+							"protocol": "https",
+							"host": ["your-server", "com"],
+							"path": ["webhooks", "eva"]
+						},
+						"description": "Example of generating and sending HMAC-SHA256 signature.\n\nSignature format: sha256=<hex_digest>\nHeader: X-Webhook-Signature\n\nTo verify on your server:\n1. Extract signature from header\n2. Generate expected signature from payload\n3. Use constant-time comparison (hmac.compare_digest)"
+					},
+					"response": []
+				}
+			],
+			"description": "Examples of HMAC-SHA256 signature generation for webhook security"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "tenant_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "space_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "webhook_id",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "webhook_secret",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "query_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

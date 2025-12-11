@@ -1,0 +1,7 @@
+Method,Name,Error,Occurrences
+POST,/graphql [spaces query],HTTPError('500 Server Error: Internal Server Error for url: /graphql [spaces query]'),61
+POST,/graphql [createSpace mutation],"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",11
+POST,/graphql [createSpace mutation],HTTPError('500 Server Error: Internal Server Error for url: /graphql [createSpace mutation]'),35
+POST,/graphql [spaces query],"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",14
+GET,/health [GET],"ChunkedEncodingError(ProtocolError('Connection broken: IncompleteRead(0 bytes read, 79 more expected)', IncompleteRead(0 bytes read, 79 more expected)))",3
+GET,/health [GET],RemoteDisconnected('Remote end closed connection without response'),112

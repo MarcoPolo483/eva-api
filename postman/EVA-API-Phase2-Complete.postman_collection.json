@@ -1,0 +1,513 @@
+{
+  "info": {
+    "name": "EVA API - Phase 2 Complete",
+    "description": "Comprehensive Postman collection demonstrating all Phase 2 REST API endpoints with pagination, filtering, and error cases.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "eva-api-phase2-v1",
+    "version": "2.0.0"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "api_prefix",
+      "value": "/api/v1",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "space_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "document_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "query_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health Checks",
+      "item": [
+        {
+          "name": "Basic Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          }
+        },
+        {
+          "name": "Readiness Check (With Redis)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health/ready",
+              "host": ["{{base_url}}"],
+              "path": ["health", "ready"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Get OAuth Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('jwt_token', response.access_token);",
+                  "    console.log('JWT token saved');",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{azure_client_id}}"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{azure_client_secret}}"
+                },
+                {
+                  "key": "scope",
+                  "value": "{{azure_client_id}}/.default"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://login.microsoftonline.com/{{azure_tenant_id}}/oauth2/v2.0/token",
+              "protocol": "https",
+              "host": ["login", "microsoftonline", "com"],
+              "path": ["{{azure_tenant_id}}", "oauth2", "v2.0", "token"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Spaces - CRUD",
+      "item": [
+        {
+          "name": "Create Space",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('space_id', response.data.id);",
+                  "    console.log('Space ID: ' + response.data.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Q4 2025 Legal Documents\",\n  \"description\": \"All legal documents for Q4 2025 analysis\",\n  \"metadata\": {\n    \"department\": \"Legal\",\n    \"quarter\": \"Q4\",\n    \"year\": 2025\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces"]
+            }
+          }
+        },
+        {
+          "name": "Get Space by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces/{{space_id}}",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces", "{{space_id}}"]
+            }
+          }
+        },
+        {
+          "name": "List Spaces (Default Pagination)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces"]
+            }
+          }
+        },
+        {
+          "name": "List Spaces (With Limit)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces?limit=10",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Spaces (With Search)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces?search=Legal",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "Legal"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Spaces (Sort by Name ASC)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces?sort_by=name&sort_order=asc",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces"],
+              "query": [
+                {
+                  "key": "sort_by",
+                  "value": "name"
+                },
+                {
+                  "key": "sort_order",
+                  "value": "asc"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Space",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Q4 2025 Legal Documents - Updated\",\n  \"metadata\": {\n    \"status\": \"active\",\n    \"updated\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces/{{space_id}}",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces", "{{space_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Space",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces/{{space_id}}",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces", "{{space_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Documents - CRUD",
+      "item": [
+        {
+          "name": "Upload Document",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('document_id', response.data.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces/{{space_id}}/documents",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces", "{{space_id}}", "documents"]
+            }
+          }
+        },
+        {
+          "name": "List Documents in Space",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces/{{space_id}}/documents",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces", "{{space_id}}", "documents"]
+            }
+          }
+        },
+        {
+          "name": "Get Document by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/documents/{{document_id}}",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["documents", "{{document_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Document",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/documents/{{document_id}}",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["documents", "{{document_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Queries - Submit & Results",
+      "item": [
+        {
+          "name": "Submit Query",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {",
+                  "    const response = pm.response.json();",
+                  "    pm.collectionVariables.set('query_id', response.data.query_id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"What are the key legal issues in Q4?\",\n  \"max_results\": 10\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces/{{space_id}}/query",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces", "{{space_id}}", "query"]
+            }
+          }
+        },
+        {
+          "name": "Get Query Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/queries/{{query_id}}",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["queries", "{{query_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Get Query Result",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/queries/{{query_id}}/result",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["queries", "{{query_id}}", "result"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Error Cases",
+      "item": [
+        {
+          "name": "404 - Space Not Found",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces/00000000-0000-0000-0000-000000000000",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces", "00000000-0000-0000-0000-000000000000"]
+            }
+          }
+        },
+        {
+          "name": "401 - Unauthorized (No Token)",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces"]
+            }
+          }
+        },
+        {
+          "name": "422 - Validation Error (Empty Name)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"\",\n  \"description\": \"Invalid space with empty name\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}{{api_prefix}}/spaces",
+              "host": ["{{base_url}}{{api_prefix}}"],
+              "path": ["spaces"]
+            }
+          }
+        },
+        {
+          "name": "429 - Rate Limit Exceeded",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          },
+          "description": "Make 60+ requests rapidly to trigger rate limit"
+        }
+      ]
+    },
+    {
+      "name": "Rate Limiting",
+      "item": [
+        {
+          "name": "Check Rate Limit Headers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          },
+          "description": "Check X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset headers"
+        }
+      ]
+    }
+  ]
+}

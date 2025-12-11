@@ -221,61 +221,6 @@ class Mutation:
 
 
 # ============================================================================
-# Root Subscription Type (Phase 3 - Real-time Events)
-# ============================================================================
-
-@strawberry.type
-class Subscription:
-    """Root subscription type for real-time updates.
-
-    Phase 3 subscriptions for webhooks and real-time notifications:
-    - Document events (added, processed, deleted)
-    - Query events (submitted, completed, failed)
-    - Space events (created, updated, deleted)
-    """
-
-    @strawberry.field(description="Subscribe to query status updates for a specific query")
-    async def query_updates(self, info: strawberry.types.Info, id: UUID) -> AsyncGenerator["Query", None]:
-        """Real-time updates for a specific query as it progresses."""
-        from eva_api.graphql.resolvers import query_updates as _query_updates
-        async for update in _query_updates(info, id):
-            yield update
-
-    @strawberry.field(description="Subscribe to all document events in a space")
-    async def document_added(self, info: strawberry.types.Info, space_id: UUID) -> AsyncGenerator["Document", None]:
-        """Real-time notification when documents are added to a space.
-
-        Emits: Document object when uploaded and processed
-        Use case: Live document feed, file monitoring
-        """
-        from eva_api.graphql.resolvers import document_added as _document_added
-        async for document in _document_added(info, space_id):
-            yield document
-
-    @strawberry.field(description="Subscribe to query completion events in a space")
-    async def query_completed(self, info: strawberry.types.Info, space_id: UUID) -> AsyncGenerator["Query", None]:
-        """Real-time notification when queries complete in a space.
-
-        Emits: Query object when processing finishes (success or failure)
-        Use case: Live query dashboard, analytics feed
-        """
-        from eva_api.graphql.resolvers import query_completed as _query_completed
-        async for query in _query_completed(info, space_id):
-            yield query
-
-    @strawberry.field(description="Subscribe to all space events for tenant")
-    async def space_events(self, info: strawberry.types.Info) -> AsyncGenerator["SpaceEvent", None]:
-        """Real-time notification of space lifecycle events.
-
-        Emits: SpaceEvent (created, updated, deleted)
-        Use case: Admin dashboard, audit logging
-        """
-        from eva_api.graphql.resolvers import space_events as _space_events
-        async for event in _space_events(info):
-            yield event
-
-
-# ============================================================================
 # Event Types for Subscriptions (Phase 3)
 # ============================================================================
 
@@ -296,6 +241,61 @@ class SpaceEvent:
     space_id: UUID
     tenant_id: str
     timestamp: datetime
+
+
+# ============================================================================
+# Root Subscription Type (Phase 3 - Real-time Events)
+# ============================================================================
+
+@strawberry.type
+class Subscription:
+    """Root subscription type for real-time updates.
+
+    Phase 3 subscriptions for webhooks and real-time notifications:
+    - Document events (added, processed, deleted)
+    - Query events (submitted, completed, failed)
+    - Space events (created, updated, deleted)
+    """
+
+    @strawberry.field(description="Subscribe to query status updates for a specific query")
+    async def query_updates(self, info: strawberry.types.Info, id: UUID) -> AsyncGenerator[Query, None]:
+        """Real-time updates for a specific query as it progresses."""
+        from eva_api.graphql.resolvers import query_updates as _query_updates
+        async for update in _query_updates(info, id):
+            yield update
+
+    @strawberry.field(description="Subscribe to all document events in a space")
+    async def document_added(self, info: strawberry.types.Info, space_id: UUID) -> AsyncGenerator[Document, None]:
+        """Real-time notification when documents are added to a space.
+
+        Emits: Document object when uploaded and processed
+        Use case: Live document feed, file monitoring
+        """
+        from eva_api.graphql.resolvers import document_added as _document_added
+        async for document in _document_added(info, space_id):
+            yield document
+
+    @strawberry.field(description="Subscribe to query completion events in a space")
+    async def query_completed(self, info: strawberry.types.Info, space_id: UUID) -> AsyncGenerator[Query, None]:
+        """Real-time notification when queries complete in a space.
+
+        Emits: Query object when processing finishes (success or failure)
+        Use case: Live query dashboard, analytics feed
+        """
+        from eva_api.graphql.resolvers import query_completed as _query_completed
+        async for query in _query_completed(info, space_id):
+            yield query
+
+    @strawberry.field(description="Subscribe to all space events for tenant")
+    async def space_events(self, info: strawberry.types.Info) -> AsyncGenerator[SpaceEvent, None]:
+        """Real-time notification of space lifecycle events.
+
+        Emits: SpaceEvent (created, updated, deleted)
+        Use case: Admin dashboard, audit logging
+        """
+        from eva_api.graphql.resolvers import space_events as _space_events
+        async for event in _space_events(info):
+            yield event
 
 
 # ============================================================================

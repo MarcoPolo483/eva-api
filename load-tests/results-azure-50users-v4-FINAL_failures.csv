@@ -1,0 +1,2 @@
+Method,Name,Error,Occurrences
+GET,/health [GET],RemoteDisconnected('Remote end closed connection without response'),11

@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVA - Joyeuses Fêtes! 🎄 Happy Holidays!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Winter Holiday Theme */
+            --primary: #2E7D32;        /* Forest Green */
+            --primary-dark: #1B5E20;
+            --accent: #C62828;         /* Holiday Red */
+            --accent-light: #EF5350;
+            --gold: #FFD700;           /* Gold accents */
+            --snow: #FFFFFF;
+            --ice-blue: #E3F2FD;
+            --winter-blue: #1976D2;
+            --text-primary: #1A237E;   /* Deep blue */
+            --text-secondary: #455A64;
+            --bg-main: linear-gradient(135deg, #E3F2FD 0%, #F3E5F5 100%);
+            --bg-chat: rgba(255, 255, 255, 0.95);
+            --bg-message-user: #E8F5E9;
+            --bg-message-eva: #FFF3E0;
+            --border: #B0BEC5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated snowflakes */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            font-family: Arial, sans-serif;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            user-select: none;
+            cursor: default;
+            animation-name: snowfall;
+            animation-duration: 10s;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes snowfall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.3;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            background: var(--bg-chat);
+            padding: 20px 24px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            border: 3px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "❄️";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            animation: spin 10s linear infinite;
+        }
+
+        header::after {
+            content: "🎄";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .eva-logo {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+            border: 3px solid var(--gold);
+        }
+
+        .header-text h1 {
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-text p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        .lang-toggle {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--border);
+            background: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: var(--ice-blue);
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .chat-container {
+            flex: 1;
+            background: var(--bg-chat);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+        }
+
+        #messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            display: flex;
+            gap: 12px;
+            animation: slideIn 0.4s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 16px;
+            flex-shrink: 0;
+            border: 2px solid var(--gold);
+        }
+
+        .message.eva .message-avatar {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+        }
+
+        .message.user .message-avatar {
+            background: var(--ice-blue);
+            color: var(--winter-blue);
+        }
+
+        .message-content {
+            flex: 1;
+            max-width: 85%;
+        }
+
+        .message-bubble {
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 15px;
+            line-height: 1.6;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .message.eva .message-bubble {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            border: 2px solid var(--gold);
+        }
+
+        .message.user .message-bubble {
+            background: var(--bg-message-user);
+            border: 2px solid var(--primary);
+        }
+
+        .message-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+            padding-left: 18px;
+        }
+
+        .holiday-banner {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);
+        }
+
+        .data-sources {
+            margin-top: 16px;
+            padding: 18px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+        }
+
+        .data-sources h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 14px;
+        }
+
+        .source-item {
+            padding: 10px 14px;
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            border: 2px solid var(--primary);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .source-name {
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .source-docs {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .suggested-questions {
+            margin-top: 16px;
+            padding: 18px;
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+        }
+
+        .suggested-questions h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .question-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 12px 16px;
+            background: white;
+            border: 2px solid var(--gold);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--text-primary);
+            transition: all 0.3s;
+            font-weight: 500;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .question-btn:hover {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            border-color: var(--accent);
+            transform: translateX(8px);
+            box-shadow: 0 4px 12px rgba(198, 40, 40, 0.2);
+        }
+
+        .question-btn::before {
+            content: "🎁 ";
+            margin-right: 8px;
+        }
+
+        .input-container {
+            padding: 20px 24px;
+            border-top: 2px solid var(--gold);
+            background: var(--bg-chat);
+        }
+
+        .input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid var(--gold);
+            border-radius: 28px;
+            font-size: 15px;
+            outline: none;
+            transition: all 0.3s;
+            font-family: inherit;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        #messageInput:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(198, 40, 40, 0.1);
+        }
+
+        #sendBtn {
+            width: 52px;
+            height: 52px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.4);
+            border: 2px solid var(--gold);
+        }
+
+        #sendBtn:hover:not(:disabled) {
+            transform: scale(1.1) rotate(15deg);
+            box-shadow: 0 6px 16px rgba(198, 40, 40, 0.5);
+        }
+
+        #sendBtn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFECB3 100%);
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            width: fit-content;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .typing-dots span {
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite;
+        }
+
+        .typing-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .error-message {
+            padding: 14px 18px;
+            background: #FFEBEE;
+            border: 2px solid var(--accent);
+            border-radius: 10px;
+            color: var(--accent);
+            font-size: 14px;
+            margin-top: 12px;
+            font-weight: 500;
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--ice-blue);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        #messages::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #messages::-webkit-scrollbar-track {
+            background: var(--ice-blue);
+            border-radius: 10px;
+        }
+
+        #messages::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+
+        #messages::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* Holiday decorations */
+        .decoration {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+            font-size: 30px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated snowflakes -->
+    <div class="snowflake" style="left: 10%; animation-duration: 12s;">❄</div>
+    <div class="snowflake" style="left: 25%; animation-duration: 9s; animation-delay: 2s;">❄</div>
+    <div class="snowflake" style="left: 40%; animation-duration: 11s; animation-delay: 4s;">❄</div>
+    <div class="snowflake" style="left: 55%; animation-duration: 10s; animation-delay: 1s;">❄</div>
+    <div class="snowflake" style="left: 70%; animation-duration: 13s; animation-delay: 3s;">❄</div>
+    <div class="snowflake" style="left: 85%; animation-duration: 8s; animation-delay: 5s;">❄</div>
+
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="eva-logo">EVA</div>
+                <div class="header-text">
+                    <h1 id="headerTitle">EVA - Joyeuses Fêtes! 🎄</h1>
+                    <p id="headerSubtitle">Votre assistant intelligent pour les Fêtes</p>
+                </div>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" onclick="switchLanguage('fr')" id="btnFr">🇫🇷 FR</button>
+                    <button class="lang-btn" onclick="switchLanguage('en')" id="btnEn">🇬🇧 EN</button>
+                </div>
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span id="statusText">Connecté</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="chat-container">
+            <div id="messages">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+            
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <input 
+                        type="text" 
+                        id="messageInput" 
+                        placeholder="Tapez votre question ou dites 'Bonjour EVA'..." 
+                        disabled
+                    />
+                    <button id="sendBtn" disabled>🎁</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const API_BASE = 'https://eva-api-container.azurewebsites.net';
+        const API_KEY = 'demo-api-key';
+        const MAX_USERS = 25;
+        const DEMO_MODE = true; // Set to false when API is ready
+
+        // Session management
+        let sessionId = null;
+        let activeUsers = 0;
+        let heartbeatInterval = null;
+
+        // Language state
+        let currentLang = 'fr';
+
+        // Translations
+        const translations = {
+            fr: {
+                headerTitle: "EVA - Joyeuses Fêtes! 🎄",
+                headerSubtitle: "Votre assistant intelligent pour les Fêtes",
+                statusConnected: "Connecté",
+                inputPlaceholder: "Tapez votre question ou dites 'Bonjour EVA'...",
+                greeting: `
+                    <strong>Bonjour! Je suis EVA 🎄</strong><br><br>
+                    Joyeuses Fêtes! Je suis votre assistant intelligent de documents.
+                    Je peux vous aider à trouver des informations, répondre à vos questions
+                    et analyser le contenu de vos espaces de connaissance.
+                `,
+                noSpaces: `
+                    <strong>Aucun Espace de Connaissance Trouvé</strong><br><br>
+                    Il semble que vous n'ayez pas encore créé d'espaces de connaissance.
+                    Les espaces de connaissance sont des collections de documents que je peux
+                    rechercher et analyser.<br><br>
+                    <em>Pour commencer, utilisez l'API pour créer un espace et télécharger des documents.</em>
+                `,
+                availableSpaces: "Espaces de Connaissance Disponibles:",
+                haveAccess: "J'ai actuellement accès à",
+                space: "espace",
+                spaces: "espaces",
+                dataSources: "📚 Vos Sources de Données",
+                documents: "documents",
+                document: "document",
+                created: "Créé le",
+                suggestedQuestions: "💡 Essayez de me demander:",
+                helloAgain: `
+                    <strong>Re-bonjour! 🎅</strong><br><br>
+                    Je suis là et prêt à vous aider. Vous pouvez me poser des questions sur
+                    vos espaces de connaissance ou essayer une des questions suggérées ci-dessus.
+                `,
+                answer: "Réponse:",
+                sources: "📎 Sources:",
+                page: "Page",
+                errorPrefix: "⚠️ Désolé, j'ai rencontré une erreur:",
+                tryAgain: "Veuillez réessayer ou reformuler votre question.",
+                questionTemplates: {
+                    whatInfo: "Quelles informations sont disponibles dans",
+                    summarize: "Pouvez-vous résumer le contenu de",
+                    keyTerms: "Quels sont les termes clés dans",
+                    compliance: "Y a-t-il des exigences de conformité mentionnées?",
+                    mainPolicies: "Quelles sont les principales politiques décrites?",
+                    responsible: "Qui est responsable de la mise en œuvre de ces politiques?",
+                    keyFindings: "Quelles sont les principales conclusions de ces rapports?",
+                    recommendations: "Quelles recommandations sont fournies?",
+                    getStarted: "Comment puis-je commencer avec",
+                    instructions: "Quelles sont les instructions étape par étape?",
+                    topics: "Quels sujets sont couverts dans",
+                    insights: "Pouvez-vous extraire les idées clés de ce contenu?"
+                }
+            },
+            en: {
+                headerTitle: "EVA - Happy Holidays! 🎄",
+                headerSubtitle: "Your Intelligent Holiday Assistant",
+                statusConnected: "Connected",
+                inputPlaceholder: "Type your question or say 'Hi EVA'...",
+                greeting: `
+                    <strong>Hi! I'm EVA 🎄</strong><br><br>
+                    Happy Holidays! I'm your Intelligent Document Assistant.
+                    I can help you find information, answer questions, and analyze
+                    content from your knowledge spaces.
+                `,
+                noSpaces: `
+                    <strong>No Knowledge Spaces Found</strong><br><br>
+                    It looks like you haven't created any knowledge spaces yet.
+                    Knowledge spaces are collections of documents I can search and analyze.<br><br>
+                    <em>To get started, use the API to create a space and upload documents.</em>
+                `,
+                availableSpaces: "Available Knowledge Spaces:",
+                haveAccess: "I currently have access to",
+                space: "space",
+                spaces: "spaces",
+                dataSources: "📚 Your Data Sources",
+                documents: "documents",
+                document: "document",
+                created: "Created",
+                suggestedQuestions: "💡 Try asking me:",
+                helloAgain: `
+                    <strong>Hello again! 🎅</strong><br><br>
+                    I'm here and ready to help. You can ask me questions about your
+                    knowledge spaces or try one of the suggested questions above.
+                `,
+                answer: "Answer:",
+                sources: "📎 Sources:",
+                page: "Page",
+                errorPrefix: "⚠️ Sorry, I encountered an error:",
+                tryAgain: "Please try again or rephrase your question.",
+                questionTemplates: {
+                    whatInfo: "What information is available in",
+                    summarize: "Can you summarize the content in",
+                    keyTerms: "What are the key terms in the",
+                    compliance: "Are there any compliance requirements mentioned?",
+                    mainPolicies: "What are the main policies described?",
+                    responsible: "Who is responsible for implementing these policies?",
+                    keyFindings: "What are the key findings in these reports?",
+                    recommendations: "What recommendations are provided?",
+                    getStarted: "How do I get started with",
+                    instructions: "What are the step-by-step instructions?",
+                    topics: "What topics are covered in",
+                    insights: "Can you extract key insights from this content?"
+                }
+            }
+        };
+
+        // State
+        let spaces = [];
+        let isInitialized = false;
+
+        // DOM Elements
+        const messagesContainer = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+        const sendBtn = document.getElementById('sendBtn');
+
+        // Language switching
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update buttons
+            document.getElementById('btnFr').classList.toggle('active', lang === 'fr');
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+            
+            // Update header
+            document.getElementById('headerTitle').textContent = translations[lang].headerTitle;
+            document.getElementById('headerSubtitle').textContent = translations[lang].headerSubtitle;
+            document.getElementById('statusText').textContent = translations[lang].statusConnected;
+            messageInput.placeholder = translations[lang].inputPlaceholder;
+            
+            // Update send button icon
+            sendBtn.textContent = lang === 'fr' ? '🎁' : '🎄';
+            
+            // Reinitialize chat with new language
+            if (isInitialized) {
+                initializeChat();
+            }
+        }
+
+        function t(key) {
+            const keys = key.split('.');
+            let value = translations[currentLang];
+            for (const k of keys) {
+                value = value[k];
+            }
+            return value;
+        }
+
+        function formatTime() {
+            const now = new Date();
+            return now.toLocaleTimeString(currentLang === 'fr' ? 'fr-CA' : 'en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+        }
+
+        function addMessage(type, content, includeTime = true) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            
+            const avatar = type === 'eva' ? '🎅' : '👤';
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">${avatar}</div>
+                <div class="message-content">
+                    <div class="message-bubble">${content}</div>
+                    ${includeTime ? `<div class="message-time">${formatTime()}</div>` : ''}
+                </div>
+            `;
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function showTyping() {
+            const typing = document.createElement('div');
+            typing.className = 'message eva';
+            typing.id = 'typing-indicator';
+            typing.innerHTML = `
+                <div class="message-avatar">🎅</div>
+                <div class="message-content">
+                    <div class="typing-indicator active">
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            messagesContainer.appendChild(typing);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function hideTyping() {
+            const typing = document.getElementById('typing-indicator');
+            if (typing) typing.remove();
+        }
+
+        // ============================================================================
+        // Session Management - 25 User Capacity Tracking
+        // ============================================================================
+
+        async function connectToEVA() {
+            // Skip connection if in demo mode
+            if (DEMO_MODE) {
+                console.log('🎭 Running in DEMO MODE - no API connection');
+                updateConnectionStatus(true, 0);
+                return true;
+            }
+            
+            try {
+                // Add timeout to prevent hanging
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+                
+                const response = await fetch(`${API_BASE}/api/v1/sessions/connect`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-API-Key': API_KEY
+                    },
+                    body: JSON.stringify({
+                        browser: navigator.userAgent,
+                        timestamp: new Date().toISOString()
+                    }),
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeout);
+
+                if (response.status === 503) {
+                    // At capacity
+                    const data = await response.json();
+                    updateConnectionStatus(false, data.detail.active_users || MAX_USERS);
+                    addMessage('eva', `
+                        <div class="error-message">
+                            <strong>🚫 Demo at Capacity</strong><br><br>
+                            Currently <strong>${data.detail.active_users}/${MAX_USERS}</strong> users are connected.<br><br>
+                            Please try again in a few minutes. Average session: 15 minutes.
+                        </div>
+                    `);
+                    return false;
+                }
+
+                const session = await response.json();
+                sessionId = session.session_id;
+                activeUsers = session.active_users;
+                
+                updateConnectionStatus(true, activeUsers);
+                startHeartbeat();
+                
+                console.log(`✅ Connected to EVA (${activeUsers}/${MAX_USERS} users)`);
+                return true;
+            } catch (error) {
+                console.log('ℹ️ Session API unavailable, running in demo mode');
+                // Graceful degradation - allow demo mode without session tracking
+                updateConnectionStatus(true, 0);
+                return true;
+            }
+        }
+
+        function updateConnectionStatus(connected, count) {
+            const statusDot = document.querySelector('.status-dot');
+            const statusText = document.querySelector('.status-text');
+            
+            if (statusDot && statusText) {
+                if (connected) {
+                    statusDot.style.background = '#4CAF50';
+                    if (count > 0) {
+                        statusText.textContent = currentLang === 'fr' 
+                            ? `Connecté (${count}/${MAX_USERS} utilisateurs)`
+                            : `Connected (${count}/${MAX_USERS} users)`;
+                    } else {
+                        statusText.textContent = currentLang === 'fr' ? 'Connecté' : 'Connected';
+                    }
+                } else {
+                    statusDot.style.background = '#F44336';
+                    statusText.textContent = currentLang === 'fr' ? 'Déconnecté' : 'Disconnected';
+                }
+            }
+        }
+
+        function startHeartbeat() {
+            if (heartbeatInterval) clearInterval(heartbeatInterval);
+            
+            heartbeatInterval = setInterval(async () => {
+                if (!sessionId) return;
+                
+                try {
+                    const response = await fetch(`${API_BASE}/api/v1/sessions/${sessionId}/heartbeat`, {
+                        method: 'POST',
+                        headers: { 'X-API-Key': API_KEY }
+                    });
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        activeUsers = data.active_users;
+                        updateConnectionStatus(true, activeUsers);
+                    } else {
+                        console.warn('💔 Heartbeat failed, reconnecting...');
+                        await connectToEVA();
+                    }
+                } catch (error) {
+                    console.error('💔 Heartbeat error:', error);
+                }
+            }, 30000); // Every 30 seconds
+        }
+
+        // Cleanup on page close
+        window.addEventListener('beforeunload', () => {
+            if (sessionId) {
+                navigator.sendBeacon(
+                    `${API_BASE}/api/v1/sessions/${sessionId}/disconnect`,
+                    JSON.stringify({ session_id: sessionId })
+                );
+            }
+        });
+
+        // ============================================================================
+        // Demo Data Loading
+        // ============================================================================
+
+        async function loadDemoData() {
+            try {
+                const response = await fetch('./demo-data.json');
+                if (response.ok) {
+                    const demo = await response.json();
+                    console.log('📊 Demo data loaded:', demo.metadata);
+                    return demo;
+                }
+            } catch (error) {
+                console.log('ℹ️ No demo data available, using live API');
+            }
+            return null;
+        }
+
+        // ============================================================================
+        // API Functions
+        // ============================================================================
+
+        async function fetchSpaces() {
+            try {
+                // Try demo data first
+                const demo = await loadDemoData();
+                if (demo && demo.spaces) {
+                    console.log('📝 Using demo data for spaces');
+                    return demo.spaces;
+                }
+
+                // Fall back to live API
+                const response = await fetch(`${API_BASE}/api/v1/spaces`, {
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                return data.data.items || [];
+            } catch (error) {
+                console.error('Failed to fetch spaces:', error);
+                return [];
+            }
+        }
+
+        function generateSuggestedQuestions(space) {
+            const baseName = space.name.toLowerCase();
+            const suggestions = [];
+            const qt = t('questionTemplates');
+
+            suggestions.push(`${qt.whatInfo} ${space.name}?`);
+            suggestions.push(`${qt.summarize} ${space.name}?`);
+            
+            if (baseName.includes('contract') || baseName.includes('legal') || 
+                baseName.includes('contrat') || baseName.includes('juridique')) {
+                suggestions.push(`${qt.keyTerms} ${space.name}?`);
+                suggestions.push(qt.compliance);
+            } else if (baseName.includes('policy') || baseName.includes('procedure') ||
+                       baseName.includes('politique') || baseName.includes('procédure')) {
+                suggestions.push(qt.mainPolicies);
+                suggestions.push(qt.responsible);
+            } else if (baseName.includes('report') || baseName.includes('analysis') ||
+                       baseName.includes('rapport') || baseName.includes('analyse')) {
+                suggestions.push(qt.keyFindings);
+                suggestions.push(qt.recommendations);
+            } else if (baseName.includes('manual') || baseName.includes('guide') ||
+                       baseName.includes('manuel')) {
+                suggestions.push(`${qt.getStarted} ${space.name}?`);
+                suggestions.push(qt.instructions);
+            } else {
+                suggestions.push(`${qt.topics} ${space.name}?`);
+                suggestions.push(qt.insights);
+            }
+
+            return suggestions.slice(0, 3);
+        }
+
+        async function initializeChat() {
+            messagesContainer.innerHTML = '';
+            
+            // Connect to EVA session management
+            const connected = await connectToEVA();
+            if (!connected) {
+                // At capacity, stop initialization
+                messageInput.disabled = true;
+                sendBtn.disabled = true;
+                return;
+            }
+            
+            // Holiday banner
+            const banner = document.createElement('div');
+            banner.className = 'holiday-banner';
+            banner.textContent = currentLang === 'fr' 
+                ? '🎄 Joyeuses Fêtes! ❄️ Meilleurs vœux pour 2026! 🎁'
+                : '🎄 Happy Holidays! ❄️ Best wishes for 2026! 🎁';
+            messagesContainer.appendChild(banner);
+            
+            addMessage('eva', t('greeting'));
+
+            showTyping();
+            spaces = await fetchSpaces();
+            hideTyping();
+
+            if (spaces.length === 0) {
+                addMessage('eva', t('noSpaces'));
+            } else {
+                // Load demo data for suggested questions
+                const demo = await loadDemoData();
+                
+                if (demo && demo.documents) {
+                    // Show suggested questions from demo data
+                    let questionsHTML = '<div style="margin-top: 20px;"><strong>💡 ' + 
+                        (currentLang === 'fr' ? 'Essayez de me demander:' : 'Try asking me:') + 
+                        '</strong></div><div class="suggested-questions" style="max-width: 600px; margin-top: 15px;">';
+                    
+                    if (demo.queries) {
+                        const questions = currentLang === 'fr' ? demo.queries.suggested_fr : demo.queries.suggested_en;
+                        questions.slice(0, 6).forEach(q => {
+                            questionsHTML += `<button class="question-btn" onclick="askQuestion('${q.replace(/'/g, "\\'")}')">${q}</button>`;
+                        });
+                    }
+                    
+                    questionsHTML += '</div>';
+                    addMessage('eva', questionsHTML);
+                } else {
+                    // Fallback to generic space-based questions
+                    const spaceWord = spaces.length === 1 ? t('space') : t('spaces');
+                    let sourcesHTML = `
+                        <strong>${t('availableSpaces')}</strong><br><br>
+                        ${t('haveAccess')} <strong>${spaces.length}</strong> ${spaceWord}:
+                    `;
+
+                    sourcesHTML += '<div class="data-sources">';
+                    sourcesHTML += `<h3>${t('dataSources')}</h3>`;
+                    
+                    spaces.forEach(space => {
+                        const docCount = space.metadata?.document_count || 0;
+                        const docWord = docCount === 1 ? t('document') : t('documents');
+                        const createdDate = new Date(space.created_at).toLocaleDateString(
+                            currentLang === 'fr' ? 'fr-CA' : 'en-US'
+                    );
+                    
+                    sourcesHTML += `
+                        <div class="source-item">
+                            <div class="source-name">🎁 ${space.name}</div>
+                            <div class="source-docs">${space.description || ''}</div>
+                            <div class="source-docs">${docCount} ${docWord} • ${t('created')} ${createdDate}</div>
+                        </div>
+                    `;
+                });
+                
+                sourcesHTML += '</div>';
+                addMessage('eva', sourcesHTML);
+
+                if (spaces.length > 0) {
+                    let questionsHTML = '<div class="suggested-questions">';
+                    questionsHTML += `<h3>${t('suggestedQuestions')}</h3>`;
+                    
+                    spaces.forEach(space => {
+                        const questions = generateSuggestedQuestions(space);
+                        questions.forEach(q => {
+                            questionsHTML += `<button class="question-btn" onclick="askQuestion('${q.replace(/'/g, "\\'")}')">${q}</button>`;
+                        });
+                    });
+                    
+                    questionsHTML += '</div>';
+                    addMessage('eva', questionsHTML);
+                }
+            }
+
+            messageInput.disabled = false;
+            sendBtn.disabled = false;
+            messageInput.focus();
+            isInitialized = true;
+        }
+
+        window.askQuestion = function(question) {
+            messageInput.value = question;
+            sendMessage();
+        };
+
+        async function submitQuery(spaceId, question) {
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/queries`, {
+                    method: 'POST',
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        space_id: spaceId,
+                        question: question,
+                        parameters: {}
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data.data;
+            } catch (error) {
+                console.error('Failed to submit query:', error);
+                throw error;
+            }
+        }
+
+        async function getQueryResult(queryId) {
+            try {
+                const response = await fetch(`${API_BASE}/api/v1/queries/${queryId}/result`, {
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        return null;
+                    }
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                return data.data;
+            } catch (error) {
+                console.error('Failed to get query result:', error);
+                throw error;
+            }
+        }
+
+        async function pollQueryResult(queryId, maxAttempts = 60, intervalMs = 2000) {
+            for (let i = 0; i < maxAttempts; i++) {
+                const result = await getQueryResult(queryId);
+                
+                if (result && result.status === 'completed') {
+                    return result;
+                }
+                
+                if (result && result.status === 'failed') {
+                    throw new Error(result.error || 'Query processing failed');
+                }
+
+                await new Promise(resolve => setTimeout(resolve, intervalMs));
+            }
+
+            throw new Error('Query timeout - result not available after 2 minutes');
+        }
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            addMessage('user', message);
+            messageInput.value = '';
+            messageInput.disabled = true;
+            sendBtn.disabled = true;
+
+            // Check for greetings in both languages
+            const greetings = ['hi', 'hello', 'hey', 'hi eva', 'hello eva', 
+                             'bonjour', 'salut', 'bonjour eva', 'salut eva'];
+            if (greetings.includes(message.toLowerCase())) {
+                showTyping();
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                hideTyping();
+                
+                addMessage('eva', t('helloAgain'));
+                
+                messageInput.disabled = false;
+                sendBtn.disabled = false;
+                messageInput.focus();
+                return;
+            }
+
+            showTyping();
+
+            try {
+                if (spaces.length === 0) {
+                    hideTyping();
+                    addMessage('eva', `
+                        <div class="error-message">
+                            ${t('errorPrefix')} ${t('noSpaces')}
+                        </div>
+                    `);
+                    messageInput.disabled = false;
+                    sendBtn.disabled = false;
+                    return;
+                }
+
+                const spaceId = spaces[0].id;
+                const queryResponse = await submitQuery(spaceId, message);
+                const result = await pollQueryResult(queryResponse.id);
+                
+                hideTyping();
+
+                let answerHTML = `<strong>${t('answer')}</strong><br><br>${result.answer}`;
+                
+                if (result.sources && result.sources.length > 0) {
+                    answerHTML += `<br><br><strong>${t('sources')}</strong><br>`;
+                    result.sources.forEach((source, idx) => {
+                        answerHTML += `<div style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">
+                            ${idx + 1}. ${source.title || source.document_name || 'Document'} 
+                            ${source.page ? `(${t('page')} ${source.page})` : ''}
+                        </div>`;
+                    });
+                }
+
+                addMessage('eva', answerHTML);
+
+            } catch (error) {
+                hideTyping();
+                addMessage('eva', `
+                    <div class="error-message">
+                        ${t('errorPrefix')} ${error.message}<br><br>
+                        ${t('tryAgain')}
+                    </div>
+                `);
+            }
+
+            messageInput.disabled = false;
+            sendBtn.disabled = false;
+            messageInput.focus();
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        window.addEventListener('load', initializeChat);
+    </script>
+</body>
+</html>

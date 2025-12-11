@@ -1,0 +1,2 @@
+Method,Name,Error,Occurrences
+POST,/graphql [spaces query],HTTPError('500 Server Error: Internal Server Error for url: /graphql [spaces query]'),1

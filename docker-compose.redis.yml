@@ -1,0 +1,30 @@
+# Redis Docker Compose Configuration
+# For local development of EVA API Platform
+
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: eva-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+    networks:
+      - eva-network
+
+volumes:
+  redis-data:
+    driver: local
+
+networks:
+  eva-network:
+    driver: bridge

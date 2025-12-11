@@ -1,0 +1,3 @@
+Method,Name,Error,Occurrences
+POST,/graphql [spaces query],HTTPError('500 Server Error: Internal Server Error for url: /graphql [spaces query]'),7
+POST,/graphql [createSpace mutation],HTTPError('500 Server Error: Internal Server Error for url: /graphql [createSpace mutation]'),8

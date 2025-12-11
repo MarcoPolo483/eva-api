@@ -1,0 +1,4 @@
+Method,Name,Error,Occurrences
+POST,/graphql [spaces query],HTTPError('500 Server Error: Internal Server Error for url: /graphql [spaces query]'),1
+POST,/graphql [createSpace mutation],HTTPError('500 Server Error: Internal Server Error for url: /graphql [createSpace mutation]'),1
+POST,/graphql [spaces query],"ConnectionResetError(10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)",1

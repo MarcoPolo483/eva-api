@@ -1,0 +1,5 @@
+Method,Name,Error,Occurrences
+GET,/api/v1/spaces [LIST],HTTPError('404 Client Error: Not Found for url: /api/v1/spaces [LIST]'),813
+POST,/api/v1/spaces,HTTPError('404 Client Error: Not Found for url: /api/v1/spaces'),23
+POST,/graphql [createSpace mutation],HTTPError('404 Client Error: Not Found for url: /graphql [createSpace mutation]'),120
+POST,/graphql [spaces query],HTTPError('404 Client Error: Not Found for url: /graphql [spaces query]'),173

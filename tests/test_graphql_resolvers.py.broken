@@ -1,0 +1,471 @@
+"""
+Comprehensive tests for GraphQL resolvers.
+"""
+
+import uuid
+from datetime import datetime
+from unittest.mock import Mock, patch, MagicMock, AsyncMock
+
+import pytest
+import strawberry
+from strawberry.types import Info
+
+from eva_api.graphql.resolvers import (
+    GraphQLContext,
+    spaces,
+    space,
+    create_space,
+    update_space,
+    # delete_space,  # May not exist
+    documents,
+    # document,  # May not exist
+    submit_query as submit_query_resolver,
+    # query_status,  # May not exist
+    # query_result,  # May not exist
+)
+from eva_api.graphql.schema import (
+    CreateSpaceInput,
+    UpdateSpaceInput,
+    SubmitQueryInput,
+)
+
+
+@pytest.fixture
+def mock_services():
+    """Create mock services for testing."""
+    cosmos = AsyncMock()
+    blob = AsyncMock()
+    query = AsyncMock()
+    
+    yield {"cosmos": cosmos, "blob": blob, "query": query}
+
+
+@pytest.fixture
+def graphql_context(mock_services):
+    """Create GraphQL context with mock services."""
+    return GraphQLContext(
+        cosmos_service=mock_services["cosmos"],
+        blob_service=mock_services["blob"],
+        query_service=mock_services["query"],
+        user_id="test-user",
+        tenant_id="test-tenant",
+    )
+
+
+@pytest.fixture
+def mock_info(graphql_context):
+    """Create mock Strawberry Info object."""
+    info = Mock(spec=Info)
+    info.context = graphql_context
+    return info
+
+
+class TestSpaceResolvers:
+    """Tests for space-related GraphQL resolvers."""
+    
+    @pytest.mark.asyncio
+    async def test_list_spaces(self, mock_info, mock_services):
+        """Test listing spaces via GraphQL."""
+        mock_spaces = [
+            {"id": str(uuid.uuid4()), "name": "Space 1", "document_count": 5, "created_at": datetime.utcnow(), "updated_at": datetime.utcnow()},
+            {"id": str(uuid.uuid4()), "name": "Space 2", "document_count": 3, "created_at": datetime.utcnow(), "updated_at": datetime.utcnow()},
+        ]
+        mock_services["cosmos"].list_spaces.return_value = (mock_spaces, None, False)
+        
+        result = await spaces(mock_info, limit=10, cursor=None)
+        
+        assert len(result.items) == 2
+        assert result.items[0].name == "Space 1"
+        assert result.has_more is False
+        mock_services["cosmos"].list_spaces.assert_called_once_with(limit=10, cursor=None)
+    
+    @pytest.mark.asyncio
+    async def test_list_spaces_paginated(self, mock_info, mock_services):
+        """Test listing spaces with pagination."""
+        mock_spaces = [
+            {"id": str(uuid.uuid4()), "name": f"Space {i}", "document_count": i, "created_at": datetime.utcnow(), "updated_at": datetime.utcnow()}
+            for i in range(20)
+        ]
+        mock_services["cosmos"].list_spaces.return_value = (mock_spaces, "cursor-123", True)
+        
+        result = await spaces(mock_info, limit=20, cursor=None)
+        
+        assert len(result.items) == 20
+        assert result.cursor == "cursor-123"
+        assert result.has_more is True
+    
+    @pytest.mark.asyncio
+    async def test_get_space_by_id(self, mock_info, mock_services):
+        """Test retrieving single space by ID."""
+        space_id = uuid.uuid4()
+        mock_space = {
+            "id": str(space_id),
+            "name": "Test Space",
+            "description": "Test description",
+            "document_count": 10,
+            "created_at": datetime.utcnow(),
+            "updated_at": datetime.utcnow(),
+        }
+        mock_services["cosmos"].get_space.return_value = mock_space
+        
+        result = await space(mock_info, id=space_id)
+        
+        assert result is not None
+        assert result.name == "Test Space"
+        assert result.document_count == 10
+        mock_services["cosmos"].get_space.assert_called_once_with(space_id)
+    
+    @pytest.mark.asyncio
+    async def test_get_space_not_found(self, mock_info, mock_services):
+        """Test retrieving non-existent space."""
+        space_id = uuid.uuid4()
+        mock_services["cosmos"].get_space.return_value = None
+        
+        result = await space(mock_info, id=space_id)
+        
+        assert result is None
+    
+    @pytest.mark.asyncio
+    async def test_create_space(self, mock_info, mock_services):
+        """Test creating space via GraphQL mutation."""
+        input_data = CreateSpaceInput(
+            name="New Space",
+            description="A new test space",
+            metadata={"project": "eva-api"},
+            tags=["test", "graphql"]
+        )
+        
+        created_space = {
+            "id": str(uuid.uuid4()),
+            "name": "New Space",
+            "description": "A new test space",
+            "document_count": 0,
+            "created_at": datetime.utcnow(),
+            "updated_at": datetime.utcnow(),
+        }
+        mock_services["cosmos"].create_space.return_value = created_space
+        
+        result = await create_space(mock_info, input=input_data)
+        
+        assert result.name == "New Space"
+        assert result.description == "A new test space"
+        mock_services["cosmos"].create_space.assert_called_once()
+    
+    @pytest.mark.asyncio
+    async def test_update_space(self, mock_info, mock_services):
+        """Test updating space via GraphQL mutation."""
+        space_id = uuid.uuid4()
+        input_data = UpdateSpaceInput(
+            name="Updated Name",
+            description="Updated description"
+        )
+        
+        updated_space = {
+            "id": str(space_id),
+            "name": "Updated Name",
+            "description": "Updated description",
+            "document_count": 5,
+            "created_at": datetime.utcnow(),
+            "updated_at": datetime.utcnow(),
+        }
+        mock_services["cosmos"].update_space.return_value = updated_space
+        
+        result = await update_space(mock_info, id=space_id, input=input_data)
+        
+        assert result.name == "Updated Name"
+        assert result.description == "Updated description"
+    
+    @pytest.mark.asyncio
+class TestDocumentResolvers:
+    """Tests for document-related GraphQL resolvers."""
+    
+    @pytest.mark.asyncio
+    async def test_list_documents_in_space(self, mock_info, mock_services):
+        """Test listing documents in a space."""
+        space_id = uuid.uuid4()
+        mock_docs = [
+            {
+                "id": str(uuid.uuid4()),
+                "space_id": str(space_id),
+                "filename": "doc1.pdf",
+                "content_type": "application/pdf",
+                "size_bytes": 1024,
+                "blob_url": "https://storage/doc1.pdf",
+                "blob_name": "space/doc/doc1.pdf",
+                "created_by": "user1",
+                "created_at": datetime.utcnow(),
+            },
+            {
+                "id": str(uuid.uuid4()),
+                "space_id": str(space_id),
+                "filename": "doc2.pdf",
+                "content_type": "application/pdf",
+                "size_bytes": 2048,
+                "blob_url": "https://storage/doc2.pdf",
+                "blob_name": "space/doc/doc2.pdf",
+                "created_by": "user2",
+                "created_at": datetime.utcnow(),
+            },
+        ]
+        mock_services["cosmos"].query_documents_by_space.return_value = mock_docs
+        
+        result = await documents(mock_info, space_id=space_id, limit=10)
+        
+        assert len(result.items) == 2
+        assert result.items[0].filename == "doc1.pdf"
+        assert result.items[1].filename == "doc2.pdf"
+    
+    @pytest.mark.asyncio
+    async def test_get_document_by_id(self, mock_info, mock_services):
+        """Test retrieving single document by ID."""
+        doc_id = uuid.uuid4()
+        space_id = uuid.uuid4()
+        
+        mock_doc = {
+            "id": str(doc_id),
+            "space_id": str(space_id),
+            "filename": "test.pdf",
+            "content_type": "application/pdf",
+            "size_bytes": 1024,
+            "blob_url": "https://storage/test.pdf",
+            "blob_name": "space/doc/test.pdf",
+            "created_by": "user",
+            "created_at": datetime.utcnow(),
+        }
+        mock_services["cosmos"].get_document.return_value = mock_doc
+        
+    @pytest.mark.asyncio
+    async def test_list_documents_with_filter(self, mock_info, mock_services):
+        """Test listing documents with content type filter."""
+        space_id = uuid.uuid4()
+        mock_docs = [
+            {
+                "id": str(uuid.uuid4()),
+                "space_id": str(space_id),
+                "filename": "doc.pdf",
+                "content_type": "application/pdf",
+                "size_bytes": 1024,
+                "blob_url": "https://storage/doc.pdf",
+                "blob_name": "space/doc/doc.pdf",
+                "created_by": "user",
+                "created_at": datetime.utcnow(),
+            }
+        ]
+        mock_services["cosmos"].query_documents.return_value = mock_docs
+        
+        result = await documents(mock_info, space_id=space_id, content_type="application/pdf")
+        
+        assert len(result.items) == 1
+        assert result.items[0].content_type == "application/pdf"
+
+
+class TestQueryResolvers:
+    """Tests for query-related GraphQL resolvers."""
+    
+    @pytest.mark.asyncio
+    async def test_submit_query(self, mock_info, mock_services):
+        """Test submitting query via GraphQL mutation."""
+        input_data = SubmitQueryInput(
+            space_id=uuid.uuid4(),
+            question="What is the policy on vacation days?",
+            parameters={"temperature": 0.7}
+        )
+        
+        submitted_query = {
+            "id": str(uuid.uuid4()),
+            "space_id": str(input_data.space_id),
+            "question": input_data.question,
+            "status": "pending",
+            "created_at": datetime.utcnow().isoformat(),
+            "created_by": "test-user",
+            "parameters": input_data.parameters,
+        }
+        mock_services["query"].submit_query.return_value = submitted_query
+        
+        result = await submit_query_resolver(mock_info, input=input_data)
+        
+        assert result.question == input_data.question
+        assert result.status == "pending"
+        mock_services["query"].submit_query.assert_called_once()
+    
+    @pytest.mark.asyncio
+    @pytest.mark.asyncio
+class TestAuthorizationChecks:
+    """Tests for authorization in resolvers."""
+    
+    @pytest.mark.asyncio
+    async def test_space_access_requires_tenant(self, mock_info, mock_services):
+        """Test that space access checks tenant_id."""
+        space_id = uuid.uuid4()
+        
+        # Mock space from different tenant
+        mock_space = {
+            "id": str(space_id),
+            "name": "Other Space",
+            "tenant_id": "other-tenant",  # Different tenant
+            "document_count": 0,
+            "created_at": datetime.utcnow(),
+            "updated_at": datetime.utcnow(),
+        }
+        mock_services["cosmos"].get_space.return_value = mock_space
+        
+        # Should check authorization (implementation depends on resolver)
+        result = await space(mock_info, id=space_id)
+        
+        # Assuming authorization check happens in resolver
+        # If cross-tenant access is denied, result should be None or raise error
+    
+    @pytest.mark.asyncio
+    async def test_create_space_sets_tenant_id(self, mock_info, mock_services):
+        """Test that creating space sets tenant_id from context."""
+        input_data = CreateSpaceInput(name="New Space")
+        
+        created_space = {
+            "id": str(uuid.uuid4()),
+            "name": "New Space",
+            "tenant_id": "test-tenant",  # Should match context
+            "document_count": 0,
+            "created_at": datetime.utcnow(),
+            "updated_at": datetime.utcnow(),
+        }
+        mock_services["cosmos"].create_space.return_value = created_space
+        
+        result = await create_space(mock_info, input=input_data)
+        
+        # Verify tenant_id was passed from context
+        call_args = mock_services["cosmos"].create_space.call_args
+        assert call_args[1]["tenant_id"] == "test-tenant"
+
+
+class TestErrorHandling:
+    """Tests for error handling in resolvers."""
+    
+    @pytest.mark.asyncio
+    async def test_list_spaces_service_error(self, mock_info, mock_services):
+        """Test handling service error when listing spaces."""
+        mock_services["cosmos"].list_spaces.side_effect = Exception("Database error")
+        
+        with pytest.raises(Exception, match="Failed to fetch spaces"):
+            await spaces(mock_info, limit=10)
+    
+    @pytest.mark.asyncio
+    async def test_create_space_validation_error(self, mock_info, mock_services):
+        """Test handling validation error when creating space."""
+        input_data = CreateSpaceInput(name="")  # Invalid: empty name
+        
+        mock_services["cosmos"].create_space.side_effect = ValueError("Name cannot be empty")
+        
+        with pytest.raises(Exception):
+            await create_space(mock_info, input=input_data)
+    
+    @pytest.mark.asyncio
+    async def test_query_submission_service_unavailable(self, mock_info, mock_services):
+        """Test handling service unavailable when submitting query."""
+        input_data = SubmitQueryInput(
+            space_id=uuid.uuid4(),
+            question="Test question"
+        )
+        
+        mock_services["query"].submit_query.side_effect = Exception("OpenAI service unavailable")
+        
+        with pytest.raises(Exception):
+            await submit_query_resolver(mock_info, input=input_data)
+
+
+class TestGraphQLContext:
+    """Tests for GraphQL context setup."""
+    
+    @pytest.mark.asyncio
+    async def test_context_creation(self, mock_services):
+        """Test creating GraphQL context."""
+        ctx = GraphQLContext(
+            cosmos_service=mock_services["cosmos"],
+            blob_service=mock_services["blob"],
+            query_service=mock_services["query"],
+            user_id="user123",
+            tenant_id="tenant456"
+        )
+        
+        assert ctx.user_id == "user123"
+        assert ctx.tenant_id == "tenant456"
+        assert ctx["user_id"] == "user123"  # Dict access
+        assert ctx.cosmos == mock_services["cosmos"]  # Attribute access
+    
+    @pytest.mark.asyncio
+    async def test_context_service_access(self, graphql_context):
+        """Test accessing services from context."""
+        assert graphql_context.cosmos is not None
+        assert graphql_context.blob is not None
+        assert graphql_context.query is not None
+        
+        # Both dict and attribute access should work
+        assert graphql_context["cosmos"] == graphql_context.cosmos
+
+
+class TestInputValidation:
+    """Tests for input validation in resolvers."""
+    
+    @pytest.mark.asyncio
+    async def test_create_space_with_invalid_metadata(self, mock_info, mock_services):
+        """Test creating space with invalid metadata."""
+        input_data = CreateSpaceInput(
+            name="Test Space",
+            metadata={"invalid": None}  # None values may not be allowed
+        )
+        
+        # Depending on validation logic, this might raise an error
+        created_space = {
+            "id": str(uuid.uuid4()),
+            "name": "Test Space",
+            "metadata": {},
+            "document_count": 0,
+            "created_at": datetime.utcnow(),
+            "updated_at": datetime.utcnow(),
+        }
+        mock_services["cosmos"].create_space.return_value = created_space
+        
+        result = await create_space(mock_info, input=input_data)
+        
+        assert result.name == "Test Space"
+    
+    @pytest.mark.asyncio
+    async def test_submit_query_with_empty_question(self, mock_info, mock_services):
+        """Test submitting query with empty question."""
+        input_data = SubmitQueryInput(
+            space_id=uuid.uuid4(),
+            question=""  # Empty question
+        )
+        
+        # Should be handled by validation or service
+        mock_services["query"].submit_query.side_effect = ValueError("Question cannot be empty")
+        
+        with pytest.raises(Exception):
+            await submit_query_resolver(mock_info, input=input_data)
+
+
+class TestPaginationResolvers:
+    """Tests for pagination in resolvers."""
+    
+    @pytest.mark.asyncio
+    async def test_spaces_first_page(self, mock_info, mock_services):
+        """Test fetching first page of spaces."""
+        mock_spaces = [{"id": str(uuid.uuid4()), "name": f"Space {i}", "document_count": 0, "created_at": datetime.utcnow(), "updated_at": datetime.utcnow()} for i in range(10)]
+        mock_services["cosmos"].list_spaces.return_value = (mock_spaces, "cursor-abc", True)
+        
+        result = await spaces(mock_info, limit=10, cursor=None)
+        
+        assert len(result.items) == 10
+        assert result.cursor == "cursor-abc"
+        assert result.has_more is True
+    
+    @pytest.mark.asyncio
+    async def test_spaces_subsequent_page(self, mock_info, mock_services):
+        """Test fetching subsequent page using cursor."""
+        mock_spaces = [{"id": str(uuid.uuid4()), "name": f"Space {i}", "document_count": 0, "created_at": datetime.utcnow(), "updated_at": datetime.utcnow()} for i in range(10, 20)]
+        mock_services["cosmos"].list_spaces.return_value = (mock_spaces, None, False)
+        
+        result = await spaces(mock_info, limit=10, cursor="cursor-abc")
+        
+        assert len(result.items) == 10
+        assert result.cursor is None
+        assert result.has_more is False

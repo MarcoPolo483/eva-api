@@ -1,0 +1,361 @@
+2025-12-08T22:27:47.9646035Z Container start method called.
+2025-12-08T22:27:47.9763512Z Establishing network.
+2025-12-08T22:27:47.9765278Z Pulling image: appsvc/python:3.11_20251017.5.tuxprod.
+2025-12-08T22:27:48.4248959Z Container is starting.
+2025-12-08T22:27:48.4252059Z Establishing user namespace if not established already.
+2025-12-08T22:27:48.4324204Z Establishing network if not established already.
+2025-12-08T22:27:48.4327889Z Mounting volumes.
+2025-12-08T22:27:48.4332974Z Nested mountpoint 
+2025-12-08T22:27:48.4922724Z Nested mountpoint volatile/logs
+2025-12-08T22:27:48.5213596Z Nested mountpoint 
+2025-12-08T22:27:48.6058783Z Nested mountpoint 
+2025-12-08T22:27:48.6534066Z Nested mountpoint 
+2025-12-08T22:27:49.3833129Z Creating container.
+2025-12-08T22:27:49.3907402Z Creating pipes for streaming container io.
+2025-12-08T22:27:49.3909517Z Creating stdout named pipe at /podr/container/pipe/cc0277c5d384_eva-api-marco-5346/stdout_1fe941a87a9649b7aea0ca74e5dd5335.
+2025-12-08T22:27:49.3918192Z Successfully created stdout named pipe at: /podr/container/pipe/cc0277c5d384_eva-api-marco-5346/stdout_1fe941a87a9649b7aea0ca74e5dd5335.
+2025-12-08T22:27:49.3920255Z Opening named pipe /podr/container/pipe/cc0277c5d384_eva-api-marco-5346/stdout_1fe941a87a9649b7aea0ca74e5dd5335 for reading in non-blocking mode.
+2025-12-08T22:27:49.3922010Z Successfully opened named pipe: /podr/container/pipe/cc0277c5d384_eva-api-marco-5346/stdout_1fe941a87a9649b7aea0ca74e5dd5335.
+2025-12-08T22:27:49.3923567Z Successfully removed non-blocking flag from /podr/container/pipe/cc0277c5d384_eva-api-marco-5346/stdout_1fe941a87a9649b7aea0ca74e5dd5335.
+2025-12-08T22:27:49.4078736Z Creating stderr named pipe at /podr/container/pipe/cc0277c5d384_eva-api-marco-5346/stderr_08df6f7b6af2488a840f2c019ef7b1c2.
+2025-12-08T22:27:49.4081900Z Successfully created stderr named pipe at: /podr/container/pipe/cc0277c5d384_eva-api-marco-5346/stderr_08df6f7b6af2488a840f2c019ef7b1c2.
+2025-12-08T22:27:49.4083232Z Opening named pipe /podr/container/pipe/cc0277c5d384_eva-api-marco-5346/stderr_08df6f7b6af2488a840f2c019ef7b1c2 for reading in non-blocking mode.
+2025-12-08T22:27:49.4084980Z Successfully opened named pipe: /podr/container/pipe/cc0277c5d384_eva-api-marco-5346/stderr_08df6f7b6af2488a840f2c019ef7b1c2.
+2025-12-08T22:27:49.4086101Z Successfully removed non-blocking flag from /podr/container/pipe/cc0277c5d384_eva-api-marco-5346/stderr_08df6f7b6af2488a840f2c019ef7b1c2.
+2025-12-08T22:27:49.4190600Z Creating container with image: appsvc/python:3.11_20251017.5.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/python:3.11_20251017.5.tuxprod
+2025-12-08T22:27:51.0434703Z Starting container: cc0277c5d384_eva-api-marco-5346.
+2025-12-08T22:27:51.2077510Z Starting watchers and probes.
+2025-12-08T22:27:51.2335408Z Starting metrics collection.
+2025-12-08T22:27:51.2337782Z Container is running.
+2025-12-08T22:27:51.9314836Z Container start method finished after 3959 ms.
+2025-12-08T22:28:35.1250054Z Container has finished running with exit code: 1.
+2025-12-08T22:28:35.1428050Z Container is terminating. Grace period: 5 seconds.
+2025-12-08T22:28:35.1627491Z Stop and delete container. Retry count = 0
+2025-12-08T22:28:35.1707418Z Stopping container: cc0277c5d384_eva-api-marco-5346.
+2025-12-08T22:28:35.3065474Z Deleting container: cc0277c5d384_eva-api-marco-5346. Retry count = 0
+2025-12-08T22:28:35.8220059Z Container spec TerminationMessagePolicy  path 
+2025-12-08T22:28:35.8402273Z Container is terminated. Total time elapsed: 689 ms.
+2025-12-08T22:28:35.8423287Z Site container: eva-api-marco-5346 terminated during site startup.
+2025-12-08T22:28:35.9584177Z Site startup probe failed after 43.9979675 seconds.
+2025-12-08T22:28:36.2251665Z Failed to start site. Revert by stopping site.
+2025-12-08T22:28:36.3032345Z Site: eva-api-marco-5346 stopped.
+2025-12-08T22:28:44.9390624Z Container start method called.
+2025-12-08T22:28:44.9393007Z Establishing network.
+2025-12-08T22:28:44.9394712Z Pulling image: appsvc/python:3.11_20251017.5.tuxprod.
+2025-12-08T22:28:45.2495583Z Container is starting.
+2025-12-08T22:28:45.2498558Z Establishing user namespace if not established already.
+2025-12-08T22:28:45.2500420Z Establishing network if not established already.
+2025-12-08T22:28:45.2503113Z Mounting volumes.
+2025-12-08T22:28:45.2509323Z Nested mountpoint 
+2025-12-08T22:28:45.3163788Z Nested mountpoint volatile/logs
+2025-12-08T22:28:45.3383892Z Nested mountpoint 
+2025-12-08T22:28:45.3660525Z Nested mountpoint 
+2025-12-08T22:28:45.3757813Z Nested mountpoint 
+2025-12-08T22:28:45.9895818Z Creating container.
+2025-12-08T22:28:46.0069993Z Creating pipes for streaming container io.
+2025-12-08T22:28:46.0076380Z Creating stdout named pipe at /podr/container/pipe/eb143523602b_eva-api-marco-5346/stdout_bdb75e3ac02e4b9aa72a32cae57e2018.
+2025-12-08T22:28:46.0378486Z Successfully created stdout named pipe at: /podr/container/pipe/eb143523602b_eva-api-marco-5346/stdout_bdb75e3ac02e4b9aa72a32cae57e2018.
+2025-12-08T22:28:46.0434908Z Opening named pipe /podr/container/pipe/eb143523602b_eva-api-marco-5346/stdout_bdb75e3ac02e4b9aa72a32cae57e2018 for reading in non-blocking mode.
+2025-12-08T22:28:46.0436660Z Successfully opened named pipe: /podr/container/pipe/eb143523602b_eva-api-marco-5346/stdout_bdb75e3ac02e4b9aa72a32cae57e2018.
+2025-12-08T22:28:46.0437832Z Successfully removed non-blocking flag from /podr/container/pipe/eb143523602b_eva-api-marco-5346/stdout_bdb75e3ac02e4b9aa72a32cae57e2018.
+2025-12-08T22:28:46.0439123Z Creating stderr named pipe at /podr/container/pipe/eb143523602b_eva-api-marco-5346/stderr_742bc7c46c384575acb301d05724b186.
+2025-12-08T22:28:46.0440993Z Successfully created stderr named pipe at: /podr/container/pipe/eb143523602b_eva-api-marco-5346/stderr_742bc7c46c384575acb301d05724b186.
+2025-12-08T22:28:46.0441913Z Opening named pipe /podr/container/pipe/eb143523602b_eva-api-marco-5346/stderr_742bc7c46c384575acb301d05724b186 for reading in non-blocking mode.
+2025-12-08T22:28:46.0443130Z Successfully opened named pipe: /podr/container/pipe/eb143523602b_eva-api-marco-5346/stderr_742bc7c46c384575acb301d05724b186.
+2025-12-08T22:28:46.0444065Z Successfully removed non-blocking flag from /podr/container/pipe/eb143523602b_eva-api-marco-5346/stderr_742bc7c46c384575acb301d05724b186.
+2025-12-08T22:28:46.0445115Z Creating container with image: appsvc/python:3.11_20251017.5.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/python:3.11_20251017.5.tuxprod
+2025-12-08T22:28:46.5767417Z Starting container: eb143523602b_eva-api-marco-5346.
+2025-12-08T22:28:46.6722546Z Starting watchers and probes.
+2025-12-08T22:28:46.6921275Z Starting metrics collection.
+2025-12-08T22:28:46.6934820Z Container is running.
+2025-12-08T22:28:46.8687078Z Container start method finished after 1904 ms.
+2025-12-08T22:29:20.4976887Z Container has finished running with exit code: 1.
+2025-12-08T22:29:20.5060694Z Container is terminating. Grace period: 5 seconds.
+2025-12-08T22:29:20.5249603Z Stop and delete container. Retry count = 0
+2025-12-08T22:29:20.5275955Z Stopping container: eb143523602b_eva-api-marco-5346.
+2025-12-08T22:29:20.6032170Z Deleting container: eb143523602b_eva-api-marco-5346. Retry count = 0
+2025-12-08T22:29:20.9753659Z Container spec TerminationMessagePolicy  path 
+2025-12-08T22:29:20.9765357Z Container is terminated. Total time elapsed: 468 ms.
+2025-12-08T22:29:20.9768938Z Site container: eva-api-marco-5346 terminated during site startup.
+2025-12-08T22:29:20.9964818Z Site startup probe failed after 34.0785534 seconds.
+2025-12-08T22:29:21.3517028Z Failed to start site. Revert by stopping site.
+2025-12-08T22:29:21.3522762Z Site: eva-api-marco-5346 stopped.
+2025-12-08T22:29:22.4303154Z Site: eva-api-marco-5346 will be blocked for 1 minutes till 12/08/2025 22:30:22
+2025-12-08T22:29:27.8533051Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:29:33.0180674Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:29:38.3227704Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:29:43.5570042Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:29:48.8407261Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:29:53.9841326Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:29:59.1418260Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:30:04.5007938Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:30:09.8214873Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:30:14.9914366Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:30:20.1890191Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:30:22.4340892Z Site: eva-api-marco-5346 is unblocked.
+2025-12-08T22:30:27.1631538Z Container start method called.
+2025-12-08T22:30:27.1726584Z Establishing network.
+2025-12-08T22:30:27.1738322Z Pulling image: appsvc/python:3.11_20251017.5.tuxprod.
+2025-12-08T22:30:27.5363613Z Container is starting.
+2025-12-08T22:30:27.5366269Z Establishing user namespace if not established already.
+2025-12-08T22:30:27.5367597Z Establishing network if not established already.
+2025-12-08T22:30:27.5375225Z Mounting volumes.
+2025-12-08T22:30:27.5470484Z Nested mountpoint 
+2025-12-08T22:30:27.5658249Z Nested mountpoint volatile/logs
+2025-12-08T22:30:27.6152660Z Nested mountpoint 
+2025-12-08T22:30:27.6514924Z Nested mountpoint 
+2025-12-08T22:30:27.6696275Z Nested mountpoint 
+2025-12-08T22:30:28.3999289Z Creating container.
+2025-12-08T22:30:28.4000907Z Creating pipes for streaming container io.
+2025-12-08T22:30:28.4002034Z Creating stdout named pipe at /podr/container/pipe/9bd254ccb0cd_eva-api-marco-5346/stdout_ccb15aa075e14e9a8e0f2bf42d93510d.
+2025-12-08T22:30:28.4010978Z Successfully created stdout named pipe at: /podr/container/pipe/9bd254ccb0cd_eva-api-marco-5346/stdout_ccb15aa075e14e9a8e0f2bf42d93510d.
+2025-12-08T22:30:28.4013038Z Opening named pipe /podr/container/pipe/9bd254ccb0cd_eva-api-marco-5346/stdout_ccb15aa075e14e9a8e0f2bf42d93510d for reading in non-blocking mode.
+2025-12-08T22:30:28.4014498Z Successfully opened named pipe: /podr/container/pipe/9bd254ccb0cd_eva-api-marco-5346/stdout_ccb15aa075e14e9a8e0f2bf42d93510d.
+2025-12-08T22:30:28.4015636Z Successfully removed non-blocking flag from /podr/container/pipe/9bd254ccb0cd_eva-api-marco-5346/stdout_ccb15aa075e14e9a8e0f2bf42d93510d.
+2025-12-08T22:30:28.4016842Z Creating stderr named pipe at /podr/container/pipe/9bd254ccb0cd_eva-api-marco-5346/stderr_4baa5bc79c8e437c8422fd0cc703f0e1.
+2025-12-08T22:30:28.4018447Z Successfully created stderr named pipe at: /podr/container/pipe/9bd254ccb0cd_eva-api-marco-5346/stderr_4baa5bc79c8e437c8422fd0cc703f0e1.
+2025-12-08T22:30:28.4019507Z Opening named pipe /podr/container/pipe/9bd254ccb0cd_eva-api-marco-5346/stderr_4baa5bc79c8e437c8422fd0cc703f0e1 for reading in non-blocking mode.
+2025-12-08T22:30:28.4020731Z Successfully opened named pipe: /podr/container/pipe/9bd254ccb0cd_eva-api-marco-5346/stderr_4baa5bc79c8e437c8422fd0cc703f0e1.
+2025-12-08T22:30:28.4021766Z Successfully removed non-blocking flag from /podr/container/pipe/9bd254ccb0cd_eva-api-marco-5346/stderr_4baa5bc79c8e437c8422fd0cc703f0e1.
+2025-12-08T22:30:28.4022921Z Creating container with image: appsvc/python:3.11_20251017.5.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/python:3.11_20251017.5.tuxprod
+2025-12-08T22:30:29.6243454Z Starting container: 9bd254ccb0cd_eva-api-marco-5346.
+2025-12-08T22:30:29.7118053Z Starting watchers and probes.
+2025-12-08T22:30:29.7683816Z Starting metrics collection.
+2025-12-08T22:30:29.7781162Z Container is running.
+2025-12-08T22:30:30.1365204Z Container start method finished after 2973 ms.
+2025-12-08T22:31:00.0433245Z Container has finished running with exit code: 1.
+2025-12-08T22:31:00.0435033Z Container is terminating. Grace period: 5 seconds.
+2025-12-08T22:31:00.0510591Z Stop and delete container. Retry count = 0
+2025-12-08T22:31:00.0511932Z Stopping container: 9bd254ccb0cd_eva-api-marco-5346.
+2025-12-08T22:31:00.1291471Z Deleting container: 9bd254ccb0cd_eva-api-marco-5346. Retry count = 0
+2025-12-08T22:31:00.5515217Z Container spec TerminationMessagePolicy  path 
+2025-12-08T22:31:00.5690523Z Container is terminated. Total time elapsed: 525 ms.
+2025-12-08T22:31:00.5692053Z Site container: eva-api-marco-5346 terminated during site startup.
+2025-12-08T22:31:00.5882249Z Site startup probe failed after 30.435979 seconds.
+2025-12-08T22:31:00.9836230Z Failed to start site. Revert by stopping site.
+2025-12-08T22:31:01.0029084Z Site: eva-api-marco-5346 stopped.
+2025-12-08T22:31:02.1649979Z Site: eva-api-marco-5346 will be blocked for 1 minutes till 12/08/2025 22:32:02
+2025-12-08T22:31:07.7381024Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:31:12.8862162Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:31:18.0793738Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:31:23.2311341Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:31:28.5806532Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:31:33.8752490Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:31:39.0375882Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:31:44.1947155Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:31:49.3652615Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:31:54.5357048Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:31:59.7397623Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:32:02.6165370Z Site: eva-api-marco-5346 is unblocked.
+2025-12-08T22:32:06.9991621Z Container start method called.
+2025-12-08T22:32:06.9994617Z Establishing network.
+2025-12-08T22:32:07.0080080Z Pulling image: appsvc/python:3.11_20251017.5.tuxprod.
+2025-12-08T22:32:07.2485513Z Container is starting.
+2025-12-08T22:32:07.2493756Z Establishing user namespace if not established already.
+2025-12-08T22:32:07.2495859Z Establishing network if not established already.
+2025-12-08T22:32:07.2497713Z Mounting volumes.
+2025-12-08T22:32:07.2578099Z Nested mountpoint 
+2025-12-08T22:32:07.2786730Z Nested mountpoint volatile/logs
+2025-12-08T22:32:07.2974231Z Nested mountpoint 
+2025-12-08T22:32:07.3066403Z Nested mountpoint 
+2025-12-08T22:32:07.3265780Z Nested mountpoint 
+2025-12-08T22:32:07.8563857Z Creating container.
+2025-12-08T22:32:07.8765635Z Creating pipes for streaming container io.
+2025-12-08T22:32:07.8855271Z Creating stdout named pipe at /podr/container/pipe/51337a119097_eva-api-marco-5346/stdout_81ba7a501603413aa98cadd01c8ca1e9.
+2025-12-08T22:32:07.8863951Z Successfully created stdout named pipe at: /podr/container/pipe/51337a119097_eva-api-marco-5346/stdout_81ba7a501603413aa98cadd01c8ca1e9.
+2025-12-08T22:32:07.8957595Z Opening named pipe /podr/container/pipe/51337a119097_eva-api-marco-5346/stdout_81ba7a501603413aa98cadd01c8ca1e9 for reading in non-blocking mode.
+2025-12-08T22:32:07.9050468Z Successfully opened named pipe: /podr/container/pipe/51337a119097_eva-api-marco-5346/stdout_81ba7a501603413aa98cadd01c8ca1e9.
+2025-12-08T22:32:07.9334927Z Successfully removed non-blocking flag from /podr/container/pipe/51337a119097_eva-api-marco-5346/stdout_81ba7a501603413aa98cadd01c8ca1e9.
+2025-12-08T22:32:07.9601365Z Creating stderr named pipe at /podr/container/pipe/51337a119097_eva-api-marco-5346/stderr_8a1d471ad89e4dcca636aa23588e9301.
+2025-12-08T22:32:07.9604815Z Successfully created stderr named pipe at: /podr/container/pipe/51337a119097_eva-api-marco-5346/stderr_8a1d471ad89e4dcca636aa23588e9301.
+2025-12-08T22:32:07.9605932Z Opening named pipe /podr/container/pipe/51337a119097_eva-api-marco-5346/stderr_8a1d471ad89e4dcca636aa23588e9301 for reading in non-blocking mode.
+2025-12-08T22:32:07.9607302Z Successfully opened named pipe: /podr/container/pipe/51337a119097_eva-api-marco-5346/stderr_8a1d471ad89e4dcca636aa23588e9301.
+2025-12-08T22:32:07.9617438Z Successfully removed non-blocking flag from /podr/container/pipe/51337a119097_eva-api-marco-5346/stderr_8a1d471ad89e4dcca636aa23588e9301.
+2025-12-08T22:32:07.9619827Z Creating container with image: appsvc/python:3.11_20251017.5.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/python:3.11_20251017.5.tuxprod
+2025-12-08T22:32:09.0102152Z Starting container: 51337a119097_eva-api-marco-5346.
+2025-12-08T22:32:09.1446538Z Starting watchers and probes.
+2025-12-08T22:32:09.1522432Z Starting metrics collection.
+2025-12-08T22:32:09.1532945Z Container is running.
+2025-12-08T22:32:09.4727390Z Container start method finished after 2472 ms.
+2025-12-08T22:33:07.9261948Z Container has finished running with exit code: 1.
+2025-12-08T22:33:07.9344843Z Container is terminating. Grace period: 5 seconds.
+2025-12-08T22:33:07.9347860Z Stop and delete container. Retry count = 0
+2025-12-08T22:33:07.9349328Z Stopping container: 51337a119097_eva-api-marco-5346.
+2025-12-08T22:33:08.0102027Z Deleting container: 51337a119097_eva-api-marco-5346. Retry count = 0
+2025-12-08T22:33:08.2959409Z Container spec TerminationMessagePolicy  path 
+2025-12-08T22:33:08.3146221Z Container is terminated. Total time elapsed: 379 ms.
+2025-12-08T22:33:08.3214083Z Site container: eva-api-marco-5346 terminated during site startup.
+2025-12-08T22:33:08.3605241Z Site startup probe failed after 58.8778383 seconds.
+2025-12-08T22:33:08.7073566Z Failed to start site. Revert by stopping site.
+2025-12-08T22:33:08.7987488Z Site: eva-api-marco-5346 stopped.
+2025-12-08T22:33:09.6702709Z Site: eva-api-marco-5346 will be blocked for 2 minutes till 12/08/2025 22:35:09
+2025-12-08T22:33:15.0433211Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:33:20.2459164Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:33:25.4695524Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:33:30.6636667Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:33:35.8113909Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:33:41.0313759Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:33:46.6795199Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:33:52.5523912Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:33:57.7461909Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:02.9752259Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:08.1466237Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:13.3162587Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:18.4493826Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:23.7143137Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:28.8418696Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:34.0507748Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:39.1532875Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:44.2713787Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:49.4307551Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:34:54.5658339Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:35:00.2902678Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:35:05.4646526Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:35:09.6626942Z Site: eva-api-marco-5346 is unblocked.
+2025-12-08T22:35:12.7340268Z Container start method called.
+2025-12-08T22:35:12.7426112Z Establishing network.
+2025-12-08T22:35:12.7427716Z Pulling image: appsvc/python:3.11_20251017.5.tuxprod.
+2025-12-08T22:35:13.0532413Z Container is starting.
+2025-12-08T22:35:13.0534916Z Establishing user namespace if not established already.
+2025-12-08T22:35:13.0536026Z Establishing network if not established already.
+2025-12-08T22:35:13.0537787Z Mounting volumes.
+2025-12-08T22:35:13.0539548Z Nested mountpoint 
+2025-12-08T22:35:13.1007728Z Nested mountpoint volatile/logs
+2025-12-08T22:35:13.2416059Z Nested mountpoint 
+2025-12-08T22:35:13.3656340Z Nested mountpoint 
+2025-12-08T22:35:13.3777740Z Nested mountpoint 
+2025-12-08T22:35:13.7892678Z Creating container.
+2025-12-08T22:35:13.7894973Z Creating pipes for streaming container io.
+2025-12-08T22:35:13.7896285Z Creating stdout named pipe at /podr/container/pipe/6fa5a8b4134d_eva-api-marco-5346/stdout_058471a1ec2f41e28b1fc5bc983ed5f0.
+2025-12-08T22:35:13.7899737Z Successfully created stdout named pipe at: /podr/container/pipe/6fa5a8b4134d_eva-api-marco-5346/stdout_058471a1ec2f41e28b1fc5bc983ed5f0.
+2025-12-08T22:35:13.7901020Z Opening named pipe /podr/container/pipe/6fa5a8b4134d_eva-api-marco-5346/stdout_058471a1ec2f41e28b1fc5bc983ed5f0 for reading in non-blocking mode.
+2025-12-08T22:35:13.7902386Z Successfully opened named pipe: /podr/container/pipe/6fa5a8b4134d_eva-api-marco-5346/stdout_058471a1ec2f41e28b1fc5bc983ed5f0.
+2025-12-08T22:35:13.7903549Z Successfully removed non-blocking flag from /podr/container/pipe/6fa5a8b4134d_eva-api-marco-5346/stdout_058471a1ec2f41e28b1fc5bc983ed5f0.
+2025-12-08T22:35:13.7904667Z Creating stderr named pipe at /podr/container/pipe/6fa5a8b4134d_eva-api-marco-5346/stderr_fad3c2a0c71440c2a461feb409880dd4.
+2025-12-08T22:35:13.7906435Z Successfully created stderr named pipe at: /podr/container/pipe/6fa5a8b4134d_eva-api-marco-5346/stderr_fad3c2a0c71440c2a461feb409880dd4.
+2025-12-08T22:35:13.7907417Z Opening named pipe /podr/container/pipe/6fa5a8b4134d_eva-api-marco-5346/stderr_fad3c2a0c71440c2a461feb409880dd4 for reading in non-blocking mode.
+2025-12-08T22:35:13.7908755Z Successfully opened named pipe: /podr/container/pipe/6fa5a8b4134d_eva-api-marco-5346/stderr_fad3c2a0c71440c2a461feb409880dd4.
+2025-12-08T22:35:13.7909782Z Successfully removed non-blocking flag from /podr/container/pipe/6fa5a8b4134d_eva-api-marco-5346/stderr_fad3c2a0c71440c2a461feb409880dd4.
+2025-12-08T22:35:13.7911052Z Creating container with image: appsvc/python:3.11_20251017.5.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/python:3.11_20251017.5.tuxprod
+2025-12-08T22:35:14.5760144Z Starting container: 6fa5a8b4134d_eva-api-marco-5346.
+2025-12-08T22:35:14.6986408Z Starting watchers and probes.
+2025-12-08T22:35:14.6989353Z Starting metrics collection.
+2025-12-08T22:35:14.6991112Z Container is running.
+2025-12-08T22:35:15.0257232Z Container start method finished after 2291 ms.
+2025-12-08T22:35:47.2740789Z Container has finished running with exit code: 1.
+2025-12-08T22:35:47.2776195Z Container is terminating. Grace period: 5 seconds.
+2025-12-08T22:35:47.2862307Z Stop and delete container. Retry count = 0
+2025-12-08T22:35:47.2863607Z Stopping container: 6fa5a8b4134d_eva-api-marco-5346.
+2025-12-08T22:35:47.3732552Z Deleting container: 6fa5a8b4134d_eva-api-marco-5346. Retry count = 0
+2025-12-08T22:35:47.6205301Z Container spec TerminationMessagePolicy  path 
+2025-12-08T22:35:47.6303450Z Container is terminated. Total time elapsed: 344 ms.
+2025-12-08T22:35:47.6389402Z Site container: eva-api-marco-5346 terminated during site startup.
+2025-12-08T22:35:47.6699353Z Site startup probe failed after 32.5864226 seconds.
+2025-12-08T22:35:47.9933521Z Failed to start site. Revert by stopping site.
+2025-12-08T22:35:48.0441485Z Site: eva-api-marco-5346 stopped.
+2025-12-08T22:35:49.1506272Z Site: eva-api-marco-5346 will be blocked for 2 minutes till 12/08/2025 22:37:49
+2025-12-08T22:35:54.5175150Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:35:59.6836241Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:04.8606166Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:09.9732921Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:15.0849074Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:20.2418662Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:25.8453526Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:31.0181853Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:36.1661865Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:41.3906826Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:46.9211532Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:52.1472708Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:36:57.4222994Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:37:02.5321937Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:37:07.6514878Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:37:12.8014714Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:37:18.3960953Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:37:23.6459310Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:37:28.8566556Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:37:33.9194855Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:37:39.0571879Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:37:44.2169114Z Start site prohibitted because the site is being blocked.
+2025-12-08T22:37:49.1426668Z Site: eva-api-marco-5346 is unblocked.
+2025-12-08T22:38:34.7122336Z Container start method called.
+2025-12-08T22:38:34.7124537Z Establishing network.
+2025-12-08T22:38:34.7125991Z Pulling image: appsvc/python:3.11_20251017.5.tuxprod.
+2025-12-08T22:38:35.8808800Z Container is starting.
+2025-12-08T22:38:35.8814595Z Establishing user namespace if not established already.
+2025-12-08T22:38:35.8816546Z Establishing network if not established already.
+2025-12-08T22:38:35.8818456Z Mounting volumes.
+2025-12-08T22:38:35.8946184Z Nested mountpoint 
+2025-12-08T22:38:35.9215916Z Nested mountpoint volatile/logs
+2025-12-08T22:38:35.9682819Z Nested mountpoint 
+2025-12-08T22:38:35.9792035Z Nested mountpoint 
+2025-12-08T22:38:36.0083035Z Nested mountpoint 
+2025-12-08T22:38:36.4816124Z Creating container.
+2025-12-08T22:38:36.4970307Z Creating pipes for streaming container io.
+2025-12-08T22:38:36.4971708Z Creating stdout named pipe at /podr/container/pipe/f65149ab0b09_eva-api-marco-5346/stdout_12c086d99648489ba1952542b8e1783d.
+2025-12-08T22:38:36.4974389Z Successfully created stdout named pipe at: /podr/container/pipe/f65149ab0b09_eva-api-marco-5346/stdout_12c086d99648489ba1952542b8e1783d.
+2025-12-08T22:38:36.4975399Z Opening named pipe /podr/container/pipe/f65149ab0b09_eva-api-marco-5346/stdout_12c086d99648489ba1952542b8e1783d for reading in non-blocking mode.
+2025-12-08T22:38:36.4976683Z Successfully opened named pipe: /podr/container/pipe/f65149ab0b09_eva-api-marco-5346/stdout_12c086d99648489ba1952542b8e1783d.
+2025-12-08T22:38:36.4977812Z Successfully removed non-blocking flag from /podr/container/pipe/f65149ab0b09_eva-api-marco-5346/stdout_12c086d99648489ba1952542b8e1783d.
+2025-12-08T22:38:36.4978901Z Creating stderr named pipe at /podr/container/pipe/f65149ab0b09_eva-api-marco-5346/stderr_6cdb5a09e1c842a28d16305af50541e3.
+2025-12-08T22:38:36.4980511Z Successfully created stderr named pipe at: /podr/container/pipe/f65149ab0b09_eva-api-marco-5346/stderr_6cdb5a09e1c842a28d16305af50541e3.
+2025-12-08T22:38:36.4981602Z Opening named pipe /podr/container/pipe/f65149ab0b09_eva-api-marco-5346/stderr_6cdb5a09e1c842a28d16305af50541e3 for reading in non-blocking mode.
+2025-12-08T22:38:36.4982790Z Successfully opened named pipe: /podr/container/pipe/f65149ab0b09_eva-api-marco-5346/stderr_6cdb5a09e1c842a28d16305af50541e3.
+2025-12-08T22:38:36.4983782Z Successfully removed non-blocking flag from /podr/container/pipe/f65149ab0b09_eva-api-marco-5346/stderr_6cdb5a09e1c842a28d16305af50541e3.
+2025-12-08T22:38:36.4986615Z Creating container with image: appsvc/python:3.11_20251017.5.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/python:3.11_20251017.5.tuxprod
+2025-12-08T22:38:37.1510243Z Starting container: f65149ab0b09_eva-api-marco-5346.
+2025-12-08T22:38:37.2299164Z Starting watchers and probes.
+2025-12-08T22:38:37.2327834Z Starting metrics collection.
+2025-12-08T22:38:37.2514114Z Container is running.
+2025-12-08T22:38:37.4420226Z Container start method finished after 2729 ms.
+2025-12-08T22:39:14.4045049Z Container has finished running with exit code: 1.
+2025-12-08T22:39:14.4114066Z Container is terminating. Grace period: 5 seconds.
+2025-12-08T22:39:14.4126376Z Stop and delete container. Retry count = 0
+2025-12-08T22:39:14.4127938Z Stopping container: f65149ab0b09_eva-api-marco-5346.
+2025-12-08T22:39:14.5074128Z Deleting container: f65149ab0b09_eva-api-marco-5346. Retry count = 0
+2025-12-08T22:39:14.9582009Z Container spec TerminationMessagePolicy  path 
+2025-12-08T22:39:15.0060310Z Container is terminated. Total time elapsed: 592 ms.
+2025-12-08T22:39:15.0063883Z Site container: eva-api-marco-5346 terminated during site startup.
+2025-12-08T22:39:15.1782325Z Site startup probe failed after 37.7004501 seconds.
+2025-12-08T22:39:15.4847987Z Failed to start site. Revert by stopping site.
+2025-12-08T22:39:15.4860680Z Site: eva-api-marco-5346 stopped.
+2025-12-08T22:48:41.6498792Z Container start method called.
+2025-12-08T22:48:41.6621505Z Establishing network.
+2025-12-08T22:48:41.6683069Z Pulling image: appsvc/python:3.11_20251017.5.tuxprod.
+2025-12-08T22:49:05.3931890Z Container is starting.
+2025-12-08T22:49:05.3934234Z Establishing user namespace if not established already.
+2025-12-08T22:49:05.3935542Z Establishing network if not established already.
+2025-12-08T22:49:05.3936884Z Mounting volumes.
+2025-12-08T22:49:05.3938569Z Nested mountpoint 
+2025-12-08T22:49:05.4215317Z Nested mountpoint volatile/logs
+2025-12-08T22:49:05.4538329Z Nested mountpoint 
+2025-12-08T22:49:05.6238635Z Nested mountpoint 
+2025-12-08T22:49:05.6556669Z Nested mountpoint 
+2025-12-08T22:49:06.0760958Z Creating container.
+2025-12-08T22:49:06.0764714Z Creating pipes for streaming container io.
+2025-12-08T22:49:06.0766628Z Creating stdout named pipe at /podr/container/pipe/109184b863b8_eva-api-marco-5346/stdout_973f0a41f8294d0a8ab2fbe93e226997.
+2025-12-08T22:49:06.0770494Z Successfully created stdout named pipe at: /podr/container/pipe/109184b863b8_eva-api-marco-5346/stdout_973f0a41f8294d0a8ab2fbe93e226997.
+2025-12-08T22:49:06.0772070Z Opening named pipe /podr/container/pipe/109184b863b8_eva-api-marco-5346/stdout_973f0a41f8294d0a8ab2fbe93e226997 for reading in non-blocking mode.
+2025-12-08T22:49:06.0775682Z Successfully opened named pipe: /podr/container/pipe/109184b863b8_eva-api-marco-5346/stdout_973f0a41f8294d0a8ab2fbe93e226997.
+2025-12-08T22:49:06.0778163Z Successfully removed non-blocking flag from /podr/container/pipe/109184b863b8_eva-api-marco-5346/stdout_973f0a41f8294d0a8ab2fbe93e226997.
+2025-12-08T22:49:06.0780025Z Creating stderr named pipe at /podr/container/pipe/109184b863b8_eva-api-marco-5346/stderr_39a94383d5d649fd971f88d81b36859c.
+2025-12-08T22:49:06.0782160Z Successfully created stderr named pipe at: /podr/container/pipe/109184b863b8_eva-api-marco-5346/stderr_39a94383d5d649fd971f88d81b36859c.
+2025-12-08T22:49:06.0785947Z Opening named pipe /podr/container/pipe/109184b863b8_eva-api-marco-5346/stderr_39a94383d5d649fd971f88d81b36859c for reading in non-blocking mode.
+2025-12-08T22:49:06.0787915Z Successfully opened named pipe: /podr/container/pipe/109184b863b8_eva-api-marco-5346/stderr_39a94383d5d649fd971f88d81b36859c.
+2025-12-08T22:49:06.0789742Z Successfully removed non-blocking flag from /podr/container/pipe/109184b863b8_eva-api-marco-5346/stderr_39a94383d5d649fd971f88d81b36859c.
+2025-12-08T22:49:06.0942698Z Creating container with image: appsvc/python:3.11_20251017.5.tuxprod from registry: 10.1.0.5:13209 and fully qualified image name: 10.1.0.5:13209/appsvc/python:3.11_20251017.5.tuxprod
+2025-12-08T22:49:06.6065978Z Starting container: 109184b863b8_eva-api-marco-5346.
+2025-12-08T22:49:06.7955332Z Starting watchers and probes.
+2025-12-08T22:49:06.8339043Z Starting metrics collection.
+2025-12-08T22:49:06.8372389Z Container is running.
+2025-12-08T22:49:07.0889650Z Container start method finished after 25428 ms.
+2025-12-08T22:49:38.1277448Z Container has finished running with exit code: 1.
+2025-12-08T22:49:38.1293183Z Container is terminating. Grace period: 5 seconds.
+2025-12-08T22:49:38.1374600Z Stop and delete container. Retry count = 0
+2025-12-08T22:49:38.1375903Z Stopping container: 109184b863b8_eva-api-marco-5346.
+2025-12-08T22:49:38.2992245Z Deleting container: 109184b863b8_eva-api-marco-5346. Retry count = 0
+2025-12-08T22:49:38.6004793Z Container spec TerminationMessagePolicy  path 
+2025-12-08T22:49:38.6092860Z Container is terminated. Total time elapsed: 463 ms.
+2025-12-08T22:49:38.6189235Z Site container: eva-api-marco-5346 terminated during site startup.
+2025-12-08T22:49:38.6297952Z Site startup probe failed after 31.5214814 seconds.
+2025-12-08T22:49:38.9059237Z Failed to start site. Revert by stopping site.
+2025-12-08T22:49:38.9077529Z Site: eva-api-marco-5346 stopped.

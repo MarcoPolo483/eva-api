@@ -1,0 +1,1414 @@
+
+
++===========================================================================================================================================================================================+
+
+
+DEPRECATED: this command (`check`) has been DEPRECATED, and will be unsupported beyond 01 June 2024.
+
+
+We highly encourage switching to the new `scan` command which is easier to use, more powerful, and can be set up to mimic the deprecated command if required.
+
+
++===========================================================================================================================================================================================+
+
+
+{
+    "report_meta": {
+        "scan_target": "environment",
+        "scanned": [
+            "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\src",
+            "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages"
+        ],
+        "scanned_full_path": [
+            "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\src",
+            "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages"
+        ],
+        "target_languages": [
+            "python"
+        ],
+        "policy_file": null,
+        "policy_file_source": "local",
+        "audit_and_monitor": false,
+        "api_key": false,
+        "account": "",
+        "local_database_path": null,
+        "safety_version": "3.7.0",
+        "timestamp": "2025-12-07 22:21:20",
+        "packages_found": 88,
+        "vulnerabilities_found": 0,
+        "vulnerabilities_ignored": 0,
+        "remediations_recommended": 0,
+        "telemetry": {
+            "safety_options": {
+                "json": {
+                    "--json": 1
+                }
+            },
+            "safety_version": "3.7.0",
+            "safety_source": "cli",
+            "os_type": "Windows",
+            "os_release": "11",
+            "os_description": "Windows-11-10.0.26200-SP0",
+            "python_version": "3.14.0",
+            "safety_command": "check"
+        },
+        "git": {
+            "branch": "master",
+            "tag": "",
+            "commit": "41388ca21883c168b31f3a4b2c3444414d205627",
+            "dirty": "True",
+            "origin": "https://github.com/MarcoPolo483/eva-api.git"
+        },
+        "project": null,
+        "json_version": "1.1",
+        "remediations_attempted": 0,
+        "remediations_completed": 0,
+        "remediation_mode": "NON_INTERACTIVE"
+    },
+    "scanned_packages": {
+        "eva-api": {
+            "name": "eva-api",
+            "version": "1.0.0",
+            "requirements": [
+                {
+                    "raw": "eva-api==1.0.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "eva-api",
+                    "specifier": "==1.0.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\src\\eva_api.egg-info"
+                }
+            ]
+        },
+        "annotated-types": {
+            "name": "annotated-types",
+            "version": "0.7.0",
+            "requirements": [
+                {
+                    "raw": "annotated-types==0.7.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "annotated-types",
+                    "specifier": "==0.7.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\annotated_types-0.7.0.dist-info"
+                }
+            ]
+        },
+        "anyio": {
+            "name": "anyio",
+            "version": "4.11.0",
+            "requirements": [
+                {
+                    "raw": "anyio==4.11.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "anyio",
+                    "specifier": "==4.11.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\anyio-4.11.0.dist-info"
+                }
+            ]
+        },
+        "Authlib": {
+            "name": "Authlib",
+            "version": "1.6.5",
+            "requirements": [
+                {
+                    "raw": "Authlib==1.6.5",
+                    "extras": [],
+                    "marker": null,
+                    "name": "Authlib",
+                    "specifier": "==1.6.5",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\authlib-1.6.5.dist-info"
+                }
+            ]
+        },
+        "azure-ai-formrecognizer": {
+            "name": "azure-ai-formrecognizer",
+            "version": "3.3.3",
+            "requirements": [
+                {
+                    "raw": "azure-ai-formrecognizer==3.3.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "azure-ai-formrecognizer",
+                    "specifier": "==3.3.3",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\azure_ai_formrecognizer-3.3.3.dist-info"
+                }
+            ]
+        },
+        "azure-cognitiveservices-vision-computervision": {
+            "name": "azure-cognitiveservices-vision-computervision",
+            "version": "0.9.1",
+            "requirements": [
+                {
+                    "raw": "azure-cognitiveservices-vision-computervision==0.9.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "azure-cognitiveservices-vision-computervision",
+                    "specifier": "==0.9.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\azure_cognitiveservices_vision_computervision-0.9.1.dist-info"
+                }
+            ]
+        },
+        "azure-common": {
+            "name": "azure-common",
+            "version": "1.1.28",
+            "requirements": [
+                {
+                    "raw": "azure-common==1.1.28",
+                    "extras": [],
+                    "marker": null,
+                    "name": "azure-common",
+                    "specifier": "==1.1.28",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\azure_common-1.1.28.dist-info"
+                }
+            ]
+        },
+        "azure-core": {
+            "name": "azure-core",
+            "version": "1.36.0",
+            "requirements": [
+                {
+                    "raw": "azure-core==1.36.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "azure-core",
+                    "specifier": "==1.36.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\azure_core-1.36.0.dist-info"
+                }
+            ]
+        },
+        "azure-cosmos": {
+            "name": "azure-cosmos",
+            "version": "4.14.2",
+            "requirements": [
+                {
+                    "raw": "azure-cosmos==4.14.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "azure-cosmos",
+                    "specifier": "==4.14.2",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\azure_cosmos-4.14.2.dist-info"
+                }
+            ]
+        },
+        "azure-functions": {
+            "name": "azure-functions",
+            "version": "1.24.0",
+            "requirements": [
+                {
+                    "raw": "azure-functions==1.24.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "azure-functions",
+                    "specifier": "==1.24.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\azure_functions-1.24.0.dist-info"
+                }
+            ]
+        },
+        "azure-identity": {
+            "name": "azure-identity",
+            "version": "1.25.1",
+            "requirements": [
+                {
+                    "raw": "azure-identity==1.25.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "azure-identity",
+                    "specifier": "==1.25.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\azure_identity-1.25.1.dist-info"
+                }
+            ]
+        },
+        "azure-search-documents": {
+            "name": "azure-search-documents",
+            "version": "11.4.0b8",
+            "requirements": [
+                {
+                    "raw": "azure-search-documents==11.4.0b8",
+                    "extras": [],
+                    "marker": null,
+                    "name": "azure-search-documents",
+                    "specifier": "==11.4.0b8",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\azure_search_documents-11.4.0b8.dist-info"
+                }
+            ]
+        },
+        "azure-storage-blob": {
+            "name": "azure-storage-blob",
+            "version": "12.18.2",
+            "requirements": [
+                {
+                    "raw": "azure-storage-blob==12.18.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "azure-storage-blob",
+                    "specifier": "==12.18.2",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\azure_storage_blob-12.18.2.dist-info"
+                }
+            ]
+        },
+        "azure-storage-queue": {
+            "name": "azure-storage-queue",
+            "version": "12.14.1",
+            "requirements": [
+                {
+                    "raw": "azure-storage-queue==12.14.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "azure-storage-queue",
+                    "specifier": "==12.14.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\azure_storage_queue-12.14.1.dist-info"
+                }
+            ]
+        },
+        "bandit": {
+            "name": "bandit",
+            "version": "1.9.2",
+            "requirements": [
+                {
+                    "raw": "bandit==1.9.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "bandit",
+                    "specifier": "==1.9.2",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\bandit-1.9.2.dist-info"
+                }
+            ]
+        },
+        "certifi": {
+            "name": "certifi",
+            "version": "2025.10.5",
+            "requirements": [
+                {
+                    "raw": "certifi==2025.10.5",
+                    "extras": [],
+                    "marker": null,
+                    "name": "certifi",
+                    "specifier": "==2025.10.5",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\certifi-2025.10.5.dist-info"
+                }
+            ]
+        },
+        "cffi": {
+            "name": "cffi",
+            "version": "2.0.0",
+            "requirements": [
+                {
+                    "raw": "cffi==2.0.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "cffi",
+                    "specifier": "==2.0.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\cffi-2.0.0.dist-info"
+                }
+            ]
+        },
+        "charset-normalizer": {
+            "name": "charset-normalizer",
+            "version": "3.4.4",
+            "requirements": [
+                {
+                    "raw": "charset-normalizer==3.4.4",
+                    "extras": [],
+                    "marker": null,
+                    "name": "charset-normalizer",
+                    "specifier": "==3.4.4",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\charset_normalizer-3.4.4.dist-info"
+                }
+            ]
+        },
+        "click": {
+            "name": "click",
+            "version": "8.3.1",
+            "requirements": [
+                {
+                    "raw": "click==8.3.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "click",
+                    "specifier": "==8.3.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\click-8.3.1.dist-info"
+                }
+            ]
+        },
+        "colorama": {
+            "name": "colorama",
+            "version": "0.4.6",
+            "requirements": [
+                {
+                    "raw": "colorama==0.4.6",
+                    "extras": [],
+                    "marker": null,
+                    "name": "colorama",
+                    "specifier": "==0.4.6",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\colorama-0.4.6.dist-info"
+                }
+            ]
+        },
+        "commonmark": {
+            "name": "commonmark",
+            "version": "0.9.1",
+            "requirements": [
+                {
+                    "raw": "commonmark==0.9.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "commonmark",
+                    "specifier": "==0.9.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\commonmark-0.9.1.dist-info"
+                }
+            ]
+        },
+        "coverage": {
+            "name": "coverage",
+            "version": "7.12.0",
+            "requirements": [
+                {
+                    "raw": "coverage==7.12.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "coverage",
+                    "specifier": "==7.12.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\coverage-7.12.0.dist-info"
+                }
+            ]
+        },
+        "cryptography": {
+            "name": "cryptography",
+            "version": "46.0.3",
+            "requirements": [
+                {
+                    "raw": "cryptography==46.0.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "cryptography",
+                    "specifier": "==46.0.3",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\cryptography-46.0.3.dist-info"
+                }
+            ]
+        },
+        "Deprecated": {
+            "name": "Deprecated",
+            "version": "1.3.1",
+            "requirements": [
+                {
+                    "raw": "Deprecated==1.3.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "Deprecated",
+                    "specifier": "==1.3.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\deprecated-1.3.1.dist-info"
+                }
+            ]
+        },
+        "distro": {
+            "name": "distro",
+            "version": "1.9.0",
+            "requirements": [
+                {
+                    "raw": "distro==1.9.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "distro",
+                    "specifier": "==1.9.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\distro-1.9.0.dist-info"
+                }
+            ]
+        },
+        "dparse": {
+            "name": "dparse",
+            "version": "0.6.4",
+            "requirements": [
+                {
+                    "raw": "dparse==0.6.4",
+                    "extras": [],
+                    "marker": null,
+                    "name": "dparse",
+                    "specifier": "==0.6.4",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\dparse-0.6.4.dist-info"
+                }
+            ]
+        },
+        "filelock": {
+            "name": "filelock",
+            "version": "3.20.0",
+            "requirements": [
+                {
+                    "raw": "filelock==3.20.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "filelock",
+                    "specifier": "==3.20.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\filelock-3.20.0.dist-info"
+                }
+            ]
+        },
+        "flake8": {
+            "name": "flake8",
+            "version": "7.3.0",
+            "requirements": [
+                {
+                    "raw": "flake8==7.3.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "flake8",
+                    "specifier": "==7.3.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\flake8-7.3.0.dist-info"
+                }
+            ]
+        },
+        "freezegun": {
+            "name": "freezegun",
+            "version": "1.5.5",
+            "requirements": [
+                {
+                    "raw": "freezegun==1.5.5",
+                    "extras": [],
+                    "marker": null,
+                    "name": "freezegun",
+                    "specifier": "==1.5.5",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\freezegun-1.5.5.dist-info"
+                }
+            ]
+        },
+        "h11": {
+            "name": "h11",
+            "version": "0.16.0",
+            "requirements": [
+                {
+                    "raw": "h11==0.16.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "h11",
+                    "specifier": "==0.16.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\h11-0.16.0.dist-info"
+                }
+            ]
+        },
+        "httpcore": {
+            "name": "httpcore",
+            "version": "1.0.9",
+            "requirements": [
+                {
+                    "raw": "httpcore==1.0.9",
+                    "extras": [],
+                    "marker": null,
+                    "name": "httpcore",
+                    "specifier": "==1.0.9",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\httpcore-1.0.9.dist-info"
+                }
+            ]
+        },
+        "httpx": {
+            "name": "httpx",
+            "version": "0.28.1",
+            "requirements": [
+                {
+                    "raw": "httpx==0.28.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "httpx",
+                    "specifier": "==0.28.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\httpx-0.28.1.dist-info"
+                }
+            ]
+        },
+        "idna": {
+            "name": "idna",
+            "version": "3.11",
+            "requirements": [
+                {
+                    "raw": "idna==3.11",
+                    "extras": [],
+                    "marker": null,
+                    "name": "idna",
+                    "specifier": "==3.11",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\idna-3.11.dist-info"
+                }
+            ]
+        },
+        "iniconfig": {
+            "name": "iniconfig",
+            "version": "2.3.0",
+            "requirements": [
+                {
+                    "raw": "iniconfig==2.3.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "iniconfig",
+                    "specifier": "==2.3.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\iniconfig-2.3.0.dist-info"
+                }
+            ]
+        },
+        "isodate": {
+            "name": "isodate",
+            "version": "0.7.2",
+            "requirements": [
+                {
+                    "raw": "isodate==0.7.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "isodate",
+                    "specifier": "==0.7.2",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\isodate-0.7.2.dist-info"
+                }
+            ]
+        },
+        "Jinja2": {
+            "name": "Jinja2",
+            "version": "3.1.6",
+            "requirements": [
+                {
+                    "raw": "Jinja2==3.1.6",
+                    "extras": [],
+                    "marker": null,
+                    "name": "Jinja2",
+                    "specifier": "==3.1.6",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\jinja2-3.1.6.dist-info"
+                }
+            ]
+        },
+        "jiter": {
+            "name": "jiter",
+            "version": "0.12.0",
+            "requirements": [
+                {
+                    "raw": "jiter==0.12.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "jiter",
+                    "specifier": "==0.12.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\jiter-0.12.0.dist-info"
+                }
+            ]
+        },
+        "joblib": {
+            "name": "joblib",
+            "version": "1.5.2",
+            "requirements": [
+                {
+                    "raw": "joblib==1.5.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "joblib",
+                    "specifier": "==1.5.2",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\joblib-1.5.2.dist-info"
+                }
+            ]
+        },
+        "limits": {
+            "name": "limits",
+            "version": "5.6.0",
+            "requirements": [
+                {
+                    "raw": "limits==5.6.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "limits",
+                    "specifier": "==5.6.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\limits-5.6.0.dist-info"
+                }
+            ]
+        },
+        "MarkupSafe": {
+            "name": "MarkupSafe",
+            "version": "3.0.3",
+            "requirements": [
+                {
+                    "raw": "MarkupSafe==3.0.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "MarkupSafe",
+                    "specifier": "==3.0.3",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\markupsafe-3.0.3.dist-info"
+                }
+            ]
+        },
+        "marshmallow": {
+            "name": "marshmallow",
+            "version": "4.1.0",
+            "requirements": [
+                {
+                    "raw": "marshmallow==4.1.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "marshmallow",
+                    "specifier": "==4.1.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\marshmallow-4.1.0.dist-info"
+                }
+            ]
+        },
+        "mccabe": {
+            "name": "mccabe",
+            "version": "0.7.0",
+            "requirements": [
+                {
+                    "raw": "mccabe==0.7.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "mccabe",
+                    "specifier": "==0.7.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\mccabe-0.7.0.dist-info"
+                }
+            ]
+        },
+        "msal": {
+            "name": "msal",
+            "version": "1.34.0",
+            "requirements": [
+                {
+                    "raw": "msal==1.34.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "msal",
+                    "specifier": "==1.34.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\msal-1.34.0.dist-info"
+                }
+            ]
+        },
+        "msal-extensions": {
+            "name": "msal-extensions",
+            "version": "1.3.1",
+            "requirements": [
+                {
+                    "raw": "msal-extensions==1.3.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "msal-extensions",
+                    "specifier": "==1.3.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\msal_extensions-1.3.1.dist-info"
+                }
+            ]
+        },
+        "msrest": {
+            "name": "msrest",
+            "version": "0.7.1",
+            "requirements": [
+                {
+                    "raw": "msrest==0.7.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "msrest",
+                    "specifier": "==0.7.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\msrest-0.7.1.dist-info"
+                }
+            ]
+        },
+        "nltk": {
+            "name": "nltk",
+            "version": "3.9.2",
+            "requirements": [
+                {
+                    "raw": "nltk==3.9.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "nltk",
+                    "specifier": "==3.9.2",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\nltk-3.9.2.dist-info"
+                }
+            ]
+        },
+        "oauthlib": {
+            "name": "oauthlib",
+            "version": "3.3.1",
+            "requirements": [
+                {
+                    "raw": "oauthlib==3.3.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "oauthlib",
+                    "specifier": "==3.3.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\oauthlib-3.3.1.dist-info"
+                }
+            ]
+        },
+        "openai": {
+            "name": "openai",
+            "version": "2.8.1",
+            "requirements": [
+                {
+                    "raw": "openai==2.8.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "openai",
+                    "specifier": "==2.8.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\openai-2.8.1.dist-info"
+                }
+            ]
+        },
+        "packaging": {
+            "name": "packaging",
+            "version": "25.0",
+            "requirements": [
+                {
+                    "raw": "packaging==25.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "packaging",
+                    "specifier": "==25.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\packaging-25.0.dist-info"
+                }
+            ]
+        },
+        "pillow": {
+            "name": "pillow",
+            "version": "12.0.0",
+            "requirements": [
+                {
+                    "raw": "pillow==12.0.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pillow",
+                    "specifier": "==12.0.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pillow-12.0.0.dist-info"
+                }
+            ]
+        },
+        "pip": {
+            "name": "pip",
+            "version": "25.3",
+            "requirements": [
+                {
+                    "raw": "pip==25.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pip",
+                    "specifier": "==25.3",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pip-25.3.dist-info"
+                }
+            ]
+        },
+        "pluggy": {
+            "name": "pluggy",
+            "version": "1.6.0",
+            "requirements": [
+                {
+                    "raw": "pluggy==1.6.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pluggy",
+                    "specifier": "==1.6.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pluggy-1.6.0.dist-info"
+                }
+            ]
+        },
+        "pycodestyle": {
+            "name": "pycodestyle",
+            "version": "2.14.0",
+            "requirements": [
+                {
+                    "raw": "pycodestyle==2.14.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pycodestyle",
+                    "specifier": "==2.14.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pycodestyle-2.14.0.dist-info"
+                }
+            ]
+        },
+        "pycparser": {
+            "name": "pycparser",
+            "version": "2.23",
+            "requirements": [
+                {
+                    "raw": "pycparser==2.23",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pycparser",
+                    "specifier": "==2.23",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pycparser-2.23.dist-info"
+                }
+            ]
+        },
+        "pydantic": {
+            "name": "pydantic",
+            "version": "2.12.4",
+            "requirements": [
+                {
+                    "raw": "pydantic==2.12.4",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pydantic",
+                    "specifier": "==2.12.4",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pydantic-2.12.4.dist-info"
+                }
+            ]
+        },
+        "pydantic_core": {
+            "name": "pydantic_core",
+            "version": "2.41.5",
+            "requirements": [
+                {
+                    "raw": "pydantic_core==2.41.5",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pydantic_core",
+                    "specifier": "==2.41.5",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pydantic_core-2.41.5.dist-info"
+                }
+            ]
+        },
+        "pyflakes": {
+            "name": "pyflakes",
+            "version": "3.4.0",
+            "requirements": [
+                {
+                    "raw": "pyflakes==3.4.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pyflakes",
+                    "specifier": "==3.4.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pyflakes-3.4.0.dist-info"
+                }
+            ]
+        },
+        "Pygments": {
+            "name": "Pygments",
+            "version": "2.19.2",
+            "requirements": [
+                {
+                    "raw": "Pygments==2.19.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "Pygments",
+                    "specifier": "==2.19.2",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pygments-2.19.2.dist-info"
+                }
+            ]
+        },
+        "PyJWT": {
+            "name": "PyJWT",
+            "version": "2.10.1",
+            "requirements": [
+                {
+                    "raw": "PyJWT==2.10.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "PyJWT",
+                    "specifier": "==2.10.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\PyJWT-2.10.1.dist-info"
+                }
+            ]
+        },
+        "pytest": {
+            "name": "pytest",
+            "version": "9.0.1",
+            "requirements": [
+                {
+                    "raw": "pytest==9.0.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pytest",
+                    "specifier": "==9.0.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pytest-9.0.1.dist-info"
+                }
+            ]
+        },
+        "pytest-asyncio": {
+            "name": "pytest-asyncio",
+            "version": "1.3.0",
+            "requirements": [
+                {
+                    "raw": "pytest-asyncio==1.3.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pytest-asyncio",
+                    "specifier": "==1.3.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pytest_asyncio-1.3.0.dist-info"
+                }
+            ]
+        },
+        "pytest-cov": {
+            "name": "pytest-cov",
+            "version": "7.0.0",
+            "requirements": [
+                {
+                    "raw": "pytest-cov==7.0.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pytest-cov",
+                    "specifier": "==7.0.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pytest_cov-7.0.0.dist-info"
+                }
+            ]
+        },
+        "pytest-mock": {
+            "name": "pytest-mock",
+            "version": "3.15.1",
+            "requirements": [
+                {
+                    "raw": "pytest-mock==3.15.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pytest-mock",
+                    "specifier": "==3.15.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pytest_mock-3.15.1.dist-info"
+                }
+            ]
+        },
+        "python-dateutil": {
+            "name": "python-dateutil",
+            "version": "2.9.0.post0",
+            "requirements": [
+                {
+                    "raw": "python-dateutil==2.9.0.post0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "python-dateutil",
+                    "specifier": "==2.9.0.post0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\python_dateutil-2.9.0.post0.dist-info"
+                }
+            ]
+        },
+        "PyYAML": {
+            "name": "PyYAML",
+            "version": "6.0.3",
+            "requirements": [
+                {
+                    "raw": "PyYAML==6.0.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "PyYAML",
+                    "specifier": "==6.0.3",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\pyyaml-6.0.3.dist-info"
+                }
+            ]
+        },
+        "regex": {
+            "name": "regex",
+            "version": "2025.11.3",
+            "requirements": [
+                {
+                    "raw": "regex==2025.11.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "regex",
+                    "specifier": "==2025.11.3",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\regex-2025.11.3.dist-info"
+                }
+            ]
+        },
+        "reportlab": {
+            "name": "reportlab",
+            "version": "4.4.5",
+            "requirements": [
+                {
+                    "raw": "reportlab==4.4.5",
+                    "extras": [],
+                    "marker": null,
+                    "name": "reportlab",
+                    "specifier": "==4.4.5",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\reportlab-4.4.5.dist-info"
+                }
+            ]
+        },
+        "requests": {
+            "name": "requests",
+            "version": "2.32.5",
+            "requirements": [
+                {
+                    "raw": "requests==2.32.5",
+                    "extras": [],
+                    "marker": null,
+                    "name": "requests",
+                    "specifier": "==2.32.5",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests-2.32.5.dist-info"
+                }
+            ]
+        },
+        "requests-oauthlib": {
+            "name": "requests-oauthlib",
+            "version": "2.0.0",
+            "requirements": [
+                {
+                    "raw": "requests-oauthlib==2.0.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "requests-oauthlib",
+                    "specifier": "==2.0.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\requests_oauthlib-2.0.0.dist-info"
+                }
+            ]
+        },
+        "responses": {
+            "name": "responses",
+            "version": "0.25.8",
+            "requirements": [
+                {
+                    "raw": "responses==0.25.8",
+                    "extras": [],
+                    "marker": null,
+                    "name": "responses",
+                    "specifier": "==0.25.8",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\responses-0.25.8.dist-info"
+                }
+            ]
+        },
+        "rich": {
+            "name": "rich",
+            "version": "12.5.1",
+            "requirements": [
+                {
+                    "raw": "rich==12.5.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "rich",
+                    "specifier": "==12.5.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\rich-12.5.1.dist-info"
+                }
+            ]
+        },
+        "ruamel.yaml": {
+            "name": "ruamel.yaml",
+            "version": "0.18.16",
+            "requirements": [
+                {
+                    "raw": "ruamel.yaml==0.18.16",
+                    "extras": [],
+                    "marker": null,
+                    "name": "ruamel.yaml",
+                    "specifier": "==0.18.16",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\ruamel.yaml-0.18.16.dist-info"
+                }
+            ]
+        },
+        "safety": {
+            "name": "safety",
+            "version": "3.7.0",
+            "requirements": [
+                {
+                    "raw": "safety==3.7.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "safety",
+                    "specifier": "==3.7.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\safety-3.7.0.dist-info"
+                }
+            ]
+        },
+        "safety-schemas": {
+            "name": "safety-schemas",
+            "version": "0.0.16",
+            "requirements": [
+                {
+                    "raw": "safety-schemas==0.0.16",
+                    "extras": [],
+                    "marker": null,
+                    "name": "safety-schemas",
+                    "specifier": "==0.0.16",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\safety_schemas-0.0.16.dist-info"
+                }
+            ]
+        },
+        "shellingham": {
+            "name": "shellingham",
+            "version": "1.5.4",
+            "requirements": [
+                {
+                    "raw": "shellingham==1.5.4",
+                    "extras": [],
+                    "marker": null,
+                    "name": "shellingham",
+                    "specifier": "==1.5.4",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\shellingham-1.5.4.dist-info"
+                }
+            ]
+        },
+        "six": {
+            "name": "six",
+            "version": "1.17.0",
+            "requirements": [
+                {
+                    "raw": "six==1.17.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "six",
+                    "specifier": "==1.17.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\six-1.17.0.dist-info"
+                }
+            ]
+        },
+        "slowapi": {
+            "name": "slowapi",
+            "version": "0.1.9",
+            "requirements": [
+                {
+                    "raw": "slowapi==0.1.9",
+                    "extras": [],
+                    "marker": null,
+                    "name": "slowapi",
+                    "specifier": "==0.1.9",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\slowapi-0.1.9.dist-info"
+                }
+            ]
+        },
+        "sniffio": {
+            "name": "sniffio",
+            "version": "1.3.1",
+            "requirements": [
+                {
+                    "raw": "sniffio==1.3.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "sniffio",
+                    "specifier": "==1.3.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\sniffio-1.3.1.dist-info"
+                }
+            ]
+        },
+        "stevedore": {
+            "name": "stevedore",
+            "version": "5.6.0",
+            "requirements": [
+                {
+                    "raw": "stevedore==5.6.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "stevedore",
+                    "specifier": "==5.6.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\stevedore-5.6.0.dist-info"
+                }
+            ]
+        },
+        "tenacity": {
+            "name": "tenacity",
+            "version": "9.1.2",
+            "requirements": [
+                {
+                    "raw": "tenacity==9.1.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "tenacity",
+                    "specifier": "==9.1.2",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\tenacity-9.1.2.dist-info"
+                }
+            ]
+        },
+        "tomlkit": {
+            "name": "tomlkit",
+            "version": "0.13.3",
+            "requirements": [
+                {
+                    "raw": "tomlkit==0.13.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "tomlkit",
+                    "specifier": "==0.13.3",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\tomlkit-0.13.3.dist-info"
+                }
+            ]
+        },
+        "tqdm": {
+            "name": "tqdm",
+            "version": "4.67.1",
+            "requirements": [
+                {
+                    "raw": "tqdm==4.67.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "tqdm",
+                    "specifier": "==4.67.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\tqdm-4.67.1.dist-info"
+                }
+            ]
+        },
+        "typer": {
+            "name": "typer",
+            "version": "0.20.0",
+            "requirements": [
+                {
+                    "raw": "typer==0.20.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "typer",
+                    "specifier": "==0.20.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\typer-0.20.0.dist-info"
+                }
+            ]
+        },
+        "typing_extensions": {
+            "name": "typing_extensions",
+            "version": "4.15.0",
+            "requirements": [
+                {
+                    "raw": "typing_extensions==4.15.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "typing_extensions",
+                    "specifier": "==4.15.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\typing_extensions-4.15.0.dist-info"
+                }
+            ]
+        },
+        "typing-inspection": {
+            "name": "typing-inspection",
+            "version": "0.4.2",
+            "requirements": [
+                {
+                    "raw": "typing-inspection==0.4.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "typing-inspection",
+                    "specifier": "==0.4.2",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\typing_inspection-0.4.2.dist-info"
+                }
+            ]
+        },
+        "urllib3": {
+            "name": "urllib3",
+            "version": "2.5.0",
+            "requirements": [
+                {
+                    "raw": "urllib3==2.5.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "urllib3",
+                    "specifier": "==2.5.0",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\urllib3-2.5.0.dist-info"
+                }
+            ]
+        },
+        "Werkzeug": {
+            "name": "Werkzeug",
+            "version": "3.1.4",
+            "requirements": [
+                {
+                    "raw": "Werkzeug==3.1.4",
+                    "extras": [],
+                    "marker": null,
+                    "name": "Werkzeug",
+                    "specifier": "==3.1.4",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\werkzeug-3.1.4.dist-info"
+                }
+            ]
+        },
+        "wrapt": {
+            "name": "wrapt",
+            "version": "2.0.1",
+            "requirements": [
+                {
+                    "raw": "wrapt==2.0.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "wrapt",
+                    "specifier": "==2.0.1",
+                    "url": null,
+                    "found": "C:\\Users\\marco\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\site-packages\\wrapt-2.0.1.dist-info"
+                }
+            ]
+        }
+    },
+    "affected_packages": {},
+    "announcements": [],
+    "vulnerabilities": [],
+    "ignored_vulnerabilities": [],
+    "remediations": {},
+    "remediations_results": {
+        "vulnerabilities_fixed": [],
+        "remediations_applied": {},
+        "remediations_skipped": {}
+    }
+}
+
+
++===========================================================================================================================================================================================+
+
+
+DEPRECATED: this command (`check`) has been DEPRECATED, and will be unsupported beyond 01 June 2024.
+
+
+We highly encourage switching to the new `scan` command which is easier to use, more powerful, and can be set up to mimic the deprecated command if required.
+
+
++===========================================================================================================================================================================================+
+
+

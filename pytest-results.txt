@@ -1,0 +1,101 @@
+C:\Users\marco\AppData\Local\Programs\Python\Python311\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-8.3.3, pluggy-1.6.0 -- C:\Users\marco\AppData\Local\Programs\Python\Python311\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\marco\Documents\_AI Dev\EVA Suite\eva-api
+configfile: pyproject.toml
+plugins: anyio-3.6.2, dash-2.14.0, Faker-22.0.0, hypothesis-6.148.3, asyncio-0.24.0, cov-5.0.0, mock-3.14.0, subtests-0.14.2, schemathesis-4.6.4
+asyncio: mode=Mode.AUTO, default_loop_scope=None
+collecting ... collected 22 items
+
+tests/test_phase3_features.py::TestHMACSignatures::test_generate_signature PASSED [  4%]
+tests/test_phase3_features.py::TestHMACSignatures::test_verify_signature_valid PASSED [  9%]
+tests/test_phase3_features.py::TestHMACSignatures::test_verify_signature_invalid PASSED [ 13%]
+tests/test_phase3_features.py::TestHMACSignatures::test_verify_signature_wrong_secret PASSED [ 18%]
+tests/test_phase3_features.py::TestHMACSignatures::test_signature_constant_time_comparison PASSED [ 22%]
+tests/test_phase3_features.py::TestWebhookEvents::test_space_event_helper_exists PASSED [ 27%]
+tests/test_phase3_features.py::TestWebhookEvents::test_document_event_helper_exists PASSED [ 31%]
+tests/test_phase3_features.py::TestWebhookEvents::test_query_event_helper_exists PASSED [ 36%]
+tests/test_phase3_features.py::TestWebhookService::test_service_lifecycle PASSED [ 40%]
+tests/test_phase3_features.py::TestWebhookService::test_event_queuing PASSED [ 45%]
+tests/test_phase3_features.py::TestWebhookService::test_webhook_service_methods_exist PASSED [ 50%]
+tests/test_phase3_features.py::TestGraphQLSubscriptions::test_document_added_subscription_exists PASSED [ 54%]
+tests/test_phase3_features.py::TestGraphQLSubscriptions::test_query_completed_subscription_exists PASSED [ 59%]
+tests/test_phase3_features.py::TestGraphQLSubscriptions::test_space_events_subscription_exists PASSED [ 63%]
+tests/test_phase3_features.py::TestGraphQLSubscriptions::test_subscription_returns_async_generator PASSED [ 68%]
+tests/test_phase3_features.py::TestDataLoaders::test_dataloader_functions_exist PASSED [ 72%]
+tests/test_phase3_features.py::TestDataLoaders::test_create_dataloaders_returns_dict PASSED [ 77%]
+tests/test_phase3_features.py::TestPhase3Integration::test_graphql_endpoint_exists PASSED [ 81%]
+tests/test_phase3_features.py::TestPhase3Integration::test_webhook_service_class_exists PASSED [ 86%]
+tests/test_phase3_features.py::TestPhase3Integration::test_dataloader_context_integration PASSED [ 90%]
+tests/test_phase3_features.py::TestPhase3Performance::test_hmac_signature_performance PASSED [ 95%]
+C:\Users\marco\AppData\Local\Programs\Python\Python311\Lib\ast.py:50: RuntimeWarning: coroutine 'Queue.get' was never awaited
+  return compile(source, filename, mode, flags,
+RuntimeWarning: Enable tracemalloc to get the object allocation traceback
+2025-12-08 13:21:55,874 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-31' coro=<WebhookService._delivery_worker() running at C:\Users\marco\Documents\_AI Dev\EVA Suite\eva-api\src\eva_api\services\webhook_service.py:179> wait_for=<Future pending cb=[Task.task_wakeup()]>>
+2025-12-08 13:21:55,875 - asyncio - ERROR - Task was destroyed but it is pending!
+task: <Task pending name='Task-32' coro=<Queue.get() running at C:\Users\marco\AppData\Local\Programs\Python\Python311\Lib\asyncio\queues.py:149> cb=[_release_waiter(<Future pendi...ask_wakeup()]>)() at C:\Users\marco\AppData\Local\Programs\Python\Python311\Lib\asyncio\tasks.py:431]>
+tests/test_phase3_features.py::TestPhase3Performance::test_event_queuing_performance PASSED [100%]
+
+============================== warnings summary ===============================
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\site-packages\pydantic\_internal\_config.py:272
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\site-packages\pydantic\_internal\_config.py:272
+..\..\..\..\AppData\Local\Programs\Python\Python311\Lib\site-packages\pydantic\_internal\_config.py:272
+  C:\Users\marco\AppData\Local\Programs\Python\Python311\Lib\site-packages\pydantic\_internal\_config.py:272: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.6/migration/
+    warnings.warn(DEPRECATION_MESSAGE, DeprecationWarning)
+
+tests/test_phase3_features.py::TestDataLoaders::test_create_dataloaders_returns_dict
+  C:\Users\marco\AppData\Local\Programs\Python\Python311\Lib\tokenize.py:317: RuntimeWarning: coroutine 'Queue.get' was never awaited
+    filename = readline.__self__.name
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+
+---------- coverage: platform win32, python 3.11.9-final-0 -----------
+Name                                      Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------
+src\eva_api\__init__.py                       2      0   100%
+src\eva_api\config.py                        80      6    92%   83-90, 129, 135, 140
+src\eva_api\dependencies.py                  62     44    29%   41, 64-94, 111, 130-187
+src\eva_api\graphql\__init__.py               0      0   100%
+src\eva_api\graphql\dataloaders.py           79     58    27%   45-93, 110, 134-180, 197, 221-256, 273
+src\eva_api\graphql\resolvers.py            198    165    17%   50-61, 74-92, 97-103, 112-128, 138-155, 160-167, 181-191, 204-211, 221-241, 250-267, 286-297, 313-320, 336-376, 388-416, 428-447, 458-479, 488-509
+src\eva_api\graphql\router.py                52     22    58%   47-66, 90-92
+src\eva_api\graphql\schema.py               165     34    79%   158-159, 163-164, 168-169, 173-174, 178-179, 192-193, 197-198, 202-203, 207-208, 212-213, 217-218, 238-240, 249-251, 260-262, 271-273
+src\eva_api\main.py                          71     29    59%   43-82, 159-160
+src\eva_api\middleware\__init__.py            0      0   100%
+src\eva_api\middleware\auth.py               84     32    62%   112, 116, 130-195, 215, 219-221, 227, 250, 253, 256
+src\eva_api\models\__init__.py                0      0   100%
+src\eva_api\models\auth.py                   43      0   100%
+src\eva_api\models\base.py                   34      0   100%
+src\eva_api\models\documents.py              20      0   100%
+src\eva_api\models\queries.py                32      0   100%
+src\eva_api\models\spaces.py                 26      0   100%
+src\eva_api\routers\__init__.py               0      0   100%
+src\eva_api\routers\auth.py                  41     25    39%   44-53, 76-85, 113-130, 154-166
+src\eva_api\routers\documents.py             96     72    25%   25, 30, 57-108, 135-155, 179-193, 219-257, 279-294
+src\eva_api\routers\health.py                70     54    23%   40-42, 67-139
+src\eva_api\routers\queries.py               73     50    32%   25, 30, 39, 65-104, 128-142, 168-190, 212-227
+src\eva_api\routers\spaces.py                86     62    28%   26, 49-72, 96-104, 128-142, 168-199, 224-247, 267-281
+src\eva_api\routers\webhooks.py             174    103    41%   148-149, 167-198, 215-227, 244-259, 277-312, 329-349, 367-391, 409-447, 458-459
+src\eva_api\services\__init__.py              0      0   100%
+src\eva_api\services\api_key_service.py     112     92    18%   30-32, 40-53, 64, 72-73, 92-126, 138-170, 181-210, 222-251, 262-309
+src\eva_api\services\auth_service.py         90     69    23%   31-33, 42-48, 57-63, 76-84, 101-172, 198-244
+src\eva_api\services\blob_service.py         90     62    31%   57, 63-67, 83-141, 156, 160-172, 176-189, 203, 219-241
+src\eva_api\services\cosmos_service.py      316    266    16%   41, 78-87, 105-130, 135-157, 169-214, 224-252, 256-270, 274-287, 291-304, 308-317, 321-334, 340-365, 373-383, 387-401, 405-425, 429-444, 448-462, 466-489, 493-503, 509-530, 534-544, 551-585, 589-602
+src\eva_api\services\query_service.py       134    103    23%   52-62, 85-115, 127-141, 153-160, 176-212, 225-245, 254-273, 289-297, 309-320, 339-366, 378-387
+src\eva_api\services\redis_service.py       120     87    28%   39-82, 86-95, 103-133, 157-173, 185-196, 207-214, 227-234, 249-259, 270-278
+src\eva_api\services\webhook_service.py     204    124    39%   41-42, 58-59, 75, 137-170, 184, 188, 190-191, 193-196, 204-278, 296-344, 389, 397-399, 418-441, 456-472, 489-511, 523-531, 546-549, 554-555, 560-561
+-----------------------------------------------------------------------
+TOTAL                                      2554   1559    39%
+Coverage HTML written to dir htmlcov
+Coverage XML written to file coverage.xml
+
+FAIL Required test coverage of 100% not reached. Total coverage: 38.96%
+======================= 22 passed, 4 warnings in 11.35s =======================

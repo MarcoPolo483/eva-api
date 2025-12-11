@@ -23,6 +23,7 @@ redis==5.0.1
 # HTTP & Utilities
 httpx==0.26.0
 python-multipart==0.0.9
+slowapi==0.1.9  # Rate limiting
 
 # GraphQL (Phase 3)
 strawberry-graphql==0.219.0
