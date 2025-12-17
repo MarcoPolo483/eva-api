@@ -1,0 +1,69 @@
+{
+  "executedBy": "marco",
+  "reason": "Phase 3 ZERO TOLERANCE path enforcement cleanup",
+  "movedItems": [
+    {
+      "sourcePath": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\.pytest_cache",
+      "executedBy": "marco",
+      "category": "path-enforcement",
+      "machine": "MSILAPTOP",
+      "timestamp": "2025-12-17T03:04:57.2412994Z",
+      "action": "moved",
+      "reason": "ZERO TOLERANCE: Outside mandatory folder structure",
+      "destinationPath": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\backups\\mandatory-folder-cleanup\\20251216-220457\\folders\\.pytest_cache",
+      "runId": "3dfa856f-3f41-4cb8-88b1-ad07d61ec901",
+      "fingerprint": null
+    },
+    {
+      "sourcePath": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\htmlcov",
+      "executedBy": "marco",
+      "category": "path-enforcement",
+      "machine": "MSILAPTOP",
+      "timestamp": "2025-12-17T03:04:57.2575434Z",
+      "action": "moved",
+      "reason": "ZERO TOLERANCE: Outside mandatory folder structure",
+      "destinationPath": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\backups\\mandatory-folder-cleanup\\20251216-220457\\folders\\htmlcov",
+      "runId": "3dfa856f-3f41-4cb8-88b1-ad07d61ec901",
+      "fingerprint": null
+    },
+    {
+      "sourcePath": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\eslint.config.mjs",
+      "executedBy": "marco",
+      "category": "path-enforcement",
+      "machine": "MSILAPTOP",
+      "timestamp": "2025-12-17T03:04:57.2645888Z",
+      "action": "moved",
+      "reason": "ZERO TOLERANCE: Outside mandatory folder structure",
+      "destinationPath": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\backups\\mandatory-folder-cleanup\\20251216-220457\\files\\eslint.config.mjs",
+      "runId": "3dfa856f-3f41-4cb8-88b1-ad07d61ec901",
+      "fingerprint": {
+        "sha256": "6598E980EC66ED6FD2B4A7AB89C59738EA19BE0643D22B7EE70BE8788F45EC09",
+        "size": 874,
+        "lastModified": "2025-12-16T21:22:11.4762126-05:00",
+        "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\eslint.config.mjs"
+      }
+    },
+    {
+      "sourcePath": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\README0.md",
+      "executedBy": "marco",
+      "category": "path-enforcement",
+      "machine": "MSILAPTOP",
+      "timestamp": "2025-12-17T03:04:57.2711842Z",
+      "action": "moved",
+      "reason": "ZERO TOLERANCE: Outside mandatory folder structure",
+      "destinationPath": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\backups\\mandatory-folder-cleanup\\20251216-220457\\files\\README0.md",
+      "runId": "3dfa856f-3f41-4cb8-88b1-ad07d61ec901",
+      "fingerprint": {
+        "sha256": "28B1229AC444B030F3BD4028B4D2461B7921C756A87CC0D4BABE5AF252D903F7",
+        "size": 810,
+        "lastModified": "2025-12-16T21:22:11.3702147-05:00",
+        "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\eva-api\\README0.md"
+      }
+    }
+  ],
+  "runId": "3dfa856f-3f41-4cb8-88b1-ad07d61ec901",
+  "totalMoved": 4,
+  "repo": "eva-api",
+  "timestamp": "2025-12-17T03:04:57.2721179Z",
+  "approvedBy": "Marco Presta (Product Owner)"
+}
